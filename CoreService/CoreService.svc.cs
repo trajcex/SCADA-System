@@ -1,6 +1,8 @@
 ﻿using CoreService.Interface;
+using CoreService.Model;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.Validation;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
@@ -18,7 +20,18 @@ namespace CoreService
 
         public void RegisterUser(string username, string password)
         {
-            throw new NotImplementedException();
+            using(var db = new UserContextDB())
+            {
+                User user = new User(username,password);
+                db.Users.Add(user);
+                db.SaveChanges();
+                foreach (var item in db.Users)
+                {
+                    Console.WriteLine(item.Username);
+                }
+            }
         }
+
+        
     }
 }
