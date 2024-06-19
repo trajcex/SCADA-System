@@ -148,6 +148,7 @@ namespace DatabaseManager
                         TagManager.addTag();
                         break;
                     case "3":
+                        TagManager.deleteTag();
                         break;
                     case "4":
                         break;

@@ -16,8 +16,12 @@ namespace DatabaseManager
             Printer.TagTypes();
             int tagType = integerValidator("Unesite tip taga:", 1, 4);
             Tag newTag = createTag(tagType);
-
             tagServiceClient.AddTag(newTag);
+        }
+        public static void deleteTag()
+        {
+            Console.WriteLine("\nPostojeci tagovi u sistemu:");
+            int deleteTagOption = integerValidator(tagServiceClient.GetAllTagNames(),1,10);
         }
         static Tag createTag(int tipTaga)
         {

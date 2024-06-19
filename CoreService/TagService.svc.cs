@@ -91,5 +91,16 @@ namespace CoreService
                 return false;
             }
         }
+        public string GetAllTagNames()
+        {
+            var allTags = digitalInputTag
+                .Concat(digitalOutputTag)
+                .Concat(analogInputTag)
+                .Concat(analogOutputTag);
+
+            string tagNames = string.Join("\n", allTags.Select((tag, index) => $"{index + 1}. {tag.TagName}"));
+
+            return tagNames;
+        }
     }
 }
