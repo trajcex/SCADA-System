@@ -131,6 +131,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CoreService.svc" />
+    <Content Include="RealTimeDriver.svc" />
     <Content Include="scadaConfig.xml" />
   </ItemGroup>
   <ItemGroup>
@@ -138,8 +139,12 @@
       <DependentUpon>CoreService.svc</DependentUpon>
     </Compile>
     <Compile Include="Interface\ICore.cs" />
+    <Compile Include="Interface\IRealTimeDriver.cs" />
     <Compile Include="Model\Alarm.cs" />
     <Compile Include="Model\Tag.cs" />
+    <Compile Include="RealTimeDriver.svc.cs">
+      <DependentUpon>RealTimeDriver.svc</DependentUpon>
+    </Compile>
     <Compile Include="Repository\Interface\ITagRepository.cs" />
     <Compile Include="Interface\IUser.cs" />
     <Compile Include="Migrations\202406181918086_InitialCreate.cs" />
@@ -169,6 +174,12 @@
     <EmbeddedResource Include="Migrations\202406181918086_InitialCreate.resx">
       <DependentUpon>202406181918086_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SimulationLibrary\SimulationLibrary.csproj">
+      <Project>{709c4360-f611-4532-b6d3-2bef69d2a1b9}</Project>
+      <Name>SimulationLibrary</Name>
+    </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
