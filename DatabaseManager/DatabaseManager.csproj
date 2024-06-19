@@ -55,12 +55,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\TagServiceReference\Reference.cs">
+    <Compile Include="Connected Services\CoreServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <Compile Include="Connected Services\ServiceReference\Reference.cs">
+    <Compile Include="Connected Services\TagServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -72,6 +72,19 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+    <None Include="Connected Services\CoreServiceReference\CoreService.wsdl" />
+    <None Include="Connected Services\CoreServiceReference\CoreService.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreServiceReference\CoreService1.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreServiceReference\CoreService2.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Connected Services\CoreServiceReference\DatabaseManager.CoreServiceReference.Tag.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Connected Services\TagServiceReference\DatabaseManager.TagServiceReference.Tag.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -91,6 +104,7 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <WCFMetadataStorage Include="Connected Services\CoreServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\TagServiceReference\" />
   </ItemGroup>
   <ItemGroup>
@@ -109,19 +123,16 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\ServiceReference\" />
+    <None Include="Connected Services\CoreServiceReference\CoreService.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference\CoreService.disco" />
+    <None Include="Connected Services\CoreServiceReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\CoreServiceReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\ServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\ServiceReference\Reference.svcmap">
+    <None Include="Connected Services\CoreServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

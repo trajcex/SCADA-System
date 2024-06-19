@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Http.Headers;
 
 namespace DatabaseManager
 {
@@ -41,6 +42,7 @@ namespace DatabaseManager
         static Tag createDigitalInput(string tagName, string description, string address)
         {
             int scanTime = integerValidator("Unesite ScanTime (integer > 0):");
+            string driver = getDriverFromCLI();
 
             return new DigitalInputTag
             {
@@ -48,7 +50,8 @@ namespace DatabaseManager
                 Description = description,
                 Address = address,
                 ScanTime = scanTime,
-                Driver = "Driver"
+                Driver = driver,
+                Scan = true
             };
         }
         static Tag createDigitalOutput(string tagName, string description, string address)
@@ -68,6 +71,8 @@ namespace DatabaseManager
             int scanTime = integerValidator("Unesite ScanTime (integer > 0):");
             int lowLimit = integerValidator("Unesite LowLimit (integer > 0):");
             int highLimit = integerValidator("Unesite HighLimit (integer > 0):");
+            string units = stringValidator("Unesite Units:");
+            string driver = getDriverFromCLI();
 
             return new AnalogInputTag
             {
@@ -76,7 +81,9 @@ namespace DatabaseManager
                 Address = address,
                 ScanTime = scanTime,
                 LowLimit = lowLimit,
-                HighLimit = highLimit
+                HighLimit = highLimit,
+                Scan = true,
+                Units = units
             };
         }
         static Tag createAnalogOutput(string tagName, string description, string address)
@@ -84,6 +91,7 @@ namespace DatabaseManager
             int initialValue = integerValidator("Unesite InitialValue (integer > 0):");
             int lowLimit = integerValidator("Unesite LowLimit (integer > 0):");
             int highLimit = integerValidator("Unesite HighLimit (integer > 0):");
+            string units = stringValidator("Unesite Units:");
 
             return new AnalogOutputTag
             {
@@ -92,7 +100,8 @@ namespace DatabaseManager
                 Address = address,
                 InitialValue = initialValue,
                 LowLimit = lowLimit,
-                HighLimit = highLimit
+                HighLimit = highLimit,
+                Units = units
             };
         }
         static int integerValidator(string prompt, int minValue = 1, int? maxValue = null)
@@ -125,6 +134,23 @@ namespace DatabaseManager
             } while (string.IsNullOrWhiteSpace(input));
 
             return input;
+        }
+        static string getDriverFromCLI()
+        {
+            string driverRet;
+            int driverOption = integerValidator("1. Real time unit\n2. Simulation driver\n>>", 1, 2);
+            switch (driverOption)
+            {
+                case 1:
+                    driverRet = "RTU";
+                    break;
+                case 2:
+                    driverRet = "Simulation";
+                    break;
+                default:
+                    return null;
+            }
+            return driverRet;
         }
     }
 }
