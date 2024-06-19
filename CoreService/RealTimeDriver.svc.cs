@@ -10,9 +10,26 @@ namespace CoreService
 {
     public class RealTimeDriver : IRealTimeDriver
     {
-        public void DoWork()
+        private static Dictionary<string ,int > rtuDicDictionary = new Dictionary<string ,int>();
+
+        public bool ConnectRtu(string uid)
         {
-            
+            if (rtuDicDictionary.ContainsKey(uid))
+            {
+                return false;
+            }
+            else
+            {
+                rtuDicDictionary.Add(uid, 0);
+                return true;
+            }
         }
+
+        public void SendRandomValue(string uid, int random)
+        {
+            rtuDicDictionary[uid] = random;
+        }
+
+  
     }
 }

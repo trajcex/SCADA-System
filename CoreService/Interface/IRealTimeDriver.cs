@@ -11,6 +11,12 @@ namespace CoreService.Interface
     public interface IRealTimeDriver
     {
         [OperationContract]
-        void ();
+        void SendRandomValue(string uid, int random);
+
+
+        [OperationContract]
+        bool ConnectRtu(string uid);
     }
+
+
 }
