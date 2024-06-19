@@ -4,6 +4,7 @@
   <DigitalInputTag tagName="DI2" description="Digital Input Tag 2" address="Address2" driver="Driver2" scanTime="2" scan="false" />
   <DigitalOutputTag tagName="DO1" description="Digital Output Tag 1" address="Address1" initialValue="100" />
   <DigitalOutputTag tagName="DO2" description="Digital Output Tag 2" address="Address2" initialValue="200" />
+  <DigitalOutputTag tagName="neki" description="123" address="123" initialValue="1" />
   <AnalogInputTag tagName="AI1" description="Analog Input Tag 1" address="Address1" driver="Driver1" scanTime="1" scan="true" lowLimit="0" highLimit="100" units="Volts" alarms="System.Linq.Enumerable+WhereSelectListIterator`2[CoreService.Model.Alarm,System.Xml.Linq.XElement]" />
   <AnalogInputTag tagName="AI2" description="Analog Input Tag 2" address="Address2" driver="Driver2" scanTime="2" scan="false" lowLimit="0" highLimit="50" units="Amps" alarms="System.Linq.Enumerable+WhereSelectListIterator`2[CoreService.Model.Alarm,System.Xml.Linq.XElement]" />
   <AnalogOutputTag tagName="AO1" description="Analog Output Tag 1" address="Address1" initialValue="50" lowLimit="0" highLimit="100" units="Volts" />

@@ -23,5 +23,12 @@ namespace DatabaseManager
             Console.WriteLine("5. Prikaz trenutne vrednosti taga");
             Console.WriteLine("6. Odjava");
         }
+        public static void TagTypes()
+        {
+            Console.WriteLine("1. Digitalni Input");
+            Console.WriteLine("2. Digitalni Output");
+            Console.WriteLine("3. Analogni Input");
+            Console.WriteLine("4. Analogni Output");
+        }
     }
 }

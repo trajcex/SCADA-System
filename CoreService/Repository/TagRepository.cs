@@ -111,7 +111,6 @@ namespace CoreService.Repository
             List<Tag> ao = tags["AnalogOutputTags"];
 
             XElement XTags = new XElement("Tags",
-                // DigitalInputTags
                 from tag in di
                 select new XElement("DigitalInputTag",
                     new XAttribute("tagName", tag.TagName),
@@ -121,7 +120,6 @@ namespace CoreService.Repository
                     new XAttribute("scanTime", ((DigitalInputTag)tag).ScanTime),
                     new XAttribute("scan", ((DigitalInputTag)tag).Scan)
                 ),
-                // DigitalOutputTags
                 from tag in d0
                 select new XElement("DigitalOutputTag",
                     new XAttribute("tagName", tag.TagName),
@@ -129,7 +127,6 @@ namespace CoreService.Repository
                     new XAttribute("address", tag.Address),
                     new XAttribute("initialValue", ((DigitalOutputTag)tag).InitialValue)
                 ),
-                // AnalogInputTags
                 from tag in ai
                 select new XElement("AnalogInputTag",
                     new XAttribute("tagName", tag.TagName),
@@ -149,7 +146,6 @@ namespace CoreService.Repository
                         )
                     )
                 ),
-                // AnalogOutputTags
                 from tag in ao
                 select new XElement("AnalogOutputTag",
                     new XAttribute("tagName", tag.TagName),
