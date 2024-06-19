@@ -1,0 +1,50 @@
+# .gitignore za WCF aplikaciju
+
+# Izbegavanje build direktorijuma
+bin/
+obj/
+
+# Izbegavanje Visual Studio foldera
+.vs/
+
+# Izbegavanje različitih postavki i logova
+*.log
+*.tlog
+*.ide
+
+# Izbegavanje paket menadžera foldera
+packages/
+*.nupkg
+*.snupkg
+project.lock.json
+project.fragment.lock.json
+artifacts/
+
+
+# Izbegavanje publish foldera
+publish/
+
+# Izbegavanje resursa koje kreira Visual Studio
+*.psess
+*.vsp
+*.vspx
+*.sap
+*.swp
+
+
+# Izbegavanje konfiguracionih fajlova za IIS
+.vscode/
+
+# User-specific nuget global packages folder
+%UserProfile%\.nuget\packages
+
+# User-specific NuGet credentials
+%AppData%\NuGet\NuGet.Config
+
+# Local History for JetBrains Rider
+.idea/
+*.iml
+
+# Backup i privremeni fajlovi
+*_backup_*
+*_bak_*
