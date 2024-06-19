@@ -137,11 +137,11 @@
     <Compile Include="CoreService.svc.cs">
       <DependentUpon>CoreService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Interface\IAuthentication.cs" />
     <Compile Include="Interface\ICore.cs" />
     <Compile Include="Model\Alarm.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Repository\Interface\ITagRepository.cs" />
-    <Compile Include="Interface\IUser.cs" />
     <Compile Include="Migrations\202406181918086_InitialCreate.cs" />
     <Compile Include="Migrations\202406181918086_InitialCreate.Designer.cs">
       <DependentUpon>202406181918086_InitialCreate.cs</DependentUpon>
