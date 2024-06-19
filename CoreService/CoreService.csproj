@@ -131,13 +131,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="CoreService.svc" />
-    <Content Include="Web.config" />
+    <Content Include="scadaConfig.xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CoreService.svc.cs">
       <DependentUpon>CoreService.svc</DependentUpon>
     </Compile>
     <Compile Include="Interface\ICore.cs" />
+    <Compile Include="Model\Alarm.cs" />
+    <Compile Include="Model\Tag.cs" />
+    <Compile Include="Repository\Interface\ITagRepository.cs" />
     <Compile Include="Interface\IUser.cs" />
     <Compile Include="Migrations\202406181918086_InitialCreate.cs" />
     <Compile Include="Migrations\202406181918086_InitialCreate.Designer.cs">
@@ -145,15 +148,16 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\User.cs" />
+    <Compile Include="Repository\TagRepository.cs" />
     <Compile Include="UserContextDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Repository\" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

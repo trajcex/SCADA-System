@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CoreService.Model;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.Serialization;
@@ -11,8 +12,11 @@ namespace CoreService.Interface
     [ServiceContract]
     public interface ICore
     {
+
         [OperationContract]
-        void DoWork();
+        void SaveTags();
+        [OperationContract]
+        List<Tag> GetTags();
     }
 
 
