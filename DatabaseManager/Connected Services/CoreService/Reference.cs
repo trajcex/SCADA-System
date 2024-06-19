@@ -9,17 +9,102 @@
 //------------------------------------------------------------------------------
 
 namespace DatabaseManager.CoreService {
+    using System.Runtime.Serialization;
+    using System;
     
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Tag", Namespace="http://schemas.datacontract.org/2004/07/CoreService.Model")]
+    [System.SerializableAttribute()]
+    public partial class Tag : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string TagNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string TagName {
+            get {
+                return this.TagNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.TagNameField, value) != true)) {
+                    this.TagNameField = value;
+                    this.RaisePropertyChanged("TagName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="CoreService.ICore")]
     public interface ICore {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICore/DoWork", ReplyAction="http://tempuri.org/ICore/DoWorkResponse")]
-        void DoWork();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICore/SaveTags", ReplyAction="http://tempuri.org/ICore/SaveTagsResponse")]
+        void SaveTags();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICore/DoWork", ReplyAction="http://tempuri.org/ICore/DoWorkResponse")]
-        System.Threading.Tasks.Task DoWorkAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICore/SaveTags", ReplyAction="http://tempuri.org/ICore/SaveTagsResponse")]
+        System.Threading.Tasks.Task SaveTagsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICore/GetTags", ReplyAction="http://tempuri.org/ICore/GetTagsResponse")]
+        DatabaseManager.CoreService.Tag[] GetTags();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ICore/GetTags", ReplyAction="http://tempuri.org/ICore/GetTagsResponse")]
+        System.Threading.Tasks.Task<DatabaseManager.CoreService.Tag[]> GetTagsAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -49,12 +134,20 @@ namespace DatabaseManager.CoreService {
                 base(binding, remoteAddress) {
         }
         
-        public void DoWork() {
-            base.Channel.DoWork();
+        public void SaveTags() {
+            base.Channel.SaveTags();
         }
         
-        public System.Threading.Tasks.Task DoWorkAsync() {
-            return base.Channel.DoWorkAsync();
+        public System.Threading.Tasks.Task SaveTagsAsync() {
+            return base.Channel.SaveTagsAsync();
+        }
+        
+        public DatabaseManager.CoreService.Tag[] GetTags() {
+            return base.Channel.GetTags();
+        }
+        
+        public System.Threading.Tasks.Task<DatabaseManager.CoreService.Tag[]> GetTagsAsync() {
+            return base.Channel.GetTagsAsync();
         }
     }
     

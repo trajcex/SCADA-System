@@ -4,13 +4,20 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:60923/CoreService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:60923/CoreService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:60923/CoreService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CoreService.Model" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="ICore_DoWork_InputMessage">
-    <wsdl:part name="parameters" element="tns:DoWork" />
+  <wsdl:message name="ICore_SaveTags_InputMessage">
+    <wsdl:part name="parameters" element="tns:SaveTags" />
   </wsdl:message>
-  <wsdl:message name="ICore_DoWork_OutputMessage">
-    <wsdl:part name="parameters" element="tns:DoWorkResponse" />
+  <wsdl:message name="ICore_SaveTags_OutputMessage">
+    <wsdl:part name="parameters" element="tns:SaveTagsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ICore_GetTags_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTags" />
+  </wsdl:message>
+  <wsdl:message name="ICore_GetTags_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagsResponse" />
   </wsdl:message>
   <wsdl:message name="IUser_RegisterUser_InputMessage">
     <wsdl:part name="parameters" element="tns:RegisterUser" />
@@ -19,9 +26,13 @@
     <wsdl:part name="parameters" element="tns:RegisterUserResponse" />
   </wsdl:message>
   <wsdl:portType name="ICore">
-    <wsdl:operation name="DoWork">
-      <wsdl:input wsaw:Action="http://tempuri.org/ICore/DoWork" message="tns:ICore_DoWork_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/ICore/DoWorkResponse" message="tns:ICore_DoWork_OutputMessage" />
+    <wsdl:operation name="SaveTags">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/SaveTags" message="tns:ICore_SaveTags_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/SaveTagsResponse" message="tns:ICore_SaveTags_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTags">
+      <wsdl:input wsaw:Action="http://tempuri.org/ICore/GetTags" message="tns:ICore_GetTags_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ICore/GetTagsResponse" message="tns:ICore_GetTags_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IUser">
@@ -32,8 +43,17 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ICore" type="tns:ICore">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="DoWork">
-      <soap:operation soapAction="http://tempuri.org/ICore/DoWork" style="document" />
+    <wsdl:operation name="SaveTags">
+      <soap:operation soapAction="http://tempuri.org/ICore/SaveTags" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTags">
+      <soap:operation soapAction="http://tempuri.org/ICore/GetTags" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
