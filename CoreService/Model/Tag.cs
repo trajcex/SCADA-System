@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data.SqlTypes;
 using System.Linq;
 using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Runtime.Serialization;
 using System.Web;
 
 namespace CoreService.Model
@@ -25,11 +26,18 @@ namespace CoreService.Model
          int HighLimit { get; set; }
          string Units { get; set; }
     }
-
+    [DataContract]
+    [KnownType(typeof(DigitalInputTag))]
+    [KnownType(typeof(DigitalOutputTag))]
+    [KnownType(typeof(AnalogInputTag))]
+    [KnownType(typeof(AnalogOutputTag))]
     public class Tag
     {
+        [DataMember]
         public string TagName { get; set; }
+        [DataMember]
         public string Description { get; set; }
+        [DataMember]
         public string Address { get; set; }
     
         public Tag() { }
@@ -41,12 +49,14 @@ namespace CoreService.Model
             Address = address;
         }
     }
-
+    [DataContract]
     public class DigitalInputTag : Tag, IInput
     {
+        [DataMember]
         public string Driver { get; set; }
-    
+        [DataMember]
         public bool Scan { get; set; }
+        [DataMember]
         public int ScanTime { get; set; }
 
         public DigitalInputTag() { }
@@ -58,9 +68,10 @@ namespace CoreService.Model
             Scan = scan;
         }
     }
-
+    [DataContract]
     public class DigitalOutputTag : Tag, IOutput
     {
+        [DataMember]
         public int InitialValue { get; set ; }
         public DigitalOutputTag(){ }
 
@@ -70,14 +81,20 @@ namespace CoreService.Model
             InitialValue = initialValue;
         }
     }
-
+    [DataContract]
     public class AnalogInputTag : Tag, IInput, IAnalog
     {
+        [DataMember]
         public string Driver { get; set; }
+        [DataMember]
         public int ScanTime { get; set; }
+        [DataMember]
         public bool Scan { get; set;}
+        [DataMember]
         public int LowLimit {  get; set; }
+        [DataMember]
         public int HighLimit { get; set; }
+        [DataMember]
         public string Units { get; set; }
 
         public List<Alarm> Alarms { get; set; } = new List<Alarm>();
@@ -96,12 +113,16 @@ namespace CoreService.Model
             Units = units;
         }
     }
-
+    [DataContract]
     public class AnalogOutputTag : Tag, IOutput, IAnalog
     {
+        [DataMember]
         public int InitialValue { get; set ; }
+        [DataMember]
         public int LowLimit { get; set; }
+        [DataMember]
         public int HighLimit { get; set; }
+        [DataMember]
         public string Units { get; set; }
 
         public AnalogOutputTag() { }

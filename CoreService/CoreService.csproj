@@ -139,6 +139,7 @@
     </Compile>
     <Compile Include="Interface\IAuthentication.cs" />
     <Compile Include="Interface\ICore.cs" />
+    <Compile Include="ITagService.cs" />
     <Compile Include="Model\Alarm.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Repository\Interface\ITagRepository.cs" />
@@ -149,6 +150,9 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Repository\TagRepository.cs" />
+    <Compile Include="TagService.svc.cs">
+      <DependentUpon>TagService.svc</DependentUpon>
+    </Compile>
     <Compile Include="UserContextDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -157,6 +161,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <Content Include="TagService.svc" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

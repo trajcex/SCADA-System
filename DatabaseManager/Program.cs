@@ -1,5 +1,6 @@
-﻿using DatabaseManager.ServiceReference;
+﻿using DatabaseManager.TagServiceReference;
 using System;
+using DatabaseManager.CoreServiceReference;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -144,6 +145,7 @@ namespace DatabaseManager
                         break;
                     }
                     case "2":
+                        TagManager.addTag();
                         break;
                     case "3":
                         break;
