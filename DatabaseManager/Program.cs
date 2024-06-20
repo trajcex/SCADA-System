@@ -152,8 +152,10 @@ namespace DatabaseManager
                     case "4":
                         break;
                     case "5":
+                        TagManager.ChangeTag();
                         break;
                     case "6":
+                        TagManager.GetOutputTags();
                         break;
                     case "0":
                     {

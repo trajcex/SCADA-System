@@ -49,6 +49,11 @@ namespace SharedLibrary.Model
             Description = description;
             Address = address;
         }
+
+        public override string ToString()
+        {
+            return $"TagName: {TagName}";
+        }
     }
     [DataContract]
     public class DigitalInputTag : Tag, IInput
@@ -80,6 +85,10 @@ namespace SharedLibrary.Model
             : base(tagName, description, address)
         {
             InitialValue = initialValue;
+        }
+        public override string ToString()
+        {
+            return $"{base.ToString()}, Value: {InitialValue}";
         }
     }
     [DataContract]
@@ -134,6 +143,10 @@ namespace SharedLibrary.Model
             LowLimit = lowLimit;
             HighLimit = highLimit;
             Units = units;
+        }
+        public override string ToString()
+        {
+            return $"{base.ToString()}, Value: {InitialValue}";
         }
     }
 }

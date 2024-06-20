@@ -231,5 +231,50 @@ namespace DatabaseManager
                 return $"Object with number {number} not found.";
             }
         }
+
+        public static void GetOutputTags()
+        {
+            Console.WriteLine("\nTrenutne vrednosti izlaznih tagova:");
+            Console.WriteLine("-------------------------------------");
+            Console.WriteLine(tagServiceClient.GetOutputTags());
+        }
+
+        public static void ChangeTag()
+        {
+            List<Tag> tags = new List<Tag>();
+            tags.AddRange(tagServiceClient.GetAllOutput());
+            if (tags.Count == 0)
+            {
+                Console.WriteLine("Ne postoji nijedan tag.");
+                return;
+            }
+
+            Tag selectedTag = null;
+            string tagname;
+
+            do
+            {
+                GetOutputTags();
+                Console.WriteLine("\n");
+                tagname = stringValidator("Unesite TagName:");
+                selectedTag = tags.FirstOrDefault(t => t.TagName == tagname);
+                if (selectedTag == null)
+                {
+                    Console.WriteLine($"Tag '{tagname}' nije pronađen. Molimo vas da pokušate ponovo.");
+                }
+            } while (selectedTag == null);
+
+            int value = 0;
+            if (tagname[0] == 'D')
+            {
+                value = integerValidator("Unesite vrednost(0 ili 1):", 0, 1);
+            }
+            else
+            {
+                value = integerValidator("Unesite vrednost (integer > 0):");
+            }
+
+            tagServiceClient.ChangeOutputTag(tagname, value);
+        }
     }
 }
