@@ -144,8 +144,8 @@
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Repository\TagRepository.cs" />
-    <Compile Include="Service\CoreService.svc.cs">
-      <DependentUpon>CoreService.svc</DependentUpon>
+    <Compile Include="Service\AuthenticationService.svc.cs">
+      <DependentUpon>AuthenticationService.svc</DependentUpon>
     </Compile>
     <Compile Include="Service\RealTimeDriver.svc.cs">
       <DependentUpon>RealTimeDriver.svc</DependentUpon>
@@ -160,18 +160,18 @@
     <Folder Include="App_Data\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Config\Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
-    <None Include="Config\Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </None>
     <None Include="packages.config" />
     <Content Include="Config\scadaConfig.xml" />
-    <Content Include="Config\Web.config" />
-    <Content Include="Service\CoreService.svc" />
+    <Content Include="Service\AuthenticationService.svc" />
     <Content Include="Service\RealTimeDriver.svc" />
     <Content Include="Service\TagService.svc" />
+    <Content Include="Web.config" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202406181918086_InitialCreate.resx">
