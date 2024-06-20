@@ -91,5 +91,55 @@ namespace CoreService
                 return false;
             }
         }
+
+        public string GetOutputTags()
+        {
+            return ConvertTagsToString(GetAllOutput());
+        }
+
+        private string ConvertTagsToString(List<Tag> tags)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var tag in tags)
+            {
+                sb.AppendLine(tag.ToString());
+            }
+
+            return sb.ToString();
+        }
+
+        public bool CheckOutputTag(string tagName)
+        {
+            return digitalOutputTag.Any(t => t.TagName == tagName) || analogOutputTag.Any(t => t.TagName == tagName);
+        }
+
+        public List<Tag> GetAllOutput()
+        {
+            ITagRepository tagRepository = new TagRepository();
+            List<Tag> outputTags = new List<Tag>();
+            outputTags.AddRange(tagRepository.GetTags()["DigitalOutputTag"]);
+            outputTags.AddRange(tagRepository.GetTags()["AnalogOutputTag"]);
+            return outputTags;
+        }
+
+        public void ChangeOutputTag(string tagName, int value)
+        {
+            if (tagName[0] == 'D')
+            {
+                DigitalOutputTag tagToUpdate = digitalOutputTag.FirstOrDefault(t => t.TagName == tagName) as DigitalOutputTag;
+                //digitalOutputTag.Remove(tagToUpdate);
+                tagToUpdate.InitialValue = value;
+                //digitalOutputTag.Add(tagToUpdate);
+            }
+            else
+            {
+                AnalogOutputTag tagToUpdate = analogOutputTag.FirstOrDefault(t => t.TagName == tagName) as AnalogOutputTag;
+                //analogOutputTag.Remove(tagToUpdate);
+                tagToUpdate.InitialValue = value;
+                //analogOutputTag.Add(tagToUpdate);
+            }
+            SaveTags();
+        }   
     }
 }

@@ -21,8 +21,8 @@ namespace DatabaseManager
             Console.WriteLine("2. Dodavanje taga");
             Console.WriteLine("3. Uklanjanje taga");
             Console.WriteLine("4. Uključivanje/isključivanje skeniranja taga");
-            Console.WriteLine("5. Upis vrednosti taga");
-            Console.WriteLine("6. Prikaz trenutne vrednosti taga");
+            Console.WriteLine("5. Promena vrednosti taga");
+            Console.WriteLine("6. Prikaz trenutnih vrednosti izlaznih tagova");
             Console.WriteLine("0. Odjava");
         }
         public static void TagTypes()
