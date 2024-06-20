@@ -136,21 +136,18 @@ namespace CoreService
             return outputTags;
         }
 
-        public void ChangeOutputTag(string tagName, int value)
+        public void ChangeOutputTag(string tagName, int value, string type)
         {
-            if (tagName[0] == 'D')
+
+            if (type[0] == 'D')
             {
                 DigitalOutputTag tagToUpdate = digitalOutputTag.FirstOrDefault(t => t.TagName == tagName) as DigitalOutputTag;
-                //digitalOutputTag.Remove(tagToUpdate);
                 tagToUpdate.InitialValue = value;
-                //digitalOutputTag.Add(tagToUpdate);
             }
             else
             {
                 AnalogOutputTag tagToUpdate = analogOutputTag.FirstOrDefault(t => t.TagName == tagName) as AnalogOutputTag;
-                //analogOutputTag.Remove(tagToUpdate);
                 tagToUpdate.InitialValue = value;
-                //analogOutputTag.Add(tagToUpdate);
             }
             SaveTags();
         }   

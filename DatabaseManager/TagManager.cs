@@ -265,16 +265,21 @@ namespace DatabaseManager
             } while (selectedTag == null);
 
             int value = 0;
-            if (tagname[0] == 'D')
+            string outputType = "";
+            Type type = selectedTag.GetType();
+
+            if (type == typeof(DigitalOutputTag))
             {
                 value = integerValidator("Unesite vrednost(0 ili 1):", 0, 1);
+                outputType = "D";
             }
             else
             {
                 value = integerValidator("Unesite vrednost (integer > 0):");
+                outputType = "A";
             }
 
-            tagServiceClient.ChangeOutputTag(tagname, value);
+            tagServiceClient.ChangeOutputTag(tagname, value, outputType);
         }
     }
 }

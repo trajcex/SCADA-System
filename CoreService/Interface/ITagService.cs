@@ -25,7 +25,8 @@ namespace CoreService
         string GetOutputTags();
         [OperationContract]
         List<Tag> GetAllOutput();
+
         [OperationContract]
-        void ChangeOutputTag(string tagName, int value);
+        void ChangeOutputTag(string tagName, int value, string type);
     }
 }
