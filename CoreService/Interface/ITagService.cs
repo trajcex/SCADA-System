@@ -20,6 +20,8 @@ namespace CoreService
         [OperationContract]
         bool DeleteTag(String tagName);
         [OperationContract]
+        string GetAllTagNames();
+        [OperationContract]
         string GetOutputTags();
         [OperationContract]
         List<Tag> GetAllOutput();
