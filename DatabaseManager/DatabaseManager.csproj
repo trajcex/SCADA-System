@@ -55,16 +55,6 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\CoreServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
-    <Compile Include="Connected Services\TagServiceReference\Reference.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </Compile>
     <Compile Include="Printer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -72,70 +62,10 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\CoreServiceReference\CoreService.wsdl" />
-    <None Include="Connected Services\CoreServiceReference\CoreService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoreServiceReference\CoreService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoreServiceReference\CoreService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoreServiceReference\DatabaseManager.CoreServiceReference.Tag.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\TagServiceReference\DatabaseManager.TagServiceReference.Tag.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
-    <None Include="Connected Services\TagServiceReference\TagService.wsdl" />
-    <None Include="Connected Services\TagServiceReference\TagService.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TagServiceReference\TagService1.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\TagServiceReference\TagService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
-  </ItemGroup>
-  <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\CoreServiceReference\" />
-    <WCFMetadataStorage Include="Connected Services\TagServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TagServiceReference\TagService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TagServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TagServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\TagServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\CoreService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
