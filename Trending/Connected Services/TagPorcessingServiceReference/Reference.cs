@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace Trending.TagProcessingServiceReference {
+namespace Trending.TagPorcessingServiceReference {
     using System.Runtime.Serialization;
     using System;
     
@@ -17,10 +17,10 @@ namespace Trending.TagProcessingServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="Tag", Namespace="http://schemas.datacontract.org/2004/07/CoreService.Model")]
     [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Trending.TagProcessingServiceReference.DigitalInputTag))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Trending.TagProcessingServiceReference.DigitalOutputTag))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Trending.TagProcessingServiceReference.AnalogInputTag))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Trending.TagProcessingServiceReference.AnalogOutputTag))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Trending.TagPorcessingServiceReference.DigitalInputTag))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Trending.TagPorcessingServiceReference.DigitalOutputTag))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Trending.TagPorcessingServiceReference.AnalogInputTag))]
+    [System.Runtime.Serialization.KnownTypeAttribute(typeof(Trending.TagPorcessingServiceReference.AnalogOutputTag))]
     public partial class Tag : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
@@ -98,7 +98,7 @@ namespace Trending.TagProcessingServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DigitalInputTag", Namespace="http://schemas.datacontract.org/2004/07/CoreService.Model")]
     [System.SerializableAttribute()]
-    public partial class DigitalInputTag : Trending.TagProcessingServiceReference.Tag {
+    public partial class DigitalInputTag : Trending.TagPorcessingServiceReference.Tag {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DriverField;
@@ -153,7 +153,7 @@ namespace Trending.TagProcessingServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="DigitalOutputTag", Namespace="http://schemas.datacontract.org/2004/07/CoreService.Model")]
     [System.SerializableAttribute()]
-    public partial class DigitalOutputTag : Trending.TagProcessingServiceReference.Tag {
+    public partial class DigitalOutputTag : Trending.TagPorcessingServiceReference.Tag {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int InitialValueField;
@@ -176,7 +176,7 @@ namespace Trending.TagProcessingServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="AnalogInputTag", Namespace="http://schemas.datacontract.org/2004/07/CoreService.Model")]
     [System.SerializableAttribute()]
-    public partial class AnalogInputTag : Trending.TagProcessingServiceReference.Tag {
+    public partial class AnalogInputTag : Trending.TagPorcessingServiceReference.Tag {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string DriverField;
@@ -279,7 +279,7 @@ namespace Trending.TagProcessingServiceReference {
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="AnalogOutputTag", Namespace="http://schemas.datacontract.org/2004/07/CoreService.Model")]
     [System.SerializableAttribute()]
-    public partial class AnalogOutputTag : Trending.TagProcessingServiceReference.Tag {
+    public partial class AnalogOutputTag : Trending.TagPorcessingServiceReference.Tag {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private int HighLimitField;
@@ -347,14 +347,14 @@ namespace Trending.TagProcessingServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TagProcessingServiceReference.ITagProcessing")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TagPorcessingServiceReference.ITagProcessing")]
     public interface ITagProcessing {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/StartTag", ReplyAction="http://tempuri.org/ITagProcessing/StartTagResponse")]
-        void StartTag(Trending.TagProcessingServiceReference.Tag tag);
+        void StartTag(Trending.TagPorcessingServiceReference.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/StartTag", ReplyAction="http://tempuri.org/ITagProcessing/StartTagResponse")]
-        System.Threading.Tasks.Task StartTagAsync(Trending.TagProcessingServiceReference.Tag tag);
+        System.Threading.Tasks.Task StartTagAsync(Trending.TagPorcessingServiceReference.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagProcessing/StopTag", ReplyAction="http://tempuri.org/ITagProcessing/StopTagResponse")]
         void StopTag(string uid);
@@ -364,12 +364,12 @@ namespace Trending.TagProcessingServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ITagProcessingChannel : Trending.TagProcessingServiceReference.ITagProcessing, System.ServiceModel.IClientChannel {
+    public interface ITagProcessingChannel : Trending.TagPorcessingServiceReference.ITagProcessing, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class TagProcessingClient : System.ServiceModel.ClientBase<Trending.TagProcessingServiceReference.ITagProcessing>, Trending.TagProcessingServiceReference.ITagProcessing {
+    public partial class TagProcessingClient : System.ServiceModel.ClientBase<Trending.TagPorcessingServiceReference.ITagProcessing>, Trending.TagPorcessingServiceReference.ITagProcessing {
         
         public TagProcessingClient() {
         }
@@ -390,11 +390,11 @@ namespace Trending.TagProcessingServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public void StartTag(Trending.TagProcessingServiceReference.Tag tag) {
+        public void StartTag(Trending.TagPorcessingServiceReference.Tag tag) {
             base.Channel.StartTag(tag);
         }
         
-        public System.Threading.Tasks.Task StartTagAsync(Trending.TagProcessingServiceReference.Tag tag) {
+        public System.Threading.Tasks.Task StartTagAsync(Trending.TagPorcessingServiceReference.Tag tag) {
             return base.Channel.StartTagAsync(tag);
         }
         
@@ -408,7 +408,7 @@ namespace Trending.TagProcessingServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TagProcessingServiceReference.IMonitoring", CallbackContract=typeof(Trending.TagProcessingServiceReference.IMonitoringCallback))]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TagPorcessingServiceReference.IMonitoring", CallbackContract=typeof(Trending.TagPorcessingServiceReference.IMonitoringCallback))]
     public interface IMonitoring {
         
         [System.ServiceModel.OperationContractAttribute(IsOneWay=true, Action="http://tempuri.org/IMonitoring/InitSub")]
@@ -426,12 +426,12 @@ namespace Trending.TagProcessingServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IMonitoringChannel : Trending.TagProcessingServiceReference.IMonitoring, System.ServiceModel.IClientChannel {
+    public interface IMonitoringChannel : Trending.TagPorcessingServiceReference.IMonitoring, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class MonitoringClient : System.ServiceModel.DuplexClientBase<Trending.TagProcessingServiceReference.IMonitoring>, Trending.TagProcessingServiceReference.IMonitoring {
+    public partial class MonitoringClient : System.ServiceModel.DuplexClientBase<Trending.TagPorcessingServiceReference.IMonitoring>, Trending.TagPorcessingServiceReference.IMonitoring {
         
         public MonitoringClient(System.ServiceModel.InstanceContext callbackInstance) : 
                 base(callbackInstance) {

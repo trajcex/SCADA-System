@@ -14,9 +14,9 @@ namespace CoreService
     {
        
         [OperationContract]
-        void StartTag(Tag tag);
+        void StartTag(string tagName);
         [OperationContract]
-        void StopTag(string uid);
+        void StopTag(string tagName);
     }
 
     [ServiceContract(CallbackContract = typeof(ICallback))]

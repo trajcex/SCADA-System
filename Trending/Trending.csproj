@@ -45,7 +45,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Connected Services\TagProcessingServiceReference\Reference.cs">
+    <Compile Include="Connected Services\TagPorcessingServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -55,14 +55,14 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\TagProcessingServiceReference\TagProcessing.wsdl" />
-    <None Include="Connected Services\TagProcessingServiceReference\TagProcessing.xsd">
+    <None Include="Connected Services\TagPorcessingServiceReference\TagProcessing.wsdl" />
+    <None Include="Connected Services\TagPorcessingServiceReference\TagProcessing.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TagProcessingServiceReference\TagProcessing1.xsd">
+    <None Include="Connected Services\TagPorcessingServiceReference\TagProcessing1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TagProcessingServiceReference\TagProcessing2.xsd">
+    <None Include="Connected Services\TagPorcessingServiceReference\TagProcessing2.xsd">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
@@ -70,19 +70,19 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <WCFMetadataStorage Include="Connected Services\TagProcessingServiceReference\" />
+    <WCFMetadataStorage Include="Connected Services\TagPorcessingServiceReference\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\TagProcessingServiceReference\TagProcessing.disco" />
+    <None Include="Connected Services\TagPorcessingServiceReference\TagProcessing.disco" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\TagProcessingServiceReference\configuration91.svcinfo" />
+    <None Include="Connected Services\TagPorcessingServiceReference\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\TagProcessingServiceReference\configuration.svcinfo" />
+    <None Include="Connected Services\TagPorcessingServiceReference\configuration.svcinfo" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Connected Services\TagProcessingServiceReference\Reference.svcmap">
+    <None Include="Connected Services\TagPorcessingServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>

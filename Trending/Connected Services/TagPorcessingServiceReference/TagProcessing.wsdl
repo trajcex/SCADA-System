@@ -151,9 +151,9 @@
   </wsp:Policy>
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:60923/TagProcessing.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:60923/TagProcessing.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:60923/TagProcessing.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CoreService.Model" />
+      <xsd:import schemaLocation="http://localhost:60923/Service/TagProcessing.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:60923/Service/TagProcessing.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:60923/Service/TagProcessing.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CoreService.Model" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ITagProcessing_StartTag_InputMessage">
@@ -233,12 +233,12 @@
   </wsdl:binding>
   <wsdl:service name="TagProcessing">
     <wsdl:port name="BasicHttpBinding_ITagProcessing" binding="tns:BasicHttpBinding_ITagProcessing">
-      <soap:address location="http://localhost:60923/TagProcessing.svc/T" />
+      <soap:address location="http://localhost:60923/Service/TagProcessing.svc/T" />
     </wsdl:port>
     <wsdl:port name="WSDualHttpBinding_IMonitoring" binding="tns:WSDualHttpBinding_IMonitoring">
-      <soap12:address location="http://localhost:60923/TagProcessing.svc/M" />
+      <soap12:address location="http://localhost:60923/Service/TagProcessing.svc/M" />
       <wsa10:EndpointReference>
-        <wsa10:Address>http://localhost:60923/TagProcessing.svc/M</wsa10:Address>
+        <wsa10:Address>http://localhost:60923/Service/TagProcessing.svc/M</wsa10:Address>
         <Identity xmlns="http://schemas.xmlsoap.org/ws/2006/02/addressingidentity">
           <Upn>DESKTOP-NJAHDD9\Nikola</Upn>
         </Identity>

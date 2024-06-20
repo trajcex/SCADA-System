@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="s3pG+mHbK76bmeRiQ+dEt7ZyKo9OehB7f7wkY+rrTO0=">
+<SavedWcfConfigurationInformation xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" Version="9.1" CheckSum="MwJwtqxAjXN1iQbEnndAuO9gGXxypZsqDFr0B2rrwXw=">
   <bindingConfigurations>
     <bindingConfiguration bindingType="basicHttpBinding" name="BasicHttpBinding_ITagProcessing">
       <properties>
@@ -206,10 +206,10 @@
     </bindingConfiguration>
   </bindingConfigurations>
   <endpoints>
-    <endpoint name="BasicHttpBinding_ITagProcessing" contract="TagProcessingServiceReference.ITagProcessing" bindingType="basicHttpBinding" address="http://localhost:60923/TagProcessing.svc/T" bindingConfiguration="BasicHttpBinding_ITagProcessing">
+    <endpoint name="BasicHttpBinding_ITagProcessing" contract="TagPorcessingServiceReference.ITagProcessing" bindingType="basicHttpBinding" address="http://localhost:60923/Service/TagProcessing.svc/T" bindingConfiguration="BasicHttpBinding_ITagProcessing">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:60923/TagProcessing.svc/T</serializedValue>
+          <serializedValue>http://localhost:60923/Service/TagProcessing.svc/T</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -221,7 +221,7 @@
           <serializedValue>BasicHttpBinding_ITagProcessing</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>TagProcessingServiceReference.ITagProcessing</serializedValue>
+          <serializedValue>TagPorcessingServiceReference.ITagProcessing</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
@@ -291,10 +291,10 @@
         </property>
       </properties>
     </endpoint>
-    <endpoint name="WSDualHttpBinding_IMonitoring" contract="TagProcessingServiceReference.IMonitoring" bindingType="wsDualHttpBinding" address="http://localhost:60923/TagProcessing.svc/M" bindingConfiguration="WSDualHttpBinding_IMonitoring">
+    <endpoint name="WSDualHttpBinding_IMonitoring" contract="TagPorcessingServiceReference.IMonitoring" bindingType="wsDualHttpBinding" address="http://localhost:60923/Service/TagProcessing.svc/M" bindingConfiguration="WSDualHttpBinding_IMonitoring">
       <properties>
         <property path="/address" isComplexType="false" isExplicitlyDefined="true" clrType="System.Uri, System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>http://localhost:60923/TagProcessing.svc/M</serializedValue>
+          <serializedValue>http://localhost:60923/Service/TagProcessing.svc/M</serializedValue>
         </property>
         <property path="/behaviorConfiguration" isComplexType="false" isExplicitlyDefined="false" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue />
@@ -306,7 +306,7 @@
           <serializedValue>WSDualHttpBinding_IMonitoring</serializedValue>
         </property>
         <property path="/contract" isComplexType="false" isExplicitlyDefined="true" clrType="System.String, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-          <serializedValue>TagProcessingServiceReference.IMonitoring</serializedValue>
+          <serializedValue>TagPorcessingServiceReference.IMonitoring</serializedValue>
         </property>
         <property path="/headers" isComplexType="true" isExplicitlyDefined="false" clrType="System.ServiceModel.Configuration.AddressHeaderCollectionElement, System.ServiceModel, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
           <serializedValue>System.ServiceModel.Configuration.AddressHeaderCollectionElement</serializedValue>
