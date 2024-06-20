@@ -134,7 +134,11 @@
     <Compile Include="Interface\ICore.cs" />
     <Compile Include="Interface\IRealTimeDriver.cs" />
     <Compile Include="Interface\ITagService.cs" />
-	<Compile Include="Interface\ITagProcessing.cs" />
+    <Compile Include="Interface\ITagProcessing.cs" />
+    <Compile Include="Migrations\202406201712345_InitialCreate1.cs" />
+    <Compile Include="Migrations\202406201712345_InitialCreate1.designer.cs">
+      <DependentUpon>202406201712345_InitialCreate1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repository\Interface\ITagRepository.cs" />
     <Compile Include="Migrations\202406181918086_InitialCreate.cs" />
     <Compile Include="Migrations\202406181918086_InitialCreate.Designer.cs">
@@ -178,6 +182,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202406181918086_InitialCreate.resx">
       <DependentUpon>202406181918086_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406201712345_InitialCreate1.resx">
+      <DependentUpon>202406201712345_InitialCreate1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

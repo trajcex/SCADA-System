@@ -9,342 +9,7 @@
 //------------------------------------------------------------------------------
 
 namespace DatabaseManager.TagServiceReference {
-    using System.Runtime.Serialization;
-    using System;
     
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Tag", Namespace="http://schemas.datacontract.org/2004/07/CoreService.Model")]
-    [System.SerializableAttribute()]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DatabaseManager.TagServiceReference.DigitalInputTag))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DatabaseManager.TagServiceReference.DigitalOutputTag))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DatabaseManager.TagServiceReference.AnalogInputTag))]
-    [System.Runtime.Serialization.KnownTypeAttribute(typeof(DatabaseManager.TagServiceReference.AnalogOutputTag))]
-    public partial class Tag : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string AddressField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string TagNameField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Address {
-            get {
-                return this.AddressField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
-                    this.AddressField = value;
-                    this.RaisePropertyChanged("Address");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string TagName {
-            get {
-                return this.TagNameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.TagNameField, value) != true)) {
-                    this.TagNameField = value;
-                    this.RaisePropertyChanged("TagName");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DigitalInputTag", Namespace="http://schemas.datacontract.org/2004/07/CoreService.Model")]
-    [System.SerializableAttribute()]
-    public partial class DigitalInputTag : DatabaseManager.TagServiceReference.Tag {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DriverField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ScanField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ScanTimeField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Driver {
-            get {
-                return this.DriverField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DriverField, value) != true)) {
-                    this.DriverField = value;
-                    this.RaisePropertyChanged("Driver");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Scan {
-            get {
-                return this.ScanField;
-            }
-            set {
-                if ((this.ScanField.Equals(value) != true)) {
-                    this.ScanField = value;
-                    this.RaisePropertyChanged("Scan");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ScanTime {
-            get {
-                return this.ScanTimeField;
-            }
-            set {
-                if ((this.ScanTimeField.Equals(value) != true)) {
-                    this.ScanTimeField = value;
-                    this.RaisePropertyChanged("ScanTime");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="DigitalOutputTag", Namespace="http://schemas.datacontract.org/2004/07/CoreService.Model")]
-    [System.SerializableAttribute()]
-    public partial class DigitalOutputTag : DatabaseManager.TagServiceReference.Tag {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int InitialValueField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int InitialValue {
-            get {
-                return this.InitialValueField;
-            }
-            set {
-                if ((this.InitialValueField.Equals(value) != true)) {
-                    this.InitialValueField = value;
-                    this.RaisePropertyChanged("InitialValue");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AnalogInputTag", Namespace="http://schemas.datacontract.org/2004/07/CoreService.Model")]
-    [System.SerializableAttribute()]
-    public partial class AnalogInputTag : DatabaseManager.TagServiceReference.Tag {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DriverField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int HighLimitField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int LowLimitField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private bool ScanField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ScanTimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UnitsField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Driver {
-            get {
-                return this.DriverField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DriverField, value) != true)) {
-                    this.DriverField = value;
-                    this.RaisePropertyChanged("Driver");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int HighLimit {
-            get {
-                return this.HighLimitField;
-            }
-            set {
-                if ((this.HighLimitField.Equals(value) != true)) {
-                    this.HighLimitField = value;
-                    this.RaisePropertyChanged("HighLimit");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int LowLimit {
-            get {
-                return this.LowLimitField;
-            }
-            set {
-                if ((this.LowLimitField.Equals(value) != true)) {
-                    this.LowLimitField = value;
-                    this.RaisePropertyChanged("LowLimit");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public bool Scan {
-            get {
-                return this.ScanField;
-            }
-            set {
-                if ((this.ScanField.Equals(value) != true)) {
-                    this.ScanField = value;
-                    this.RaisePropertyChanged("Scan");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ScanTime {
-            get {
-                return this.ScanTimeField;
-            }
-            set {
-                if ((this.ScanTimeField.Equals(value) != true)) {
-                    this.ScanTimeField = value;
-                    this.RaisePropertyChanged("ScanTime");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Units {
-            get {
-                return this.UnitsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UnitsField, value) != true)) {
-                    this.UnitsField = value;
-                    this.RaisePropertyChanged("Units");
-                }
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="AnalogOutputTag", Namespace="http://schemas.datacontract.org/2004/07/CoreService.Model")]
-    [System.SerializableAttribute()]
-    public partial class AnalogOutputTag : DatabaseManager.TagServiceReference.Tag {
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int HighLimitField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int InitialValueField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int LowLimitField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string UnitsField;
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int HighLimit {
-            get {
-                return this.HighLimitField;
-            }
-            set {
-                if ((this.HighLimitField.Equals(value) != true)) {
-                    this.HighLimitField = value;
-                    this.RaisePropertyChanged("HighLimit");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int InitialValue {
-            get {
-                return this.InitialValueField;
-            }
-            set {
-                if ((this.InitialValueField.Equals(value) != true)) {
-                    this.InitialValueField = value;
-                    this.RaisePropertyChanged("InitialValue");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int LowLimit {
-            get {
-                return this.LowLimitField;
-            }
-            set {
-                if ((this.LowLimitField.Equals(value) != true)) {
-                    this.LowLimitField = value;
-                    this.RaisePropertyChanged("LowLimit");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Units {
-            get {
-                return this.UnitsField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.UnitsField, value) != true)) {
-                    this.UnitsField = value;
-                    this.RaisePropertyChanged("Units");
-                }
-            }
-        }
-    }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="TagServiceReference.ITagService")]
@@ -357,22 +22,50 @@ namespace DatabaseManager.TagServiceReference {
         System.Threading.Tasks.Task SaveTagsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetTags", ReplyAction="http://tempuri.org/ITagService/GetTagsResponse")]
-        DatabaseManager.TagServiceReference.Tag[] GetTags();
+        SharedLibrary.Model.Tag[] GetTags();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetTags", ReplyAction="http://tempuri.org/ITagService/GetTagsResponse")]
-        System.Threading.Tasks.Task<DatabaseManager.TagServiceReference.Tag[]> GetTagsAsync();
+        System.Threading.Tasks.Task<SharedLibrary.Model.Tag[]> GetTagsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/AddTag", ReplyAction="http://tempuri.org/ITagService/AddTagResponse")]
-        bool AddTag(DatabaseManager.TagServiceReference.Tag tag);
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SharedLibrary.Model.DigitalInputTag))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SharedLibrary.Model.DigitalOutputTag))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SharedLibrary.Model.AnalogInputTag))]
+        [System.ServiceModel.ServiceKnownTypeAttribute(typeof(SharedLibrary.Model.AnalogOutputTag))]
+        bool AddTag(SharedLibrary.Model.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/AddTag", ReplyAction="http://tempuri.org/ITagService/AddTagResponse")]
-        System.Threading.Tasks.Task<bool> AddTagAsync(DatabaseManager.TagServiceReference.Tag tag);
+        System.Threading.Tasks.Task<bool> AddTagAsync(SharedLibrary.Model.Tag tag);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/DeleteTag", ReplyAction="http://tempuri.org/ITagService/DeleteTagResponse")]
         bool DeleteTag(string tagName);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/DeleteTag", ReplyAction="http://tempuri.org/ITagService/DeleteTagResponse")]
         System.Threading.Tasks.Task<bool> DeleteTagAsync(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetAllTagNames", ReplyAction="http://tempuri.org/ITagService/GetAllTagNamesResponse")]
+        string GetAllTagNames();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetAllTagNames", ReplyAction="http://tempuri.org/ITagService/GetAllTagNamesResponse")]
+        System.Threading.Tasks.Task<string> GetAllTagNamesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetOutputTags", ReplyAction="http://tempuri.org/ITagService/GetOutputTagsResponse")]
+        string GetOutputTags();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetOutputTags", ReplyAction="http://tempuri.org/ITagService/GetOutputTagsResponse")]
+        System.Threading.Tasks.Task<string> GetOutputTagsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetAllOutput", ReplyAction="http://tempuri.org/ITagService/GetAllOutputResponse")]
+        SharedLibrary.Model.Tag[] GetAllOutput();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetAllOutput", ReplyAction="http://tempuri.org/ITagService/GetAllOutputResponse")]
+        System.Threading.Tasks.Task<SharedLibrary.Model.Tag[]> GetAllOutputAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/ChangeOutputTag", ReplyAction="http://tempuri.org/ITagService/ChangeOutputTagResponse")]
+        void ChangeOutputTag(string tagName, int value);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/ChangeOutputTag", ReplyAction="http://tempuri.org/ITagService/ChangeOutputTagResponse")]
+        System.Threading.Tasks.Task ChangeOutputTagAsync(string tagName, int value);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -410,19 +103,19 @@ namespace DatabaseManager.TagServiceReference {
             return base.Channel.SaveTagsAsync();
         }
         
-        public DatabaseManager.TagServiceReference.Tag[] GetTags() {
+        public SharedLibrary.Model.Tag[] GetTags() {
             return base.Channel.GetTags();
         }
         
-        public System.Threading.Tasks.Task<DatabaseManager.TagServiceReference.Tag[]> GetTagsAsync() {
+        public System.Threading.Tasks.Task<SharedLibrary.Model.Tag[]> GetTagsAsync() {
             return base.Channel.GetTagsAsync();
         }
         
-        public bool AddTag(DatabaseManager.TagServiceReference.Tag tag) {
+        public bool AddTag(SharedLibrary.Model.Tag tag) {
             return base.Channel.AddTag(tag);
         }
         
-        public System.Threading.Tasks.Task<bool> AddTagAsync(DatabaseManager.TagServiceReference.Tag tag) {
+        public System.Threading.Tasks.Task<bool> AddTagAsync(SharedLibrary.Model.Tag tag) {
             return base.Channel.AddTagAsync(tag);
         }
         
@@ -432,6 +125,38 @@ namespace DatabaseManager.TagServiceReference {
         
         public System.Threading.Tasks.Task<bool> DeleteTagAsync(string tagName) {
             return base.Channel.DeleteTagAsync(tagName);
+        }
+        
+        public string GetAllTagNames() {
+            return base.Channel.GetAllTagNames();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetAllTagNamesAsync() {
+            return base.Channel.GetAllTagNamesAsync();
+        }
+        
+        public string GetOutputTags() {
+            return base.Channel.GetOutputTags();
+        }
+        
+        public System.Threading.Tasks.Task<string> GetOutputTagsAsync() {
+            return base.Channel.GetOutputTagsAsync();
+        }
+        
+        public SharedLibrary.Model.Tag[] GetAllOutput() {
+            return base.Channel.GetAllOutput();
+        }
+        
+        public System.Threading.Tasks.Task<SharedLibrary.Model.Tag[]> GetAllOutputAsync() {
+            return base.Channel.GetAllOutputAsync();
+        }
+        
+        public void ChangeOutputTag(string tagName, int value) {
+            base.Channel.ChangeOutputTag(tagName, value);
+        }
+        
+        public System.Threading.Tasks.Task ChangeOutputTagAsync(string tagName, int value) {
+            return base.Channel.ChangeOutputTagAsync(tagName, value);
         }
     }
 }

@@ -46,6 +46,7 @@
     <Compile Include="Class1.cs" />
     <Compile Include="Model\Alarm.cs" />
     <Compile Include="Model\Tag.cs" />
+    <Compile Include="Model\TagValue.cs" />
     <Compile Include="Model\User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
