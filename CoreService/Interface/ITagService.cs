@@ -19,5 +19,7 @@ namespace CoreService
         bool AddTag(Tag tag);
         [OperationContract]
         bool DeleteTag(String tagName);
+        [OperationContract]
+        string GetAllTagNames();
     }
 }
