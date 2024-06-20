@@ -133,9 +133,15 @@
     <Compile Include="Interface\IAuthentication.cs" />
     <Compile Include="Interface\ICore.cs" />
     <Compile Include="Interface\IRealTimeDriver.cs" />
+    <Compile Include="Interface\ITagProcessing.cs" />
     <Compile Include="Interface\ITagService.cs" />
+    <Compile Include="Migrations\202406201430328_InitialCreate1.cs" />
+    <Compile Include="Migrations\202406201430328_InitialCreate1.Designer.cs">
+      <DependentUpon>202406201430328_InitialCreate1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Model\Alarm.cs" />
     <Compile Include="Model\Tag.cs" />
+    <Compile Include="Model\TagValue.cs" />
     <Compile Include="Repository\Interface\ITagRepository.cs" />
     <Compile Include="Migrations\202406181918086_InitialCreate.cs" />
     <Compile Include="Migrations\202406181918086_InitialCreate.Designer.cs">
@@ -149,6 +155,9 @@
     </Compile>
     <Compile Include="Service\RealTimeDriver.svc.cs">
       <DependentUpon>RealTimeDriver.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\TagProcessing.svc.cs">
+      <DependentUpon>TagProcessing.svc</DependentUpon>
     </Compile>
     <Compile Include="Service\TagService.svc.cs">
       <DependentUpon>TagService.svc</DependentUpon>
@@ -164,6 +173,7 @@
     <Content Include="Config\scadaConfig.xml" />
     <Content Include="Service\AuthenticationService.svc" />
     <Content Include="Service\RealTimeDriver.svc" />
+    <Content Include="Service\TagProcessing.svc" />
     <Content Include="Service\TagService.svc" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
@@ -176,6 +186,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202406181918086_InitialCreate.resx">
       <DependentUpon>202406181918086_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406201430328_InitialCreate1.resx">
+      <DependentUpon>202406201430328_InitialCreate1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>

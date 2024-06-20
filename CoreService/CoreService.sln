@@ -20,6 +20,9 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportManager", "..\ReportManager\ReportManager.csproj", "{70691714-2C21-489B-9493-5C7CE4D66481}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trending", "..\Trending\Trending.csproj", "{7887E31D-A7B5-4729-AE34-7A60EFB19337}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD7270D0-BC8F-4C7E-A255-7B030D530CBF} = {CD7270D0-BC8F-4C7E-A255-7B030D530CBF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulationLibrary", "..\SimulationLibrary\SimulationLibrary.csproj", "{709C4360-F611-4532-B6D3-2BEF69D2A1B9}"
 EndProject
