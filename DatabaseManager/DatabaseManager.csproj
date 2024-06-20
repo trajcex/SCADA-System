@@ -72,18 +72,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
-    <None Include="Connected Services\CoreServiceReference\CoreService.wsdl" />
-    <None Include="Connected Services\CoreServiceReference\CoreService.xsd">
+    <None Include="Connected Services\CoreServiceReference\AuthenticationService.wsdl" />
+    <None Include="Connected Services\CoreServiceReference\AuthenticationService.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\CoreServiceReference\CoreService1.xsd">
+    <None Include="Connected Services\CoreServiceReference\AuthenticationService1.xsd">
       <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoreServiceReference\CoreService2.xsd">
-      <SubType>Designer</SubType>
-    </None>
-    <None Include="Connected Services\CoreServiceReference\DatabaseManager.CoreServiceReference.Tag.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Connected Services\TagServiceReference\DatabaseManager.TagServiceReference.Tag.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
@@ -108,6 +102,21 @@
     <WCFMetadataStorage Include="Connected Services\TagServiceReference\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Connected Services\CoreServiceReference\AuthenticationService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="Connected Services\TagServiceReference\TagService.disco" />
   </ItemGroup>
   <ItemGroup>
@@ -118,21 +127,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\TagServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\CoreService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
