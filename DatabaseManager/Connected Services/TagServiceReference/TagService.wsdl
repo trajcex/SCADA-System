@@ -4,7 +4,7 @@
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:60923/Service/TagService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
       <xsd:import schemaLocation="http://localhost:60923/Service/TagService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:60923/Service/TagService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/CoreService.Model" />
+      <xsd:import schemaLocation="http://localhost:60923/Service/TagService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SharedLibrary.Model" />
     </xsd:schema>
   </wsdl:types>
   <wsdl:message name="ITagService_SaveTags_InputMessage">
@@ -31,6 +31,30 @@
   <wsdl:message name="ITagService_DeleteTag_OutputMessage">
     <wsdl:part name="parameters" element="tns:DeleteTagResponse" />
   </wsdl:message>
+  <wsdl:message name="ITagService_GetAllTagNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTagNames" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_GetAllTagNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTagNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_GetOutputTags_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetOutputTags" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_GetOutputTags_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetOutputTagsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_GetAllOutput_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllOutput" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_GetAllOutput_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllOutputResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_ChangeOutputTag_InputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeOutputTag" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_ChangeOutputTag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:ChangeOutputTagResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITagService">
     <wsdl:operation name="SaveTags">
       <wsdl:input wsaw:Action="http://tempuri.org/ITagService/SaveTags" message="tns:ITagService_SaveTags_InputMessage" />
@@ -47,6 +71,22 @@
     <wsdl:operation name="DeleteTag">
       <wsdl:input wsaw:Action="http://tempuri.org/ITagService/DeleteTag" message="tns:ITagService_DeleteTag_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITagService/DeleteTagResponse" message="tns:ITagService_DeleteTag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTagNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITagService/GetAllTagNames" message="tns:ITagService_GetAllTagNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITagService/GetAllTagNamesResponse" message="tns:ITagService_GetAllTagNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetOutputTags">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITagService/GetOutputTags" message="tns:ITagService_GetOutputTags_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITagService/GetOutputTagsResponse" message="tns:ITagService_GetOutputTags_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllOutput">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITagService/GetAllOutput" message="tns:ITagService_GetAllOutput_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITagService/GetAllOutputResponse" message="tns:ITagService_GetAllOutput_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOutputTag">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITagService/ChangeOutputTag" message="tns:ITagService_ChangeOutputTag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITagService/ChangeOutputTagResponse" message="tns:ITagService_ChangeOutputTag_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ITagService" type="tns:ITagService">
@@ -80,6 +120,42 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteTag">
       <soap:operation soapAction="http://tempuri.org/ITagService/DeleteTag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTagNames">
+      <soap:operation soapAction="http://tempuri.org/ITagService/GetAllTagNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetOutputTags">
+      <soap:operation soapAction="http://tempuri.org/ITagService/GetOutputTags" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllOutput">
+      <soap:operation soapAction="http://tempuri.org/ITagService/GetAllOutput" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeOutputTag">
+      <soap:operation soapAction="http://tempuri.org/ITagService/ChangeOutputTag" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

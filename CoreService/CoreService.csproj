@@ -134,15 +134,17 @@
     <Compile Include="Interface\ICore.cs" />
     <Compile Include="Interface\IRealTimeDriver.cs" />
     <Compile Include="Interface\ITagService.cs" />
-    <Compile Include="Model\Alarm.cs" />
-    <Compile Include="Model\Tag.cs" />
+    <Compile Include="Interface\ITagProcessing.cs" />
+    <Compile Include="Migrations\202406201712345_InitialCreate1.cs" />
+    <Compile Include="Migrations\202406201712345_InitialCreate1.designer.cs">
+      <DependentUpon>202406201712345_InitialCreate1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repository\Interface\ITagRepository.cs" />
     <Compile Include="Migrations\202406181918086_InitialCreate.cs" />
     <Compile Include="Migrations\202406181918086_InitialCreate.Designer.cs">
       <DependentUpon>202406181918086_InitialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
-    <Compile Include="Model\User.cs" />
     <Compile Include="Repository\TagRepository.cs" />
     <Compile Include="Service\AuthenticationService.svc.cs">
       <DependentUpon>AuthenticationService.svc</DependentUpon>
@@ -152,6 +154,9 @@
     </Compile>
     <Compile Include="Service\TagService.svc.cs">
       <DependentUpon>TagService.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\TagProcessing.svc.cs">
+      <DependentUpon>TagProcessing.svc</DependentUpon>
     </Compile>
     <Compile Include="UserContextDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -165,6 +170,7 @@
     <Content Include="Service\AuthenticationService.svc" />
     <Content Include="Service\RealTimeDriver.svc" />
     <Content Include="Service\TagService.svc" />
+    <Content Include="Service\TagProcessing.svc" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -177,8 +183,15 @@
     <EmbeddedResource Include="Migrations\202406181918086_InitialCreate.resx">
       <DependentUpon>202406181918086_InitialCreate.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406201712345_InitialCreate1.resx">
+      <DependentUpon>202406201712345_InitialCreate1.cs</DependentUpon>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SharedLibrary\SharedLibrary.csproj">
+      <Project>{440cd34e-0919-493f-ae63-28b36fa36489}</Project>
+      <Name>SharedLibrary</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SimulationLibrary\SimulationLibrary.csproj">
       <Project>{709c4360-f611-4532-b6d3-2bef69d2a1b9}</Project>
       <Name>SimulationLibrary</Name>

@@ -1,5 +1,4 @@
-﻿using CoreService.Model;
-using CoreService.Repository.Interface;
+﻿using CoreService.Repository.Interface;
 using CoreService.Repository;
 using System;
 using System.Collections.Generic;
@@ -7,6 +6,8 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
+using SharedLibrary.Model;
+using CoreService.Service;
 
 namespace CoreService
 {
@@ -24,6 +25,7 @@ namespace CoreService
             digitalOutputTag = map.ContainsKey("DigitalOutputTag") ? map["DigitalOutputTag"] : new List<Tag>();
             analogInputTag = map.ContainsKey("AnalogInputTag") ? map["AnalogInputTag"] : new List<Tag>();
             analogOutputTag = map.ContainsKey("AnalogOutputTag") ? map["AnalogOutputTag"] : new List<Tag>();
+            TagProcessing tagProcessing = new TagProcessing(digitalInputTag, analogInputTag);
         }
         public List<Tag> GetTags()
         {

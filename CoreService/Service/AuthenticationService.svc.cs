@@ -1,5 +1,5 @@
 ﻿using CoreService.Interface;
-using CoreService.Model;
+using SharedLibrary.Model;
 using CoreService.Repository;
 using CoreService.Repository.Interface;
 using System;

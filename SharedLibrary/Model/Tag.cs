@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Data.SqlTypes;
 using System.Linq;
-using System.Runtime.Remoting.Metadata.W3cXsd2001;
+using System.Security.Claims;
+using System.Text;
+using System.Threading.Tasks;
 using System.Runtime.Serialization;
-using System.Web;
 
-namespace CoreService.Model
+
+namespace SharedLibrary.Model
 {
     public interface IInput
     {
@@ -22,9 +23,9 @@ namespace CoreService.Model
 
     public interface IAnalog
     {
-         int LowLimit { get; set; }
-         int HighLimit { get; set; }
-         string Units { get; set; }
+        int LowLimit { get; set; }
+        int HighLimit { get; set; }
+        string Units { get; set; }
     }
     [DataContract]
     [KnownType(typeof(DigitalInputTag))]
@@ -39,7 +40,7 @@ namespace CoreService.Model
         public string Description { get; set; }
         [DataMember]
         public string Address { get; set; }
-    
+
         public Tag() { }
 
         public Tag(string tagName, string description, string address)
@@ -66,7 +67,7 @@ namespace CoreService.Model
 
         public DigitalInputTag() { }
         public DigitalInputTag(string tagName, string description, string address,
-            string driver, int scanTime, bool scan) :base(tagName,description,address)
+            string driver, int scanTime, bool scan) : base(tagName, description, address)
         {
             Driver = driver;
             ScanTime = scanTime;
@@ -77,10 +78,10 @@ namespace CoreService.Model
     public class DigitalOutputTag : Tag, IOutput
     {
         [DataMember]
-        public int InitialValue { get; set ; }
-        public DigitalOutputTag(){ }
+        public int InitialValue { get; set; }
+        public DigitalOutputTag() { }
 
-        public DigitalOutputTag(int initialValue,string tagName, string description, string address) 
+        public DigitalOutputTag(int initialValue, string tagName, string description, string address)
             : base(tagName, description, address)
         {
             InitialValue = initialValue;
@@ -98,20 +99,19 @@ namespace CoreService.Model
         [DataMember]
         public int ScanTime { get; set; }
         [DataMember]
-        public bool Scan { get; set;}
+        public bool Scan { get; set; }
         [DataMember]
-        public int LowLimit {  get; set; }
+        public int LowLimit { get; set; }
         [DataMember]
         public int HighLimit { get; set; }
         [DataMember]
         public string Units { get; set; }
-
+        [DataMember]
         public List<Alarm> Alarms { get; set; } = new List<Alarm>();
-
         public AnalogInputTag() { }
 
-        public AnalogInputTag(string tagName, string description, string address,List<Alarm> alarms,
-            string driver, int scanTime, bool scan, string units,int lowLimit, int highLimit) : base(tagName, description, address)
+        public AnalogInputTag(string tagName, string description, string address, List<Alarm> alarms,
+            string driver, int scanTime, bool scan, string units, int lowLimit, int highLimit) : base(tagName, description, address)
         {
             Alarms = alarms;
             LowLimit = lowLimit;
@@ -126,7 +126,7 @@ namespace CoreService.Model
     public class AnalogOutputTag : Tag, IOutput, IAnalog
     {
         [DataMember]
-        public int InitialValue { get; set ; }
+        public int InitialValue { get; set; }
         [DataMember]
         public int LowLimit { get; set; }
         [DataMember]
@@ -139,7 +139,7 @@ namespace CoreService.Model
         public AnalogOutputTag(string tagName, string description, string address, int initalValue,
             string units, int lowLimit, int highLimit) : base(tagName, description, address)
         {
-            InitialValue = initalValue; 
+            InitialValue = initalValue;
             LowLimit = lowLimit;
             HighLimit = highLimit;
             Units = units;
@@ -149,6 +149,4 @@ namespace CoreService.Model
             return $"{base.ToString()}, Value: {InitialValue}";
         }
     }
-
-
 }

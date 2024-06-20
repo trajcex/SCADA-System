@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="852d5beb-f38e-48d5-8081-003499b1191f" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:60923/Service/RealTimeDriver.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="RealTimeDriver.disco" MetadataType="Disco" ID="19e71b4d-efec-4ee1-a58e-d9ea166551ca" SourceId="1" SourceUrl="http://localhost:60923/Service/RealTimeDriver.svc?disco" />
+    <MetadataFile FileName="RealTimeDriver.xsd" MetadataType="Schema" ID="2b73f516-ce2c-4d34-ac39-f39f7cbb09ab" SourceId="1" SourceUrl="http://localhost:60923/Service/RealTimeDriver.svc?xsd=xsd1" />
+    <MetadataFile FileName="RealTimeDriver1.xsd" MetadataType="Schema" ID="c07a695f-3249-46b8-9ae2-fba94435644c" SourceId="1" SourceUrl="http://localhost:60923/Service/RealTimeDriver.svc?xsd=xsd0" />
+    <MetadataFile FileName="RealTimeDriver.wsdl" MetadataType="Wsdl" ID="57d51fb6-b4a3-4c00-ba29-380e88cbcb75" SourceId="1" SourceUrl="http://localhost:60923/Service/RealTimeDriver.svc?wsdl" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
