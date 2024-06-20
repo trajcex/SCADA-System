@@ -1,10 +1,11 @@
 ﻿using System;
-using DatabaseManager.TagServiceReference;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Net.Http.Headers;
+using SharedLibrary.Model;
+using DatabaseManager.TagServiceReference;
 
 namespace DatabaseManager
 {
@@ -17,6 +18,7 @@ namespace DatabaseManager
             int tagType = integerValidator("Unesite tip taga:", 1, 4);
             Tag newTag = createTag(tagType);
             tagServiceClient.AddTag(newTag);
+
         }
         public static void deleteTag()
         {
@@ -25,7 +27,7 @@ namespace DatabaseManager
             string[] tagsWithNumbers = tagsPrint.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
             int deleteTagOption = integerValidator(tagsPrint,1,tagsWithNumbers.Length);
-
+            
             Dictionary<int, string> tags = tagsWithNumbers
             .Select(line => line.Split(new[] { '.' }, 2))
             .ToDictionary(
@@ -88,6 +90,46 @@ namespace DatabaseManager
             int highLimit = integerValidator("Unesite HighLimit (integer > 0):");
             string units = stringValidator("Unesite Units:");
             string driver = getDriverFromCLI();
+            List<Alarm> alarms = new List<Alarm>();
+            while (true)
+            {
+                int addAlarmOption = integerValidator("Da li zelite kreirati Alarm\n1. Da\n2. Ne", 1, 2);
+                if (addAlarmOption != 1) break;
+                int alarmTypeOption = integerValidator("Unesite tip alarma\n1. Low\n2. High", 1, 2);
+
+                AlarmType alarmType = AlarmType.LOW;
+                if(alarmTypeOption == 2) alarmType = AlarmType.HIGH;
+
+                int priorityAlarmOption = integerValidator("\nUnesite prioritet 1,2 ili 3:", 1, 3);
+                int priorityAlarm;
+                switch(priorityAlarmOption)
+                {
+                    case 1:
+                        priorityAlarm = 1;
+                        break;
+                    case 2:
+                        priorityAlarm = 2;
+                        break;
+                    case 3:
+                        priorityAlarm = 3;
+                        break;
+                    default:
+                        return null;
+                }
+                int border = integerValidator("Unesite granicu paljenja intervala:", lowLimit, highLimit);
+
+                alarms.Add(new Alarm
+                {
+                    Type = alarmType,
+                    Priority = priorityAlarm,
+                    Border = border
+                });
+
+            }
+            foreach(Alarm alarm in alarms)
+            {
+                Console.Write("alarm", alarm.Type.ToString());
+            }
 
             return new AnalogInputTag
             {
@@ -98,7 +140,9 @@ namespace DatabaseManager
                 LowLimit = lowLimit,
                 HighLimit = highLimit,
                 Scan = true,
-                Units = units
+                Units = units,
+                Driver = driver,
+                Alarms = alarms
             };
         }
         static Tag createAnalogOutput(string tagName, string description, string address)
@@ -107,6 +151,15 @@ namespace DatabaseManager
             int lowLimit = integerValidator("Unesite LowLimit (integer > 0):");
             int highLimit = integerValidator("Unesite HighLimit (integer > 0):");
             string units = stringValidator("Unesite Units:");
+
+            while (true)
+            {
+                int addAlarmOption = integerValidator("\nAdd alarms?\n1. Yes\n2. No", 1, 2);
+                if (addAlarmOption != 1) break;
+                int alarmType = integerValidator("Set alarm Type\n1. Low\n2. High", 1, 2);
+                
+            }
+
 
             return new AnalogOutputTag
             {

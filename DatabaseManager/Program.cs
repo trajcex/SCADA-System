@@ -1,5 +1,4 @@
-﻿using DatabaseManager.TagServiceReference;
-using System;
+﻿using System;
 using DatabaseManager.CoreServiceReference;
 using System.Collections.Generic;
 using System.Linq;

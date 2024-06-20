@@ -1,4 +1,4 @@
-﻿using CoreService.Model;
+﻿using SharedLibrary.Model;
 using CoreService.Repository.Interface;
 using System;
 using System.Collections.Generic;
@@ -15,6 +15,7 @@ namespace CoreService.Repository
     public class TagRepository : ITagRepository
     {
         private readonly string configFilePath;
+        private object integer;
 
         public TagRepository()
         {
@@ -75,11 +76,14 @@ namespace CoreService.Repository
                         LowLimit = int.Parse(tagElement.Attribute("lowLimit")?.Value ?? "0"),
                         HighLimit = int.Parse(tagElement.Attribute("highLimit")?.Value ?? "0"),
                         Units = tagElement.Attribute("units")?.Value ?? "",
-                        //Alarms = (from alarmElement in tagElement.Element("alarms")?.Elements("Alarm")
-                        //          select new Alarm
-                        //          {
-                        //               Populate Alarm properties
-                        //          }).ToList()
+                        Alarms = (from alarmElement in tagElement.Elements("Alarm")
+                                  select new Alarm
+                                  {
+                                      Type = Enum.TryParse(alarmElement.Attribute("type")?.Value, true, out AlarmType alarmType) 
+                                      ? alarmType : throw new Exception($"Invalid AlarmType: {alarmElement.Attribute("type")?.Value}"),
+                                      Priority = int.Parse(alarmElement.Attribute("priority").Value),
+                                      Border = int.Parse(alarmElement.Attribute("border").Value),
+                                  }).ToList()
                     };
                     tagsDictionary[tagName].Add(tag);
                 }
@@ -111,52 +115,51 @@ namespace CoreService.Repository
             List<Tag> ao = tags["AnalogOutputTags"];
 
             XElement XTags = new XElement("Tags",
-                from tag in di
-                select new XElement("DigitalInputTag",
-                    new XAttribute("tagName", tag.TagName),
-                    new XAttribute("description", tag.Description),
-                    new XAttribute("address", tag.Address),
-                    new XAttribute("driver", ((DigitalInputTag)tag).Driver),
-                    new XAttribute("scanTime", ((DigitalInputTag)tag).ScanTime),
-                    new XAttribute("scan", ((DigitalInputTag)tag).Scan)
-                ),
-                from tag in d0
-                select new XElement("DigitalOutputTag",
-                    new XAttribute("tagName", tag.TagName),
-                    new XAttribute("description", tag.Description),
-                    new XAttribute("address", tag.Address),
-                    new XAttribute("initialValue", ((DigitalOutputTag)tag).InitialValue)
-                ),
-                from tag in ai
-                select new XElement("AnalogInputTag",
-                    new XAttribute("tagName", tag.TagName),
-                    new XAttribute("description", tag.Description),
-                    new XAttribute("address", tag.Address),
-                    new XAttribute("driver", ((AnalogInputTag)tag).Driver),
-                    new XAttribute("scanTime", ((AnalogInputTag)tag).ScanTime),
-                    new XAttribute("scan", ((AnalogInputTag)tag).Scan),
-                    new XAttribute("lowLimit", ((AnalogInputTag)tag).LowLimit),
-                    new XAttribute("highLimit", ((AnalogInputTag)tag).HighLimit),
-                    new XAttribute("units", ((AnalogInputTag)tag).Units),
-                    new XAttribute("alarms",
-                        from alarm in ((AnalogInputTag)tag).Alarms
-                        select new XElement("Alarm"
-                            //new XAttribute("name", alarm.Name),
-                            //new XAttribute("description", alarm.Description)
-                        )
-                    )
-                ),
-                from tag in ao
-                select new XElement("AnalogOutputTag",
-                    new XAttribute("tagName", tag.TagName),
-                    new XAttribute("description", tag.Description),
-                    new XAttribute("address", tag.Address),
-                    new XAttribute("initialValue", ((AnalogOutputTag)tag).InitialValue),
-                    new XAttribute("lowLimit", ((AnalogOutputTag)tag).LowLimit),
-                    new XAttribute("highLimit", ((AnalogOutputTag)tag).HighLimit),
-                    new XAttribute("units", ((AnalogOutputTag)tag).Units)
+            from tag in di
+            select new XElement("DigitalInputTag",
+                new XAttribute("tagName", tag.TagName),
+                new XAttribute("description", tag.Description),
+                new XAttribute("address", tag.Address),
+                new XAttribute("driver", ((DigitalInputTag)tag).Driver),
+                new XAttribute("scanTime", ((DigitalInputTag)tag).ScanTime),
+                new XAttribute("scan", ((DigitalInputTag)tag).Scan)
+            ),
+            from tag in d0
+            select new XElement("DigitalOutputTag",
+                new XAttribute("tagName", tag.TagName),
+                new XAttribute("description", tag.Description),
+                new XAttribute("address", tag.Address),
+                new XAttribute("initialValue", ((DigitalOutputTag)tag).InitialValue)
+            ),
+            from tag in ai
+            select new XElement("AnalogInputTag",
+                new XAttribute("tagName", tag.TagName),
+                new XAttribute("description", tag.Description),
+                new XAttribute("address", tag.Address),
+                new XAttribute("driver", ((AnalogInputTag)tag).Driver),
+                new XAttribute("scanTime", ((AnalogInputTag)tag).ScanTime),
+                new XAttribute("scan", ((AnalogInputTag)tag).Scan),
+                new XAttribute("lowLimit", ((AnalogInputTag)tag).LowLimit),
+                new XAttribute("highLimit", ((AnalogInputTag)tag).HighLimit),
+                new XAttribute("units", ((AnalogInputTag)tag).Units),
+                from alarm in ((AnalogInputTag)tag).Alarms
+                select new XElement("Alarm",
+                    new XAttribute("type", alarm.Type),
+                    new XAttribute("priority", alarm.Priority),
+                    new XAttribute("border", alarm.Border)
                 )
-            );
+            ),
+            from tag in ao
+            select new XElement("AnalogOutputTag",
+                new XAttribute("tagName", tag.TagName),
+                new XAttribute("description", tag.Description),
+                new XAttribute("address", tag.Address),
+                new XAttribute("initialValue", ((AnalogOutputTag)tag).InitialValue),
+                new XAttribute("lowLimit", ((AnalogOutputTag)tag).LowLimit),
+                new XAttribute("highLimit", ((AnalogOutputTag)tag).HighLimit),
+                new XAttribute("units", ((AnalogOutputTag)tag).Units)
+            )
+        );
 
 
             using (StringWriter sw = new StringWriter())

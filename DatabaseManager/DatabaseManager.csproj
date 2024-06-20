@@ -55,6 +55,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Connected Services\CoreServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Connected Services\TagServiceReference\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
     <Compile Include="Printer.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -69,9 +79,6 @@
     <None Include="Connected Services\CoreServiceReference\AuthenticationService1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Connected Services\TagServiceReference\DatabaseManager.TagServiceReference.Tag.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
-    </None>
     <None Include="Connected Services\TagServiceReference\TagService.wsdl" />
     <None Include="Connected Services\TagServiceReference\TagService.xsd">
       <SubType>Designer</SubType>
@@ -83,28 +90,20 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="packages.config" />
+    <None Include="SharedLibrary.Model.Tag.datasource" />
   </ItemGroup>
   <ItemGroup>
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SharedLibrary\SharedLibrary.csproj">
+      <Project>{440cd34e-0919-493f-ae63-28b36fa36489}</Project>
+      <Name>SharedLibrary</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <WCFMetadataStorage Include="Connected Services\CoreServiceReference\" />
     <WCFMetadataStorage Include="Connected Services\TagServiceReference\" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\AuthenticationService.disco" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\configuration91.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\configuration.svcinfo" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="Connected Services\CoreServiceReference\Reference.svcmap">
-      <Generator>WCF Proxy Generator</Generator>
-      <LastGenOutput>Reference.cs</LastGenOutput>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\TagServiceReference\TagService.disco" />
@@ -117,6 +116,21 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="Connected Services\TagServiceReference\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreServiceReference\AuthenticationService.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreServiceReference\configuration91.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreServiceReference\configuration.svcinfo" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Connected Services\CoreServiceReference\Reference.svcmap">
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
