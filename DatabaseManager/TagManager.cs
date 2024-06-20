@@ -120,6 +120,7 @@ namespace DatabaseManager
 
                 alarms.Add(new Alarm
                 {
+                    Id = Guid.NewGuid().ToString(),
                     Type = alarmType,
                     Priority = priorityAlarm,
                     Border = border

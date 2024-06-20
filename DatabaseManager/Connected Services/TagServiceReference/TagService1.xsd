@@ -61,6 +61,7 @@
   <xs:complexType name="Alarm">
     <xs:sequence>
       <xs:element minOccurs="0" name="Border" type="xs:int" />
+      <xs:element minOccurs="0" name="Id" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Priority" type="xs:int" />
       <xs:element minOccurs="0" name="Type" type="tns:AlarmType" />
     </xs:sequence>

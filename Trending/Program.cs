@@ -8,7 +8,7 @@ using Trending.TagProcessingServiceReference;
 
 namespace Trending
 {
-    internal class Program
+    public class Program
     {
         public class Callback : IMonitoringCallback
         {
@@ -22,7 +22,7 @@ namespace Trending
         {
             InstanceContext ic = new InstanceContext(new Callback());
             monitroing = new MonitoringClient(ic);
-            monitroing.InitSub();
+            monitroing.InitSubTrending();
             Console.ReadKey();
         }
     }
