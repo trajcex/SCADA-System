@@ -12,6 +12,7 @@ namespace CoreService
     public class UserContextDB:DbContext
     {
         public DbSet<User> Users { get; set; }
+        public DbSet<TagValue> TagValues { get; set; }
         public UserContextDB() : base("name=DefaultConnection")
         {
         }
