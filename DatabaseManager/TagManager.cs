@@ -21,7 +21,18 @@ namespace DatabaseManager
         public static void deleteTag()
         {
             Console.WriteLine("\nPostojeci tagovi u sistemu:");
-            int deleteTagOption = integerValidator(tagServiceClient.GetAllTagNames(),1,10);
+            string tagsPrint = tagServiceClient.GetAllTagNames();
+            string[] tagsWithNumbers = tagsPrint.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+            int deleteTagOption = integerValidator(tagsPrint,1,tagsWithNumbers.Length);
+
+            Dictionary<int, string> tags = tagsWithNumbers
+            .Select(line => line.Split(new[] { '.' }, 2))
+            .ToDictionary(
+                parts => int.Parse(parts[0].Trim()),
+                parts => parts[1].Trim()
+            );
+            tagServiceClient.DeleteTag(GetTagByNumber(tags, deleteTagOption));
         }
         static Tag createTag(int tipTaga)
         {
@@ -155,6 +166,17 @@ namespace DatabaseManager
                     return null;
             }
             return driverRet;
+        }
+        static string GetTagByNumber(Dictionary<int, string> objectMap, int number)
+        {
+            if (objectMap.TryGetValue(number, out var obj))
+            {
+                return obj;
+            }
+            else
+            {
+                return $"Object with number {number} not found.";
+            }
         }
     }
 }

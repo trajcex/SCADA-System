@@ -59,7 +59,6 @@ namespace CoreService
 
                 else if (tag.GetType() == typeof(AnalogOutputTag))
                     digitalOutputTag.Add(tag);
-                ITagRepository tagRepository = new TagRepository();
 
                 SaveTags();
                 return true;
@@ -84,6 +83,7 @@ namespace CoreService
                 digitalOutputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
                 analogInputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
                 analogOutputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
+                SaveTags();
                 return true;
             }
             catch (Exception ex)
