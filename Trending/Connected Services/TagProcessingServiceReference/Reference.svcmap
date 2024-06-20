@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" ID="08e8651c-6e56-4fe4-a39c-68c6e7245d76" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:60923/TagProcessing.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="TagProcessing.xsd" MetadataType="Schema" ID="817b5068-2b68-4925-8865-0587f34052aa" SourceId="1" SourceUrl="http://localhost:60923/TagProcessing.svc?xsd=xsd2" />
+    <MetadataFile FileName="TagProcessing.wsdl" MetadataType="Wsdl" ID="d7869d14-6f34-4d76-b7c0-a125f441710d" SourceId="1" SourceUrl="http://localhost:60923/TagProcessing.svc?wsdl" />
+    <MetadataFile FileName="TagProcessing1.xsd" MetadataType="Schema" ID="a4dcd4b6-fea6-47bd-b18f-05e2a0dc2293" SourceId="1" SourceUrl="http://localhost:60923/TagProcessing.svc?xsd=xsd0" />
+    <MetadataFile FileName="TagProcessing2.xsd" MetadataType="Schema" ID="ae1380c5-ec86-4c71-8fae-6f1b3ef56857" SourceId="1" SourceUrl="http://localhost:60923/TagProcessing.svc?xsd=xsd1" />
+    <MetadataFile FileName="TagProcessing.disco" MetadataType="Disco" ID="ff4da285-f0fa-49ea-9929-8e510214bd9c" SourceId="1" SourceUrl="http://localhost:60923/TagProcessing.svc?disco" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>
