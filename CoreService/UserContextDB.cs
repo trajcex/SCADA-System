@@ -1,4 +1,4 @@
-﻿using CoreService.Model;
+﻿using SharedLibrary.Model;
 using System;
 using MySql.Data.EntityFramework;
 using System.Collections.Generic;
