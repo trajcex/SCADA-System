@@ -11,6 +11,8 @@ namespace SharedLibrary.Model
     public class Alarm
     {
         [DataMember]
+        public string Id { get; set; }
+        [DataMember]
         public AlarmType Type { get; set; }
         [DataMember]
         public int Priority { get; set; }
@@ -25,5 +27,16 @@ namespace SharedLibrary.Model
         [EnumMember]
         HIGH
     }
-    
+
+    [DataContract]
+    public class AlarmValue
+    {
+        [DataMember]
+        public AlarmType Type { get; set; }
+        [DataMember]
+        public string DateTime { get; set; }
+        [DataMember]
+        public int Priority { get; set; }
+
+    }
 }

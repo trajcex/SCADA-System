@@ -7,7 +7,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
 using SharedLibrary.Model;
-using CoreService.Service;
+using CoreService;
 
 namespace CoreService
 {
