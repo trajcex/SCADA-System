@@ -24,6 +24,7 @@ namespace CoreService
             digitalOutputTag = map.ContainsKey("DigitalOutputTag") ? map["DigitalOutputTag"] : new List<Tag>();
             analogInputTag = map.ContainsKey("AnalogInputTag") ? map["AnalogInputTag"] : new List<Tag>();
             analogOutputTag = map.ContainsKey("AnalogOutputTag") ? map["AnalogOutputTag"] : new List<Tag>();
+            TagProcessing tagProcessing = new TagProcessing(digitalInputTag, analogInputTag);
         }
         public List<Tag> GetTags()
         {
