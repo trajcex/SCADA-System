@@ -19,5 +19,11 @@ namespace CoreService
         bool AddTag(Tag tag);
         [OperationContract]
         bool DeleteTag(String tagName);
+        [OperationContract]
+        string GetOutputTags();
+        [OperationContract]
+        List<Tag> GetAllOutput();
+        [OperationContract]
+        void ChangeOutputTag(string tagName, int value);
     }
 }
