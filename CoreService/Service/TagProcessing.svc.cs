@@ -78,7 +78,7 @@ namespace CoreService.Service
                     DateTimeOffset dateTimeOffset = new DateTimeOffset(now);
                     long milliseconds = dateTimeOffset.ToUnixTimeMilliseconds();
                     string message = $"Tag Name: {tag.TagName}, Value: {value.ToString() ?? "null"}";
-                    SaveTagValue(new TagValue(value.ToString(), "DI", milliseconds.ToString(), tag.TagName));
+                    SaveTagValue(new TagValue(value.ToString(), "AI", milliseconds.ToString(), tag.TagName));
                     Write(message);
                     Thread.Sleep(analogInputTag.ScanTime*1000);
                 }
