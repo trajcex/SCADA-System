@@ -28,5 +28,10 @@ namespace CoreService
 
         [OperationContract]
         void ChangeOutputTag(string tagName, int value, string type);
+        
+        [OperationContract]
+        void StartTag(string tagName);
+        [OperationContract]
+        void StopTag(string tagName);
     }
 }
