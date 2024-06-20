@@ -14,7 +14,7 @@ namespace CoreService.Interface
     {
        
         [OperationContract]
-        void StartTag(string tagName);
+        void StartTag(Tag tag);
         [OperationContract]
         void StopTag(string tagName);
     }

@@ -18,6 +18,8 @@ namespace CoreService
         private static List<Tag> digitalOutputTag;
         private static List<Tag> analogInputTag;
         private static List<Tag> analogOutputTag;
+        private static TagProcessing tagProcessing;
+        
         public TagService()
         {
             Dictionary<string, List<Tag>> map = tagRepository.GetTags();
@@ -25,7 +27,7 @@ namespace CoreService
             digitalOutputTag = map.ContainsKey("DigitalOutputTag") ? map["DigitalOutputTag"] : new List<Tag>();
             analogInputTag = map.ContainsKey("AnalogInputTag") ? map["AnalogInputTag"] : new List<Tag>();
             analogOutputTag = map.ContainsKey("AnalogOutputTag") ? map["AnalogOutputTag"] : new List<Tag>();
-            TagProcessing tagProcessing = new TagProcessing(digitalInputTag, analogInputTag);
+            tagProcessing = new TagProcessing(digitalInputTag, analogInputTag);
         }
         public List<Tag> GetTags()
         {
@@ -150,6 +152,48 @@ namespace CoreService
                 tagToUpdate.InitialValue = value;
             }
             SaveTags();
-        }   
+        }
+
+        public void StartTag(string tagName)
+        {
+            Tag tag;
+            tag = digitalInputTag.Find(t => t.TagName == tagName);
+            if (tag == null)
+            {
+                
+                tag = analogInputTag.Find(t => t.TagName == tagName);
+                if (tag != null)
+                {
+                    AnalogInputTag ai = (AnalogInputTag)tag;
+                    ai.Scan = true;
+                    tagProcessing.StartTag(tag);
+                }
+            } 
+            else
+            {
+                DigitalInputTag di = (DigitalInputTag)tag;
+                di.Scan = true;
+                tagProcessing.StartTag(tag);
+            }
+            
+        }
+
+        public void StopTag(string tagName)
+        {
+            Tag tag;
+            tag = digitalInputTag.Find(t => t.TagName == tagName);
+            if (tag == null)
+            {
+                tag = analogInputTag.Find(t => t.TagName == tagName);
+                AnalogInputTag ai = (AnalogInputTag)tag;
+                ai.Scan = false;
+            }
+            else
+            {
+                DigitalInputTag di = (DigitalInputTag)tag;
+                di.Scan = false;
+            }
+            tagProcessing.StopTag(tagName);
+        }
     }
 }

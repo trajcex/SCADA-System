@@ -18,7 +18,7 @@ namespace CoreService
         
         private static List<ICallback> callbacksTrending = new List<ICallback>();
         private static List<ICallback> callbacksAlarm = new List<ICallback>();
-        private static Dictionary<string, Thread> tagMap = new Dictionary<string, Thread>();
+        private static Dictionary<string, (Thread Thread, CancellationTokenSource Cts )> tagMap = new Dictionary<string, (Thread, CancellationTokenSource)>();
         private static UserContextDB _contextDb = new UserContextDB();
         private readonly object locker = new object();
 
@@ -30,61 +30,67 @@ namespace CoreService
             foreach (Tag tag in digitalInputTags)
             {
                 DigitalInputTag digitalInputTag = (DigitalInputTag)tag;
-                if (digitalInputTag.Scan) startTag(tag); 
+                if (digitalInputTag.Scan) StartTag(tag); 
             }
             foreach (Tag tag in analogInputTags)
             {
                 AnalogInputTag analogInputTag = (AnalogInputTag)tag;
-                if (analogInputTag.Scan) startTag(tag);
+                if (analogInputTag.Scan) StartTag(tag);
             }
         }
         public void StopTag(string tagName)
         {
-            throw new NotImplementedException();
+            tagMap[tagName].Cts.Cancel();
+            tagMap[tagName].Thread.Join();
+            tagMap.Remove(tagName);
         }
-
-        public void StartTag(string tagName)
+        
+        public void StartTag(Tag tag)
         {
-            throw new NotImplementedException();
-        }
-        public void startTag(Tag tag)
-        {
-            Thread thread = new Thread(() => ProcessTag(tag));
-            tagMap[tag.TagName] = thread;
+            CancellationTokenSource cts = new CancellationTokenSource();
+            CancellationToken token = cts.Token;
+            Thread thread = new Thread(() => ProcessTag(tag,token));
+            tagMap[tag.TagName] = (thread,cts);
             thread.Start();
-            
         }
 
-        private void ProcessTag(Tag tag) {
-            while (true)
+        private void ProcessTag(Tag tag, CancellationToken token) {
+            try
             {
-                
-                if (tag.GetType() == typeof(DigitalInputTag))
+                while (true)
                 {
+                    token.ThrowIfCancellationRequested();
+                    if (tag.GetType() == typeof(DigitalInputTag))
+                    {
 
-                    DigitalInputTag digitalInputTag = (DigitalInputTag) tag;
-                    double value = GetFunction(digitalInputTag.Address);
-                    DateTime now = DateTime.UtcNow;
-                    DateTimeOffset dateTimeOffset = new DateTimeOffset(now);
-                    long milliseconds = dateTimeOffset.ToUnixTimeMilliseconds();
-                    string message = $"Tag Name: {tag.TagName}, Value: {value.ToString() ?? "null"}";
-                    SaveTagValue(new TagValue(value.ToString(), "DI", milliseconds.ToString(), tag.TagName));
-                    Write(callbacksTrending,message);
-                    Thread.Sleep(digitalInputTag.ScanTime*1000);
+                        DigitalInputTag digitalInputTag = (DigitalInputTag) tag;
+                        double value = GetFunction(digitalInputTag.Address);
+                        DateTime now = DateTime.UtcNow;
+                        DateTimeOffset dateTimeOffset = new DateTimeOffset(now);
+                        long milliseconds = dateTimeOffset.ToUnixTimeMilliseconds();
+                        string message = $"Tag Name: {tag.TagName}, Value: {value.ToString() ?? "null"}";
+                        SaveTagValue(new TagValue(value.ToString(), "DI", milliseconds.ToString(), tag.TagName));
+                        Write(callbacksTrending,message);
+                        Thread.Sleep(digitalInputTag.ScanTime*1000);
+                    }
+                    else if (tag.GetType() == typeof(AnalogInputTag))
+                    {
+                        AnalogInputTag analogInputTag = (AnalogInputTag) tag;
+                        double value = GetFunction(analogInputTag.Address);
+                        DateTime now = DateTime.UtcNow;
+                        DateTimeOffset dateTimeOffset = new DateTimeOffset(now);
+                        long milliseconds = dateTimeOffset.ToUnixTimeMilliseconds();
+                        string message = $"Tag Name: {tag.TagName}, Value: {value.ToString() ?? "null"}";
+                        SaveTagValue(new TagValue(value.ToString(), "DI", milliseconds.ToString(), tag.TagName));
+                        writeAlarms(analogInputTag, (int)value);
+                        Write(callbacksTrending,message);
+                        Thread.Sleep(analogInputTag.ScanTime*1000);
+                    }
                 }
-                else if (tag.GetType() == typeof(AnalogInputTag))
-                {
-                    AnalogInputTag analogInputTag = (AnalogInputTag) tag;
-                    double value = GetFunction(analogInputTag.Address);
-                    DateTime now = DateTime.UtcNow;
-                    DateTimeOffset dateTimeOffset = new DateTimeOffset(now);
-                    long milliseconds = dateTimeOffset.ToUnixTimeMilliseconds();
-                    string message = $"Tag Name: {tag.TagName}, Value: {value.ToString() ?? "null"}";
-                    SaveTagValue(new TagValue(value.ToString(), "DI", milliseconds.ToString(), tag.TagName));
-                    writeAlarms(analogInputTag, (int)value);
-                    Write(callbacksTrending,message);
-                    Thread.Sleep(analogInputTag.ScanTime*1000);
-                }
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
             }
         }
         private void writeAlarms(AnalogInputTag tag, int currentValue)
