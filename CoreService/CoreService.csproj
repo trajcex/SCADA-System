@@ -134,6 +134,7 @@
     <Compile Include="Interface\ICore.cs" />
     <Compile Include="Interface\IRealTimeDriver.cs" />
     <Compile Include="Interface\ITagService.cs" />
+    <Compile Include="Interface\ITagProcessing.cs" />
     <Compile Include="Model\Alarm.cs" />
     <Compile Include="Model\Tag.cs" />
     <Compile Include="Repository\Interface\ITagRepository.cs" />
@@ -153,6 +154,9 @@
     <Compile Include="Service\TagService.svc.cs">
       <DependentUpon>TagService.svc</DependentUpon>
     </Compile>
+    <Compile Include="Service\TagProcessing.svc.cs">
+      <DependentUpon>TagProcessing.svc</DependentUpon>
+    </Compile>
     <Compile Include="UserContextDB.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -165,6 +169,7 @@
     <Content Include="Service\AuthenticationService.svc" />
     <Content Include="Service\RealTimeDriver.svc" />
     <Content Include="Service\TagService.svc" />
+    <Content Include="Service\TagProcessing.svc" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
