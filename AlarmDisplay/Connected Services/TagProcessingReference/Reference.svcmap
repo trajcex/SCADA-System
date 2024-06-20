@@ -24,6 +24,7 @@
   <Metadata>
     <MetadataFile FileName="TagProcessing.wsdl" MetadataType="Wsdl" ID="e4fbc564-0b78-4648-8b86-890dbf32968f" SourceId="1" SourceUrl="http://localhost:60923/Service/TagProcessing.svc?wsdl" />
     <MetadataFile FileName="TagProcessing.disco" MetadataType="Disco" ID="1b93cd71-26b2-4454-9e2f-cef87ce0caed" SourceId="1" SourceUrl="http://localhost:60923/Service/TagProcessing.svc?disco" />
+    <MetadataFile FileName="TagProcessing2.xsd" MetadataType="Schema" ID="c7dbdd36-9cec-46ba-8a2f-39b0d828161c" SourceId="1" SourceUrl="http://localhost:60923/Service/TagProcessing.svc?xsd=xsd2" />
     <MetadataFile FileName="TagProcessing.xsd" MetadataType="Schema" ID="b08f623d-ffec-4bec-baee-8f133425bfda" SourceId="1" SourceUrl="http://localhost:60923/Service/TagProcessing.svc?xsd=xsd0" />
     <MetadataFile FileName="TagProcessing1.xsd" MetadataType="Schema" ID="f04d2001-45fb-41b6-935b-1d7de1c3a48b" SourceId="1" SourceUrl="http://localhost:60923/Service/TagProcessing.svc?xsd=xsd1" />
   </Metadata>
