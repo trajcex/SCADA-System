@@ -23,7 +23,13 @@ namespace CoreService.Interface
     public interface IMonitoring
     {
         [OperationContract(IsOneWay = true)]
-        void InitSub();
+        void InitSubTrending();
+    }
+    [ServiceContract(CallbackContract = typeof(ICallback))]
+    public interface IAlarmMonitoring
+    {
+        [OperationContract(IsOneWay = true)]
+        void InitSubAlarm();
     }
     public interface ICallback
     {

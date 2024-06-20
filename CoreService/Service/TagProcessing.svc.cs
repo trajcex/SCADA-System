@@ -8,14 +8,16 @@ using System.Text;
 using System.Threading;
 using SimulationLibrary;
 using CoreService.Interface;
+using Org.BouncyCastle.Utilities;
 
-namespace CoreService.Service
+namespace CoreService
 {
 
-    public class TagProcessing : ITagProcessing,IMonitoring
+    public class TagProcessing : ITagProcessing,IMonitoring, IAlarmMonitoring
     {
         
-        private static List<ICallback> callbacks = new List<ICallback>();
+        private static List<ICallback> callbacksTrending = new List<ICallback>();
+        private static List<ICallback> callbacksAlarm = new List<ICallback>();
         private static Dictionary<string, Thread> tagMap = new Dictionary<string, Thread>();
         private static UserContextDB _contextDb = new UserContextDB();
         private readonly object locker = new object();
@@ -67,7 +69,7 @@ namespace CoreService.Service
                     long milliseconds = dateTimeOffset.ToUnixTimeMilliseconds();
                     string message = $"Tag Name: {tag.TagName}, Value: {value.ToString() ?? "null"}";
                     SaveTagValue(new TagValue(value.ToString(), "DI", milliseconds.ToString(), tag.TagName));
-                    Write(message);
+                    Write(callbacksTrending,message);
                     Thread.Sleep(digitalInputTag.ScanTime*1000);
                 }
                 else if (tag.GetType() == typeof(AnalogInputTag))
@@ -79,12 +81,40 @@ namespace CoreService.Service
                     long milliseconds = dateTimeOffset.ToUnixTimeMilliseconds();
                     string message = $"Tag Name: {tag.TagName}, Value: {value.ToString() ?? "null"}";
                     SaveTagValue(new TagValue(value.ToString(), "DI", milliseconds.ToString(), tag.TagName));
-                    Write(message);
+                    writeAlarms(analogInputTag, (int)value);
+                    Write(callbacksTrending,message);
                     Thread.Sleep(analogInputTag.ScanTime*1000);
                 }
             }
         }
-
+        private void writeAlarms(AnalogInputTag tag, int currentValue)
+        {
+            foreach(Alarm alarm in tag.Alarms) { 
+                if(alarm.Type == AlarmType.LOW)
+                {
+                    if(currentValue < alarm.Border)
+                    {
+                        string alarmMessage = "ALARM LOW TYPE, TAG: " + tag.TagName + " UNIT: " + tag.Units + ", CURRENT VALUE: " + currentValue +  " IS UNDER " + alarm.Border;
+                        writeAlarmMessageByPriority(alarm.Priority, alarmMessage);
+                    }
+                }else if(alarm.Type == AlarmType.HIGH)
+                {
+                    if(currentValue > alarm.Border)
+                    {
+                        string alarmMessage = "ALARM HIGH TYPE, TAG: " + tag.TagName + " UNIT: " + tag.Units + ", CURRENT VALUE: " + currentValue +  " IS ABOVE " + alarm.Border;
+                        writeAlarmMessageByPriority(alarm.Priority, alarmMessage);
+                    }
+                }
+            }
+        }
+        private void writeAlarmMessageByPriority(int priority, string alarmMessage)
+        {
+            for(int i = 0; i < priority; i++)
+            {
+                Write1(callbacksAlarm, alarmMessage);
+            }
+        }
+        
         private double GetFunction(string function) 
         {
             switch (function)
@@ -111,7 +141,14 @@ namespace CoreService.Service
 
             }
         }
-        private void Write(string message)
+        private void Write(List<ICallback> callbacks,string message)
+        {
+            foreach (var item in callbacks)
+            {
+                item.Message(message);
+            }
+        }
+        private void Write1(List<ICallback> callbacks, string message)
         {
             foreach (var item in callbacks)
             {
@@ -119,9 +156,13 @@ namespace CoreService.Service
             }
         }
 
-        public void InitSub()
+        public void InitSubTrending()
         {
-            callbacks.Add(OperationContext.Current.GetCallbackChannel<ICallback>());
+            callbacksTrending.Add(OperationContext.Current.GetCallbackChannel<ICallback>());
+        }
+        public void InitSubAlarm()
+        {
+            callbacksAlarm.Add(OperationContext.Current.GetCallbackChannel<ICallback>());
         }
 
     }

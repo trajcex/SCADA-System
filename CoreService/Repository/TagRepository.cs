@@ -79,6 +79,7 @@ namespace CoreService.Repository
                         Alarms = (from alarmElement in tagElement.Elements("Alarm")
                                   select new Alarm
                                   {
+                                      Id = alarmElement.Attribute("id").Value,
                                       Type = Enum.TryParse(alarmElement.Attribute("type")?.Value, true, out AlarmType alarmType) 
                                       ? alarmType : throw new Exception($"Invalid AlarmType: {alarmElement.Attribute("type")?.Value}"),
                                       Priority = int.Parse(alarmElement.Attribute("priority").Value),
@@ -144,6 +145,7 @@ namespace CoreService.Repository
                 new XAttribute("units", ((AnalogInputTag)tag).Units),
                 from alarm in ((AnalogInputTag)tag).Alarms
                 select new XElement("Alarm",
+                    new XAttribute("id", alarm.Id),
                     new XAttribute("type", alarm.Type),
                     new XAttribute("priority", alarm.Priority),
                     new XAttribute("border", alarm.Border)
