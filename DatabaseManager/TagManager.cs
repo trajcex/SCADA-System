@@ -16,8 +16,23 @@ namespace DatabaseManager
             Printer.TagTypes();
             int tagType = integerValidator("Unesite tip taga:", 1, 4);
             Tag newTag = createTag(tagType);
-
             tagServiceClient.AddTag(newTag);
+        }
+        public static void deleteTag()
+        {
+            Console.WriteLine("\nPostojeci tagovi u sistemu:");
+            string tagsPrint = tagServiceClient.GetAllTagNames();
+            string[] tagsWithNumbers = tagsPrint.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
+
+            int deleteTagOption = integerValidator(tagsPrint,1,tagsWithNumbers.Length);
+
+            Dictionary<int, string> tags = tagsWithNumbers
+            .Select(line => line.Split(new[] { '.' }, 2))
+            .ToDictionary(
+                parts => int.Parse(parts[0].Trim()),
+                parts => parts[1].Trim()
+            );
+            tagServiceClient.DeleteTag(GetTagByNumber(tags, deleteTagOption));
         }
         static Tag createTag(int tipTaga)
         {
@@ -151,6 +166,62 @@ namespace DatabaseManager
                     return null;
             }
             return driverRet;
+        }
+        static string GetTagByNumber(Dictionary<int, string> objectMap, int number)
+        {
+            if (objectMap.TryGetValue(number, out var obj))
+            {
+                return obj;
+            }
+            else
+            {
+                return $"Object with number {number} not found.";
+            }
+        }
+
+        public static void GetOutputTags()
+        {
+            Console.WriteLine("\nTrenutne vrednosti izlaznih tagova:");
+            Console.WriteLine("-------------------------------------");
+            Console.WriteLine(tagServiceClient.GetOutputTags());
+        }
+
+        public static void ChangeTag()
+        {
+            List<Tag> tags = new List<Tag>();
+            tags.AddRange(tagServiceClient.GetAllOutput());
+            if (tags.Count == 0)
+            {
+                Console.WriteLine("Ne postoji nijedan tag.");
+                return;
+            }
+
+            Tag selectedTag = null;
+            string tagname;
+
+            do
+            {
+                GetOutputTags();
+                Console.WriteLine("\n");
+                tagname = stringValidator("Unesite TagName:");
+                selectedTag = tags.FirstOrDefault(t => t.TagName == tagname);
+                if (selectedTag == null)
+                {
+                    Console.WriteLine($"Tag '{tagname}' nije pronađen. Molimo vas da pokušate ponovo.");
+                }
+            } while (selectedTag == null);
+
+            int value = 0;
+            if (tagname[0] == 'D')
+            {
+                value = integerValidator("Unesite vrednost(0 ili 1):", 0, 1);
+            }
+            else
+            {
+                value = integerValidator("Unesite vrednost (integer > 0):");
+            }
+
+            tagServiceClient.ChangeOutputTag(tagname, value);
         }
     }
 }

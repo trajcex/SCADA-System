@@ -60,7 +60,6 @@ namespace CoreService
 
                 else if (tag.GetType() == typeof(AnalogOutputTag))
                     digitalOutputTag.Add(tag);
-                ITagRepository tagRepository = new TagRepository();
 
                 SaveTags();
                 return true;
@@ -85,6 +84,7 @@ namespace CoreService
                 digitalOutputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
                 analogInputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
                 analogOutputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
+                SaveTags();
                 return true;
             }
             catch (Exception ex)
@@ -92,5 +92,66 @@ namespace CoreService
                 return false;
             }
         }
+        public string GetAllTagNames()
+        {
+            var allTags = digitalInputTag
+                .Concat(digitalOutputTag)
+                .Concat(analogInputTag)
+                .Concat(analogOutputTag);
+
+            string tagNames = string.Join("\n", allTags.Select((tag, index) => $"{index + 1}. {tag.TagName}"));
+
+            return tagNames;
+        }
+
+        public string GetOutputTags()
+        {
+            return ConvertTagsToString(GetAllOutput());
+        }
+
+        private string ConvertTagsToString(List<Tag> tags)
+        {
+            StringBuilder sb = new StringBuilder();
+
+            foreach (var tag in tags)
+            {
+                sb.AppendLine(tag.ToString());
+            }
+
+            return sb.ToString();
+        }
+
+        public bool CheckOutputTag(string tagName)
+        {
+            return digitalOutputTag.Any(t => t.TagName == tagName) || analogOutputTag.Any(t => t.TagName == tagName);
+        }
+
+        public List<Tag> GetAllOutput()
+        {
+            ITagRepository tagRepository = new TagRepository();
+            List<Tag> outputTags = new List<Tag>();
+            outputTags.AddRange(tagRepository.GetTags()["DigitalOutputTag"]);
+            outputTags.AddRange(tagRepository.GetTags()["AnalogOutputTag"]);
+            return outputTags;
+        }
+
+        public void ChangeOutputTag(string tagName, int value)
+        {
+            if (tagName[0] == 'D')
+            {
+                DigitalOutputTag tagToUpdate = digitalOutputTag.FirstOrDefault(t => t.TagName == tagName) as DigitalOutputTag;
+                //digitalOutputTag.Remove(tagToUpdate);
+                tagToUpdate.InitialValue = value;
+                //digitalOutputTag.Add(tagToUpdate);
+            }
+            else
+            {
+                AnalogOutputTag tagToUpdate = analogOutputTag.FirstOrDefault(t => t.TagName == tagName) as AnalogOutputTag;
+                //analogOutputTag.Remove(tagToUpdate);
+                tagToUpdate.InitialValue = value;
+                //analogOutputTag.Add(tagToUpdate);
+            }
+            SaveTags();
+        }   
     }
 }

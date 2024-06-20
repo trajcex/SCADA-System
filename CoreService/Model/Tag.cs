@@ -48,6 +48,11 @@ namespace CoreService.Model
             Description = description;
             Address = address;
         }
+
+        public override string ToString()
+        {
+            return $"TagName: {TagName}";
+        }
     }
     [DataContract]
     public class DigitalInputTag : Tag, IInput
@@ -79,6 +84,10 @@ namespace CoreService.Model
             : base(tagName, description, address)
         {
             InitialValue = initialValue;
+        }
+        public override string ToString()
+        {
+            return $"{base.ToString()}, Value: {InitialValue}";
         }
     }
     [DataContract]
@@ -134,6 +143,10 @@ namespace CoreService.Model
             LowLimit = lowLimit;
             HighLimit = highLimit;
             Units = units;
+        }
+        public override string ToString()
+        {
+            return $"{base.ToString()}, Value: {InitialValue}";
         }
     }
 
