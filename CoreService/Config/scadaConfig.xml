@@ -3,16 +3,19 @@
   <DigitalInputTag tagName="DI1" description="Digital Input Tag 1" address="Address1" driver="Driver1" scanTime="1" scan="false" />
   <DigitalInputTag tagName="DI2" description="Digital Input Tag 2" address="Address2" driver="Driver2" scanTime="2" scan="false" />
   <DigitalInputTag tagName="nekaa" description="asdfasdf" address="asdfasdf" driver="RTU" scanTime="123" scan="false" />
-  <DigitalOutputTag tagName="DO1" description="Digital Output Tag 1" address="Address1" initialValue="1" />
-  <DigitalOutputTag tagName="DO2" description="Digital Output Tag 2" address="Address2" initialValue="200" />
-  <DigitalOutputTag tagName="asdf" description="asdf" address="adsf" initialValue="0" />
-  <DigitalOutputTag tagName="asdff" description="aasdff" address="asd" initialValue="0" />
+  <DigitalOutputTag tagName="asdfasdf" description="adsfadsf" address="adsf" initialValue="1" />
+  <DigitalOutputTag tagName="adsfasdf" description="fasdfasd" address="aasdf" initialValue="1" />
+  <DigitalOutputTag tagName="asdfadsf" description="asdfasdf" address="asdfsadf" initialValue="1" />
+  <DigitalOutputTag tagName="asdfasdfa" description="asdf" address="asdf" initialValue="1" />
+  <DigitalOutputTag tagName="adsfa" description="asdf" address="asdf" initialValue="1" />
+  <DigitalOutputTag tagName="asdfa" description="asdf" address="asdf" initialValue="1" />
+  <DigitalOutputTag tagName="asdf" description="asdf" address="asdf" initialValue="1" />
   <AnalogInputTag tagName="adf" description="asdf" address="S" driver="RTU" scanTime="1" scan="true" lowLimit="1" highLimit="1233" units="12">
-    <Alarm id="1" type="LOW" priority="1" border="112" />
-    <Alarm id="2" type="HIGH" priority="3" border="222" />
+    <Alarm id="1" type="LOW" priority="2" border="80" />
+    <Alarm id="2" type="HIGH" priority="3" border="95" />
   </AnalogInputTag>
   <AnalogInputTag tagName="neki" description="asdf" address="asdf" driver="RTU" scanTime="123" scan="false" lowLimit="123" highLimit="123" units="123" />
-  <AnalogInputTag tagName="aa" description="asdfasdf" address="S" driver="Simulation" scanTime="1" scan="true" lowLimit="1" highLimit="90" units="dm">
+  <AnalogInputTag tagName="aa" description="asdfasdf" address="S" driver="Simulation" scanTime="1" scan="false" lowLimit="1" highLimit="90" units="dm">
     <Alarm id="b2f5ac7a-2dde-49da-b024-c7ac3d00d967" type="HIGH" priority="3" border="30" />
   </AnalogInputTag>
   <AnalogOutputTag tagName="AO1" description="Analog Output Tag 1" address="Address1" initialValue="50" lowLimit="0" highLimit="100" units="Volts" />

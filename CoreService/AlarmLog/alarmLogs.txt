@@ -1,0 +1,5 @@
+type:LOW; tagName:adf; priority: 2; dateTime:6/21/2024 1:26:50 AM; border:80
+type:LOW; tagName:adf; priority: 2; dateTime:6/21/2024 1:27:05 AM; border:80
+type:HIGH; tagName:adf; priority: 3; dateTime:6/21/2024 1:27:25 AM; border:95
+type:LOW; tagName:adf; priority: 2; dateTime:6/21/2024 1:27:43 AM; border:80
+type:LOW; tagName:adf; priority: 2; dateTime:6/21/2024 1:27:59 AM; border:80

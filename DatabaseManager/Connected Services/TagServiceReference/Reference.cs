@@ -62,10 +62,10 @@ namespace DatabaseManager.TagServiceReference {
         System.Threading.Tasks.Task<SharedLibrary.Model.Tag[]> GetAllOutputAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/ChangeOutputTag", ReplyAction="http://tempuri.org/ITagService/ChangeOutputTagResponse")]
-        void ChangeOutputTag(string tagName, int value);
+        void ChangeOutputTag(string tagName, int value, string type);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/ChangeOutputTag", ReplyAction="http://tempuri.org/ITagService/ChangeOutputTagResponse")]
-        System.Threading.Tasks.Task ChangeOutputTagAsync(string tagName, int value);
+        System.Threading.Tasks.Task ChangeOutputTagAsync(string tagName, int value, string type);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -151,12 +151,12 @@ namespace DatabaseManager.TagServiceReference {
             return base.Channel.GetAllOutputAsync();
         }
         
-        public void ChangeOutputTag(string tagName, int value) {
-            base.Channel.ChangeOutputTag(tagName, value);
+        public void ChangeOutputTag(string tagName, int value, string type) {
+            base.Channel.ChangeOutputTag(tagName, value, type);
         }
         
-        public System.Threading.Tasks.Task ChangeOutputTagAsync(string tagName, int value) {
-            return base.Channel.ChangeOutputTagAsync(tagName, value);
+        public System.Threading.Tasks.Task ChangeOutputTagAsync(string tagName, int value, string type) {
+            return base.Channel.ChangeOutputTagAsync(tagName, value, type);
         }
     }
 }
