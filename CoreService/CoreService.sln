@@ -6,14 +6,25 @@ MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreService", "CoreService.csproj", "{CD7270D0-BC8F-4C7E-A255-7B030D530CBF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RealTimeUnit", "..\RealTimeUnit\RealTimeUnit.csproj", "{F7731D7E-8C9E-4A22-9B34-1C326EF78528}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD7270D0-BC8F-4C7E-A255-7B030D530CBF} = {CD7270D0-BC8F-4C7E-A255-7B030D530CBF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DatabaseManager", "..\DatabaseManager\DatabaseManager.csproj", "{71E6B2E6-F14C-4B44-9977-D26FF348A758}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD7270D0-BC8F-4C7E-A255-7B030D530CBF} = {CD7270D0-BC8F-4C7E-A255-7B030D530CBF}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AlarmDisplay", "..\AlarmDisplay\AlarmDisplay.csproj", "{D40DDBFA-D3DB-48BB-A547-D15D4F7C2F2B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ReportManager", "..\ReportManager\ReportManager.csproj", "{70691714-2C21-489B-9493-5C7CE4D66481}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Trending", "..\Trending\Trending.csproj", "{7887E31D-A7B5-4729-AE34-7A60EFB19337}"
+	ProjectSection(ProjectDependencies) = postProject
+		{CD7270D0-BC8F-4C7E-A255-7B030D530CBF} = {CD7270D0-BC8F-4C7E-A255-7B030D530CBF}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SimulationLibrary", "..\SimulationLibrary\SimulationLibrary.csproj", "{709C4360-F611-4532-B6D3-2BEF69D2A1B9}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +56,10 @@ Global
 		{7887E31D-A7B5-4729-AE34-7A60EFB19337}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7887E31D-A7B5-4729-AE34-7A60EFB19337}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7887E31D-A7B5-4729-AE34-7A60EFB19337}.Release|Any CPU.Build.0 = Release|Any CPU
+		{709C4360-F611-4532-B6D3-2BEF69D2A1B9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{709C4360-F611-4532-B6D3-2BEF69D2A1B9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{709C4360-F611-4532-B6D3-2BEF69D2A1B9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{709C4360-F611-4532-B6D3-2BEF69D2A1B9}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

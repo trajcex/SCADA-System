@@ -1,0 +1,16 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Tags>
+  <DigitalInputTag tagName="DI1" description="Digital Input Tag 1" address="Address1" driver="Driver1" scanTime="1" scan="true" />
+  <DigitalInputTag tagName="DI2" description="Digital Input Tag 2" address="Address2" driver="Driver2" scanTime="2" scan="false" />
+  <DigitalInputTag tagName="nekiads" description="asdfadsf" address="asdf" driver="Driver" scanTime="123" scan="false" />
+  <DigitalInputTag tagName="nekaa" description="asdfasdf" address="asdfasdf" driver="RTU" scanTime="123" scan="false" />
+  <DigitalOutputTag tagName="DO1" description="Digital Output Tag 1" address="Address1" initialValue="1" />
+  <DigitalOutputTag tagName="DO2" description="Digital Output Tag 2" address="Address2" initialValue="200" />
+  <DigitalOutputTag tagName="55" description="55" address="5" initialValue="0" />
+  <DigitalOutputTag tagName="5" description="5" address="5" initialValue="0" />
+  <DigitalOutputTag tagName="2" description="2" address="2" initialValue="0" />
+  <AnalogInputTag tagName="AI1" description="Analog Input Tag 1" address="Address1" driver="Driver1" scanTime="1" scan="true" lowLimit="0" highLimit="100" units="Volts" alarms="System.Linq.Enumerable+WhereSelectListIterator`2[CoreService.Model.Alarm,System.Xml.Linq.XElement]" />
+  <AnalogInputTag tagName="AI2" description="Analog Input Tag 2" address="Address2" driver="Driver2" scanTime="2" scan="false" lowLimit="0" highLimit="50" units="Amps" alarms="System.Linq.Enumerable+WhereSelectListIterator`2[CoreService.Model.Alarm,System.Xml.Linq.XElement]" />
+  <AnalogOutputTag tagName="AO1" description="Analog Output Tag 1" address="Address1" initialValue="1234" lowLimit="0" highLimit="100" units="Volts" />
+  <AnalogOutputTag tagName="AO2" description="Analog Output Tag 2" address="Address2" initialValue="75" lowLimit="0" highLimit="50" units="Amps" />
+</Tags>
