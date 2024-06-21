@@ -78,6 +78,12 @@ namespace DatabaseManager.TagServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/StopTag", ReplyAction="http://tempuri.org/ITagService/StopTagResponse")]
         System.Threading.Tasks.Task StopTagAsync(string tagName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetAllTagsAndScanStatus", ReplyAction="http://tempuri.org/ITagService/GetAllTagsAndScanStatusResponse")]
+        System.Collections.Generic.Dictionary<string, bool> GetAllTagsAndScanStatus();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetAllTagsAndScanStatus", ReplyAction="http://tempuri.org/ITagService/GetAllTagsAndScanStatusResponse")]
+        System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, bool>> GetAllTagsAndScanStatusAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -185,6 +191,14 @@ namespace DatabaseManager.TagServiceReference {
         
         public System.Threading.Tasks.Task StopTagAsync(string tagName) {
             return base.Channel.StopTagAsync(tagName);
+        }
+        
+        public System.Collections.Generic.Dictionary<string, bool> GetAllTagsAndScanStatus() {
+            return base.Channel.GetAllTagsAndScanStatus();
+        }
+        
+        public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, bool>> GetAllTagsAndScanStatusAsync() {
+            return base.Channel.GetAllTagsAndScanStatusAsync();
         }
     }
 }

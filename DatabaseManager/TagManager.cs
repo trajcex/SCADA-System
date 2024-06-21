@@ -282,5 +282,26 @@ namespace DatabaseManager
 
             tagServiceClient.ChangeOutputTag(tagname, value, outputType);
         }
+
+        public static void ChangeTagScanStatus()
+        {
+            Dictionary<string, bool> tagScanPair = tagServiceClient.GetAllTagsAndScanStatus();
+            int i = 0;
+            Dictionary<int, string> tagOptionPair = new Dictionary<int, string>();
+            foreach(var tag in tagScanPair.Keys)
+            {
+                i++;
+                tagOptionPair.Add(i, tag);
+                string scanValue;
+                if (tagScanPair[tag]) scanValue = " ON";
+                else scanValue = " OFF";
+                Console.WriteLine(i.ToString() +". TAG NAME -> " +  tag +  "; SCAN STATUS -> " + scanValue);
+            }
+            int tagOption = integerValidator("Unesite broj ispred tag name-a ciji scan status zelite da promenite",1,i);
+
+            if (tagScanPair[tagOptionPair[tagOption]]) tagServiceClient.StopTag(tagOptionPair[tagOption]);
+            else tagServiceClient.StartTag(tagOptionPair[tagOption]);
+        }
+
     }
 }

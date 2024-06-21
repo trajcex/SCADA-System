@@ -89,6 +89,9 @@
     <None Include="Connected Services\TagServiceReference\TagService2.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Connected Services\TagServiceReference\TagService3.xsd">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
     <None Include="SharedLibrary.Model.Tag.datasource" />
   </ItemGroup>

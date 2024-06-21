@@ -22,10 +22,11 @@
     <MetadataSource Address="http://localhost:60923/Service/TagService.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="TagService.xsd" MetadataType="Schema" ID="bc6f814e-b2a4-4939-b830-2e9020ed1628" SourceId="1" SourceUrl="http://localhost:60923/Service/TagService.svc?xsd=xsd1" />
     <MetadataFile FileName="TagService.disco" MetadataType="Disco" ID="2b00563e-45e8-43f6-868a-70c07402ae0f" SourceId="1" SourceUrl="http://localhost:60923/Service/TagService.svc?disco" />
     <MetadataFile FileName="TagService1.xsd" MetadataType="Schema" ID="3f7d2e8a-e23b-42b6-a6ab-b3cb43891e25" SourceId="1" SourceUrl="http://localhost:60923/Service/TagService.svc?xsd=xsd2" />
     <MetadataFile FileName="TagService.wsdl" MetadataType="Wsdl" ID="35a338b1-c855-48fe-94d9-895456af1add" SourceId="1" SourceUrl="http://localhost:60923/Service/TagService.svc?wsdl" />
+    <MetadataFile FileName="TagService.xsd" MetadataType="Schema" ID="bc6f814e-b2a4-4939-b830-2e9020ed1628" SourceId="1" SourceUrl="http://localhost:60923/Service/TagService.svc?xsd=xsd1" />
+    <MetadataFile FileName="TagService3.xsd" MetadataType="Schema" ID="77d68c3e-2c18-49a6-a553-847e94143189" SourceId="1" SourceUrl="http://localhost:60923/Service/TagService.svc?xsd=xsd3" />
     <MetadataFile FileName="TagService2.xsd" MetadataType="Schema" ID="1c7de30b-a3a6-43ba-b29d-0986e1181480" SourceId="1" SourceUrl="http://localhost:60923/Service/TagService.svc?xsd=xsd0" />
   </Metadata>
   <Extensions>

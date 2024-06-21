@@ -150,6 +150,7 @@ namespace DatabaseManager
                         TagManager.deleteTag();
                         break;
                     case "4":
+                        TagManager.ChangeTagScanStatus();
                         break;
                     case "5":
                         TagManager.ChangeTag();
