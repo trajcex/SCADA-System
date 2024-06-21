@@ -106,6 +106,20 @@ namespace CoreService
 
             return tagNames;
         }
+        public Dictionary<string, bool> GetAllTagsAndScanStatus()
+        {
+            Dictionary<string,bool> tagAndScanPair = new Dictionary<string,bool>();
+
+            foreach(DigitalInputTag tag in digitalInputTag)
+            {
+                tagAndScanPair.Add(tag.TagName, tag.Scan);
+            }
+            foreach(AnalogInputTag tag in analogInputTag)
+            {
+                tagAndScanPair.Add(tag.TagName, tag.Scan);
+            }
+            return tagAndScanPair;
+        }
         public string GetOutputTags()
         {
             return ConvertTagsToString(GetAllOutput());
@@ -175,6 +189,7 @@ namespace CoreService
                 tagProcessing.StartTag(tag);
             }
              
+            SaveTags();
         }
 
         public void StopTag(string tagName)
@@ -193,6 +208,7 @@ namespace CoreService
                 di.Scan = false;
             }
             tagProcessing.StopTag(tagName);
+            SaveTags();
         }
     }
 }

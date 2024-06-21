@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:60923/Service/TagService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/SharedLibrary.Model" />
+  <xs:import schemaLocation="http://localhost:60923/Service/TagService.svc?xsd=xsd3" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:element name="SaveTags">
     <xs:complexType>
       <xs:sequence />
@@ -123,6 +124,18 @@
   <xs:element name="StopTagResponse">
     <xs:complexType>
       <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllTagsAndScanStatus">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetAllTagsAndScanStatusResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="GetAllTagsAndScanStatusResult" nillable="true" type="q4:ArrayOfKeyValueOfstringboolean" />
+      </xs:sequence>
     </xs:complexType>
   </xs:element>
 </xs:schema>
