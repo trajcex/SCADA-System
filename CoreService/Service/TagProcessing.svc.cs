@@ -9,6 +9,7 @@ using System.Threading;
 using SimulationLibrary;
 using CoreService.Interface;
 using Org.BouncyCastle.Utilities;
+using System.IO;
 
 namespace CoreService
 {
@@ -21,7 +22,7 @@ namespace CoreService
         private static Dictionary<string, (Thread Thread, CancellationTokenSource Cts )> tagMap = new Dictionary<string, (Thread, CancellationTokenSource)>();
         private static UserContextDB _contextDb = new UserContextDB();
         private readonly object locker = new object();
-
+        private static List<AlarmValue> alarmList = new List<AlarmValue>();
         private TagProcessing() { }
 
         public TagProcessing(List<Tag> digitalInputTags,List<Tag> analogInputTags)
@@ -83,7 +84,7 @@ namespace CoreService
                         string message = $"Tag Name: {tag.TagName}, Value: {value.ToString() ?? "null"}";
                         SaveTagValue(new TagValue(value.ToString(), "AI", milliseconds.ToString(), tag.TagName));
                         writeAlarms(analogInputTag, (int)value);
-                        Write(callbacksTrending,message);
+                        Write(callbacksTrending, message);
                         Thread.Sleep(analogInputTag.ScanTime*1000);
                     }
                 }
@@ -93,31 +94,81 @@ namespace CoreService
                 Console.WriteLine(e);
             }
         }
+        private void writeAlarmsLog(string logMessage)
+        {
+            string basePath = AppDomain.CurrentDomain.BaseDirectory;
+
+            string relativePath = "AlarmLog/alarmLogs.txt";
+
+            string configFilePath = Path.Combine(basePath, relativePath);
+
+            string directoryPath = Path.GetDirectoryName(configFilePath);
+            if (!Directory.Exists(directoryPath))
+            {
+                Directory.CreateDirectory(directoryPath);
+            }
+
+            using (StreamWriter writer = new StreamWriter(configFilePath, true))
+            {
+                writer.WriteLine(logMessage);
+            }
+        }
         private void writeAlarms(AnalogInputTag tag, int currentValue)
         {
             foreach(Alarm alarm in tag.Alarms) { 
                 if(alarm.Type == AlarmType.LOW)
                 {
-                    if(currentValue < alarm.Border)
+                    if(currentValue < alarm.Border && checkIfAlarmDisplayRecently(alarm))
                     {
-                        string alarmMessage = "ALARM LOW TYPE, TAG: " + tag.TagName + " UNIT: " + tag.Units + ", CURRENT VALUE: " + currentValue +  " IS UNDER " + alarm.Border;
+                        DateTime dateTime = DateTime.Now;
+                        alarmList.Add(new AlarmValue
+                        {
+                            Id = alarm.Id,
+                            Type = alarm.Type,
+                            DateTime = dateTime,
+                            Priority = alarm.Priority
+                        });
+                        writeAlarmsLog("type:" + alarm.Type + "; tagName:" + tag.TagName + "; priority: " + alarm.Priority + "; dateTime:" + dateTime.ToString() + "; border:" + alarm.Border);
+
+                        string alarmMessage = "==========ALARM==========\nTYPE -> LOW; TAG NAME -> " + tag.TagName + "; UNIT-> " + tag.Units + "; CURRENT VALUE -> " + currentValue +  " IS UNDER ->" + alarm.Border;
                         writeAlarmMessageByPriority(alarm.Priority, alarmMessage);
                     }
                 }else if(alarm.Type == AlarmType.HIGH)
                 {
-                    if(currentValue > alarm.Border)
+                    if(currentValue > alarm.Border && checkIfAlarmDisplayRecently(alarm))
                     {
-                        string alarmMessage = "ALARM HIGH TYPE, TAG: " + tag.TagName + " UNIT: " + tag.Units + ", CURRENT VALUE: " + currentValue +  " IS ABOVE " + alarm.Border;
+                        DateTime dateTime = DateTime.Now;
+                        alarmList.Add(new AlarmValue
+                        {
+                            Id = alarm.Id,
+                            Type = alarm.Type,
+                            DateTime = dateTime,
+                            Priority = alarm.Priority
+                        });
+                        writeAlarmsLog("type:" + alarm.Type + "; tagName:" + tag.TagName + "; priority: " + alarm.Priority + "; dateTime:" + dateTime.ToString() + "; border:" + alarm.Border);
+
+                        string alarmMessage = "==========ALARM==========\nTYPE -> HIGH; TAG NAME -> " + tag.TagName + "; UNIT-> " + tag.Units + "; CURRENT VALUE -> " + currentValue +  " IS ABOVE ->" + alarm.Border;
                         writeAlarmMessageByPriority(alarm.Priority, alarmMessage);
                     }
                 }
             }
         }
+        private bool checkIfAlarmDisplayRecently(Alarm alarm)
+        {
+            foreach (var alarmDisplay in alarmList)
+            {
+                if (alarm.Id == alarmDisplay.Id  && has15SecondsPassed(alarmDisplay.DateTime))
+                {
+                    return false;
+                }
+            }
+            return true;
+        }
         private void writeAlarmMessageByPriority(int priority, string alarmMessage)
         {
             for(int i = 0; i < priority; i++)
             {
-                Write1(callbacksAlarm, alarmMessage);
+                Write(callbacksAlarm, alarmMessage);
             }
         }
         
@@ -154,13 +205,6 @@ namespace CoreService
                 item.Message(message);
             }
         }
-        private void Write1(List<ICallback> callbacks, string message)
-        {
-            foreach (var item in callbacks)
-            {
-                item.Message(message);
-            }
-        }
 
         public void InitSubTrending()
         {
@@ -169,6 +213,14 @@ namespace CoreService
         public void InitSubAlarm()
         {
             callbacksAlarm.Add(OperationContext.Current.GetCallbackChannel<ICallback>());
+        }
+        public static bool has15SecondsPassed(DateTime eventTime)
+        {
+            DateTime currentTime = DateTime.Now;
+
+            TimeSpan timeDifference = currentTime - eventTime;
+
+            return timeDifference.TotalSeconds < 15;
         }
 
     }

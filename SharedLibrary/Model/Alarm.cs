@@ -31,10 +31,12 @@ namespace SharedLibrary.Model
     [DataContract]
     public class AlarmValue
     {
+        [DataMember] 
+        public string Id { get; set; }
         [DataMember]
         public AlarmType Type { get; set; }
         [DataMember]
-        public string DateTime { get; set; }
+        public DateTime DateTime { get; set; }
         [DataMember]
         public int Priority { get; set; }
 

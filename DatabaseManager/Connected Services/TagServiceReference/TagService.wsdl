@@ -55,6 +55,18 @@
   <wsdl:message name="ITagService_ChangeOutputTag_OutputMessage">
     <wsdl:part name="parameters" element="tns:ChangeOutputTagResponse" />
   </wsdl:message>
+  <wsdl:message name="ITagService_StartTag_InputMessage">
+    <wsdl:part name="parameters" element="tns:StartTag" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_StartTag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StartTagResponse" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_StopTag_InputMessage">
+    <wsdl:part name="parameters" element="tns:StopTag" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_StopTag_OutputMessage">
+    <wsdl:part name="parameters" element="tns:StopTagResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITagService">
     <wsdl:operation name="SaveTags">
       <wsdl:input wsaw:Action="http://tempuri.org/ITagService/SaveTags" message="tns:ITagService_SaveTags_InputMessage" />
@@ -87,6 +99,14 @@
     <wsdl:operation name="ChangeOutputTag">
       <wsdl:input wsaw:Action="http://tempuri.org/ITagService/ChangeOutputTag" message="tns:ITagService_ChangeOutputTag_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITagService/ChangeOutputTagResponse" message="tns:ITagService_ChangeOutputTag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StartTag">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITagService/StartTag" message="tns:ITagService_StartTag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITagService/StartTagResponse" message="tns:ITagService_StartTag_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="StopTag">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITagService/StopTag" message="tns:ITagService_StopTag_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITagService/StopTagResponse" message="tns:ITagService_StopTag_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ITagService" type="tns:ITagService">
@@ -156,6 +176,24 @@
     </wsdl:operation>
     <wsdl:operation name="ChangeOutputTag">
       <soap:operation soapAction="http://tempuri.org/ITagService/ChangeOutputTag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StartTag">
+      <soap:operation soapAction="http://tempuri.org/ITagService/StartTag" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="StopTag">
+      <soap:operation soapAction="http://tempuri.org/ITagService/StopTag" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
