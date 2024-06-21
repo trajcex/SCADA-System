@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Tags>
-  <DigitalInputTag tagName="DI1" description="Digital Input Tag 1" address="RTU" driver="Driver1" scanTime="1" scan="true" />
+  <DigitalInputTag tagName="DI1" description="Digital Input Tag 1" address="RTU" driver="Driver1" scanTime="1" scan="false" />
   <DigitalInputTag tagName="DI2" description="Digital Input Tag 2" address="Address2" driver="Driver2" scanTime="2" scan="false" />
   <DigitalInputTag tagName="nekaa" description="asdfasdf" address="asdfasdf" driver="RTU" scanTime="123" scan="false" />
   <DigitalOutputTag tagName="adsf" description="asdf" address="adsf" initialValue="1" />
