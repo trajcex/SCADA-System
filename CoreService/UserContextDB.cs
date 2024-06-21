@@ -13,6 +13,7 @@ namespace CoreService
     {
         public DbSet<User> Users { get; set; }
         public DbSet<TagValue> TagValues { get; set; }
+        public DbSet<AlarmValue> Alarms { get; set; }
         public UserContextDB() : base("name=DefaultConnection")
         {
         }

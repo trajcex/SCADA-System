@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
@@ -31,8 +32,11 @@ namespace SharedLibrary.Model
     [DataContract]
     public class AlarmValue
     {
-        [DataMember] 
-        public string Id { get; set; }
+        [Key]
+        [DataMember]
+        public int Id { get; set; }
+        [DataMember]
+        public string AlarmId { get; set; }
         [DataMember]
         public AlarmType Type { get; set; }
         [DataMember]
