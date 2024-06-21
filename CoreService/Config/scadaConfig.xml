@@ -1,17 +1,15 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Tags>
-  <DigitalInputTag tagName="DI1" description="Digital Input Tag 1" address="RTU" driver="Driver1" scanTime="1" scan="true" />
+  <DigitalInputTag tagName="DI1" description="Digital Input Tag 1" address="RTU" driver="Driver1" scanTime="1" scan="false" />
   <DigitalInputTag tagName="DI2" description="Digital Input Tag 2" address="Address2" driver="Driver2" scanTime="2" scan="false" />
   <DigitalInputTag tagName="nekaa" description="asdfasdf" address="asdfasdf" driver="RTU" scanTime="123" scan="false" />
   <DigitalOutputTag tagName="asdfasdf" description="adsfadsf" address="adsf" initialValue="1" />
   <DigitalOutputTag tagName="adsfasdf" description="fasdfasd" address="aasdf" initialValue="1" />
-  <DigitalOutputTag tagName="asdfadsf" description="asdfasdf" address="asdfsadf" initialValue="1" />
-  <DigitalOutputTag tagName="asdfasdfa" description="asdf" address="asdf" initialValue="1" />
-  <DigitalOutputTag tagName="adsfa" description="asdf" address="asdf" initialValue="1" />
-  <DigitalOutputTag tagName="asdfa" description="asdf" address="asdf" initialValue="1" />
   <DigitalOutputTag tagName="asdf" description="asdf" address="asdf" initialValue="1" />
   <DigitalOutputTag tagName="20" description="20" address="20" initialValue="0" />
-  <AnalogInputTag tagName="adf" description="asdf" address="S" driver="RTU" scanTime="1" scan="false" lowLimit="1" highLimit="1233" units="12">
+  <DigitalOutputTag tagName="asd" description="asdf" address="asdf" initialValue="1" />
+  <DigitalOutputTag tagName="adsf" description="asdf" address="adsf" initialValue="1" />
+  <AnalogInputTag tagName="adf" description="asdf" address="RTU" driver="RTU" scanTime="1" scan="true" lowLimit="1" highLimit="1233" units="12">
     <Alarm id="1" type="LOW" priority="2" border="80" />
     <Alarm id="2" type="HIGH" priority="3" border="95" />
   </AnalogInputTag>

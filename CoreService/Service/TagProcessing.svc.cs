@@ -63,9 +63,11 @@ namespace CoreService
                     token.ThrowIfCancellationRequested();
                     if (tag.GetType() == typeof(DigitalInputTag))
                     {
-
                         DigitalInputTag digitalInputTag = (DigitalInputTag) tag;
                         double value = GetFunction(digitalInputTag.Address);
+
+                        if (value != 0 && value != 1) continue;
+
                         DateTime now = DateTime.UtcNow;
                         DateTimeOffset dateTimeOffset = new DateTimeOffset(now);
                         long milliseconds = dateTimeOffset.ToUnixTimeMilliseconds();
@@ -78,6 +80,9 @@ namespace CoreService
                     {
                         AnalogInputTag analogInputTag = (AnalogInputTag) tag;
                         double value = GetFunction(analogInputTag.Address);
+
+                        if (value > analogInputTag.HighLimit || value < analogInputTag.LowLimit) continue;
+                        
                         DateTime now = DateTime.UtcNow;
                         DateTimeOffset dateTimeOffset = new DateTimeOffset(now);
                         long milliseconds = dateTimeOffset.ToUnixTimeMilliseconds();
@@ -120,35 +125,51 @@ namespace CoreService
                 {
                     if(currentValue < alarm.Border && checkIfAlarmDisplayRecently(alarm))
                     {
-                        DateTime dateTime = DateTime.Now;
-                        alarmList.Add(new AlarmValue
+                        lock (locker)
                         {
-                            Id = alarm.Id,
-                            Type = alarm.Type,
-                            DateTime = dateTime,
-                            Priority = alarm.Priority
-                        });
-                        writeAlarmsLog("type:" + alarm.Type + "; tagName:" + tag.TagName + "; priority: " + alarm.Priority + "; dateTime:" + dateTime.ToString() + "; border:" + alarm.Border);
+                            DateTime dateTime = DateTime.Now;
+                            AlarmValue alarmValue = new AlarmValue
+                            {
+                                AlarmId = alarm.Id,
+                                Type = alarm.Type,
+                                DateTime = dateTime,
+                                Priority = alarm.Priority
+                            };
+                            alarmList.Add(alarmValue);
+                            writeAlarmsLog("type:" + alarm.Type + "; tagName:" + tag.TagName + "; priority: " + alarm.Priority + "; dateTime:" + dateTime.ToString() + "; border:" + alarm.Border);
 
-                        string alarmMessage = "==========ALARM==========\nTYPE -> LOW; TAG NAME -> " + tag.TagName + "; UNIT-> " + tag.Units + "; CURRENT VALUE -> " + currentValue +  " IS UNDER ->" + alarm.Border;
-                        writeAlarmMessageByPriority(alarm.Priority, alarmMessage);
+                            _contextDb.Alarms.Add(alarmValue);
+                            _contextDb.SaveChanges();
+
+                            string alarmMessage = "==========ALARM==========\nTYPE -> LOW; TAG NAME -> " + tag.TagName + "; UNIT-> " + tag.Units + "; CURRENT VALUE -> " + currentValue + " IS UNDER ->" + alarm.Border;
+                            writeAlarmMessageByPriority(alarm.Priority, alarmMessage);
+                        }
                     }
                 }else if(alarm.Type == AlarmType.HIGH)
                 {
                     if(currentValue > alarm.Border && checkIfAlarmDisplayRecently(alarm))
                     {
-                        DateTime dateTime = DateTime.Now;
-                        alarmList.Add(new AlarmValue
+                        lock (locker)
                         {
-                            Id = alarm.Id,
-                            Type = alarm.Type,
-                            DateTime = dateTime,
-                            Priority = alarm.Priority
-                        });
-                        writeAlarmsLog("type:" + alarm.Type + "; tagName:" + tag.TagName + "; priority: " + alarm.Priority + "; dateTime:" + dateTime.ToString() + "; border:" + alarm.Border);
+                            DateTime dateTime = DateTime.Now;
+                            AlarmValue alarmValue = new AlarmValue
+                            {
+                                AlarmId = alarm.Id,
+                                Type = alarm.Type,
+                                DateTime = dateTime,
+                                Priority = alarm.Priority
+                            };
+                            alarmList.Add(alarmValue);
 
-                        string alarmMessage = "==========ALARM==========\nTYPE -> HIGH; TAG NAME -> " + tag.TagName + "; UNIT-> " + tag.Units + "; CURRENT VALUE -> " + currentValue +  " IS ABOVE ->" + alarm.Border;
-                        writeAlarmMessageByPriority(alarm.Priority, alarmMessage);
+                            _contextDb.Alarms.Add(alarmValue);
+                            _contextDb.SaveChanges();
+
+                            writeAlarmsLog("type:" + alarm.Type + "; tagName:" + tag.TagName + "; priority: " + alarm.Priority + "; dateTime:" + dateTime.ToString() + "; border:" + alarm.Border);
+
+                            string alarmMessage = "==========ALARM==========\nTYPE -> HIGH; TAG NAME -> " + tag.TagName + "; UNIT-> " + tag.Units + "; CURRENT VALUE -> " + currentValue + " IS ABOVE ->" + alarm.Border;
+                            writeAlarmMessageByPriority(alarm.Priority, alarmMessage);
+                        }
+                        
                     }
                 }
             }
@@ -157,7 +178,7 @@ namespace CoreService
         {
             foreach (var alarmDisplay in alarmList)
             {
-                if (alarm.Id == alarmDisplay.Id  && has15SecondsPassed(alarmDisplay.DateTime))
+                if (alarm.Id == alarmDisplay.AlarmId  && has15SecondsPassed(alarmDisplay.DateTime))
                 {
                     return false;
                 }

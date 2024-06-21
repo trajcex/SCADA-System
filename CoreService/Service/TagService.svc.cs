@@ -106,7 +106,6 @@ namespace CoreService
 
             return tagNames;
         }
-
         public string GetOutputTags()
         {
             return ConvertTagsToString(GetAllOutput());
@@ -175,7 +174,7 @@ namespace CoreService
                 di.Scan = true;
                 tagProcessing.StartTag(tag);
             }
-            
+             
         }
 
         public void StopTag(string tagName)
