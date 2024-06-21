@@ -84,6 +84,12 @@ namespace DatabaseManager.TagServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/GetAllTagsAndScanStatus", ReplyAction="http://tempuri.org/ITagService/GetAllTagsAndScanStatusResponse")]
         System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, bool>> GetAllTagsAndScanStatusAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/Init", ReplyAction="http://tempuri.org/ITagService/InitResponse")]
+        void Init();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ITagService/Init", ReplyAction="http://tempuri.org/ITagService/InitResponse")]
+        System.Threading.Tasks.Task InitAsync();
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -199,6 +205,14 @@ namespace DatabaseManager.TagServiceReference {
         
         public System.Threading.Tasks.Task<System.Collections.Generic.Dictionary<string, bool>> GetAllTagsAndScanStatusAsync() {
             return base.Channel.GetAllTagsAndScanStatusAsync();
+        }
+        
+        public void Init() {
+            base.Channel.Init();
+        }
+        
+        public System.Threading.Tasks.Task InitAsync() {
+            return base.Channel.InitAsync();
         }
     }
 }

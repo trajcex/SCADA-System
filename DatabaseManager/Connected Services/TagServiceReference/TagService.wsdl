@@ -74,6 +74,12 @@
   <wsdl:message name="ITagService_GetAllTagsAndScanStatus_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetAllTagsAndScanStatusResponse" />
   </wsdl:message>
+  <wsdl:message name="ITagService_Init_InputMessage">
+    <wsdl:part name="parameters" element="tns:Init" />
+  </wsdl:message>
+  <wsdl:message name="ITagService_Init_OutputMessage">
+    <wsdl:part name="parameters" element="tns:InitResponse" />
+  </wsdl:message>
   <wsdl:portType name="ITagService">
     <wsdl:operation name="SaveTags">
       <wsdl:input wsaw:Action="http://tempuri.org/ITagService/SaveTags" message="tns:ITagService_SaveTags_InputMessage" />
@@ -118,6 +124,10 @@
     <wsdl:operation name="GetAllTagsAndScanStatus">
       <wsdl:input wsaw:Action="http://tempuri.org/ITagService/GetAllTagsAndScanStatus" message="tns:ITagService_GetAllTagsAndScanStatus_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/ITagService/GetAllTagsAndScanStatusResponse" message="tns:ITagService_GetAllTagsAndScanStatus_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="Init">
+      <wsdl:input wsaw:Action="http://tempuri.org/ITagService/Init" message="tns:ITagService_Init_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/ITagService/InitResponse" message="tns:ITagService_Init_OutputMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_ITagService" type="tns:ITagService">
@@ -214,6 +224,15 @@
     </wsdl:operation>
     <wsdl:operation name="GetAllTagsAndScanStatus">
       <soap:operation soapAction="http://tempuri.org/ITagService/GetAllTagsAndScanStatus" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Init">
+      <soap:operation soapAction="http://tempuri.org/ITagService/Init" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

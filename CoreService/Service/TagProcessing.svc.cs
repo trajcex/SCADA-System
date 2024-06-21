@@ -23,30 +23,13 @@ namespace CoreService
         private static Dictionary<string, Thread > tagMap = new Dictionary<string, Thread>();
         private readonly object locker = new object();
         private static List<AlarmValue> alarmList = new List<AlarmValue>();
-        private TagProcessing() { }
+        public TagProcessing() { }
 
-        public TagProcessing(List<Tag> digitalInputTags,List<Tag> analogInputTags)
-        {
-            
-            //foreach (Tag tag in digitalInputTags)
-            //{
-            //    DigitalInputTag digitalInputTag = (DigitalInputTag)tag;
-            //    if (digitalInputTag.Scan) StartTag(tag); 
-            //}
-            //foreach (Tag tag in analogInputTags)
-            //{
-            //    AnalogInputTag analogInputTag = (AnalogInputTag)tag;
-            //    if (analogInputTag.Scan) StartTag(tag);
-            //}
-        }
         public void StopTag(string tagName)
         {
-
             tagMap[tagName].Abort();
             //tagMap[tagName].Join();
             tagMap.Remove(tagName);
-        
-            
         }
         
         public void StartTag(Tag tag)
