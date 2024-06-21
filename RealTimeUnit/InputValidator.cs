@@ -8,6 +8,12 @@ namespace RealTimeUnit
 {
     internal static class InputValidator
     {
+        public static string GetValidAddress()
+        {
+            Console.WriteLine("Please enter the address: ");
+            return Console.ReadLine().Trim();
+
+        }
         public static (int,int) GetValidatedInteger()
         {
             int lowLimit;
