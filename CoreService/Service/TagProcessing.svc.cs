@@ -66,7 +66,8 @@ namespace CoreService
                         DigitalInputTag digitalInputTag = (DigitalInputTag) tag;
                         double value = GetFunction(digitalInputTag.Address);
 
-                        if (value != 0 && value != 1) continue;
+                        if (value > 0) value = 1;
+                        else if(value < 0) value = 0;
 
                         DateTime now = DateTime.UtcNow;
                         DateTimeOffset dateTimeOffset = new DateTimeOffset(now);

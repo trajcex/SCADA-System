@@ -40,26 +40,37 @@ namespace DatabaseManager
         {
             string tagName = stringValidator("Unesite TagName:");
             string description = stringValidator("Unesite Description:");
-            string address = stringValidator("Unesite Address:");
 
             switch (tipTaga)
             {
                 case 1:
-                    return createDigitalInput(tagName, description, address);
+                    return createDigitalInput(tagName, description);
                 case 2:
-                    return createDigitalOutput(tagName, description, address);
+                    return createDigitalOutput(tagName, description);
                 case 3:
-                    return createAnalogInput(tagName, description, address);
+                    return createAnalogInput(tagName, description);
                 case 4:
-                    return createAnalogOutput(tagName, description, address);
+                    return createAnalogOutput(tagName, description);
                 default:
                     return null;
             }
         }
-        static Tag createDigitalInput(string tagName, string description, string address)
+        static Tag createDigitalInput(string tagName, string description)
         {
             int scanTime = integerValidator("Unesite ScanTime (integer > 0):");
             string driver = getDriverFromCLI();
+            string address = "S";
+
+            if (driver.Equals("Simulation"))
+            {
+                int addressOption = integerValidator("1. Sinus\n2. Cosinus\n3. Ramp", 1, 3);
+                if (addressOption == 2) address = "C";
+                else if (addressOption == 3) address = "R";
+            }
+            else if (driver.Equals("RTU"))
+            {
+                address = stringValidator("Unesite Address:");
+            }
 
             return new DigitalInputTag
             {
@@ -71,9 +82,10 @@ namespace DatabaseManager
                 Scan = true
             };
         }
-        static Tag createDigitalOutput(string tagName, string description, string address)
+        static Tag createDigitalOutput(string tagName, string description)
         {
             int initialValue = integerValidator("Unesite InitialValue (0 ili 1):", 0, 1);
+            string address = stringValidator("Unesite Address:");
 
             return new DigitalOutputTag
             {
@@ -83,13 +95,25 @@ namespace DatabaseManager
                 InitialValue = initialValue
             };
         }
-        static Tag createAnalogInput(string tagName, string description, string address)
+        static Tag createAnalogInput(string tagName, string description)
         {
             int scanTime = integerValidator("Unesite ScanTime (integer > 0):");
             int lowLimit = integerValidator("Unesite LowLimit (integer > 0):");
             int highLimit = integerValidator("Unesite HighLimit (integer > 0):");
             string units = stringValidator("Unesite Units:");
             string driver = getDriverFromCLI();
+            string address = "S";
+
+            if (driver.Equals("Simulation"))
+            {
+                int addressOption = integerValidator("1. Sinus\n2. Cosinus\n3. Ramp",1,3);
+                if (addressOption == 2) address = "C";
+                else if (addressOption == 3) address = "R";
+            }else if (driver.Equals("RTU"))
+            {
+                address = stringValidator("Unesite Address:");
+            }
+            
             List<Alarm> alarms = new List<Alarm>();
             while (true)
             {
@@ -146,12 +170,13 @@ namespace DatabaseManager
                 Alarms = alarms
             };
         }
-        static Tag createAnalogOutput(string tagName, string description, string address)
+        static Tag createAnalogOutput(string tagName, string description)
         {
             int initialValue = integerValidator("Unesite InitialValue (integer > 0):");
             int lowLimit = integerValidator("Unesite LowLimit (integer > 0):");
             int highLimit = integerValidator("Unesite HighLimit (integer > 0):");
             string units = stringValidator("Unesite Units:");
+            string address = stringValidator("Unesite Address:"); 
 
             while (true)
             {
@@ -160,8 +185,6 @@ namespace DatabaseManager
                 int alarmType = integerValidator("Set alarm Type\n1. Low\n2. High", 1, 2);
                 
             }
-
-
             return new AnalogOutputTag
             {
                 TagName = tagName,
@@ -207,7 +230,7 @@ namespace DatabaseManager
         static string getDriverFromCLI()
         {
             string driverRet;
-            int driverOption = integerValidator("1. Real time unit\n2. Simulation driver\n>>", 1, 2);
+            int driverOption = integerValidator("\nUnesite vrednost za driver\n1. Real time unit\n2. Simulation driver\n>>", 1, 2);
             switch (driverOption)
             {
                 case 1:
