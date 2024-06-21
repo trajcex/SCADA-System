@@ -172,20 +172,19 @@ namespace CoreService
             }
         }
         
-        private double GetFunction(string function) 
+        private double GetFunction(string address) 
         {
-            switch (function)
+            switch (address)
             {
                 case "S":
-                    return SimulationDriver.ReturnValue(function);
+                    return SimulationDriver.ReturnValue(address);
                 case "C":
-                    return SimulationDriver.ReturnValue(function);
+                    return SimulationDriver.ReturnValue(address);
                 case "R":
-                    return SimulationDriver.ReturnValue(function);
+                    return SimulationDriver.ReturnValue(address);
                 default:
-                    
                     RealTimeDriver rtd = new RealTimeDriver();
-                    return 0.0;
+                    return rtd.GetValue(address);
                     
             }
         }

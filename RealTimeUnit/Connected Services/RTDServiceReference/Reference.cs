@@ -16,16 +16,16 @@ namespace RealTimeUnit.RTDServiceReference {
     public interface IRealTimeDriver {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRealTimeDriver/SendRandomValue", ReplyAction="http://tempuri.org/IRealTimeDriver/SendRandomValueResponse")]
-        void SendRandomValue(string uid, int random);
+        System.ValueTuple<bool, int> SendRandomValue(string address, int random, byte[] message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRealTimeDriver/SendRandomValue", ReplyAction="http://tempuri.org/IRealTimeDriver/SendRandomValueResponse")]
-        System.Threading.Tasks.Task SendRandomValueAsync(string uid, int random);
+        System.Threading.Tasks.Task<System.ValueTuple<bool, int>> SendRandomValueAsync(string address, int random, byte[] message);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRealTimeDriver/ConnectRtu", ReplyAction="http://tempuri.org/IRealTimeDriver/ConnectRtuResponse")]
-        bool ConnectRtu(string uid);
+        bool ConnectRtu(string address);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IRealTimeDriver/ConnectRtu", ReplyAction="http://tempuri.org/IRealTimeDriver/ConnectRtuResponse")]
-        System.Threading.Tasks.Task<bool> ConnectRtuAsync(string uid);
+        System.Threading.Tasks.Task<bool> ConnectRtuAsync(string address);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -55,20 +55,20 @@ namespace RealTimeUnit.RTDServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public void SendRandomValue(string uid, int random) {
-            base.Channel.SendRandomValue(uid, random);
+        public System.ValueTuple<bool, int> SendRandomValue(string address, int random, byte[] message) {
+            return base.Channel.SendRandomValue(address, random, message);
         }
         
-        public System.Threading.Tasks.Task SendRandomValueAsync(string uid, int random) {
-            return base.Channel.SendRandomValueAsync(uid, random);
+        public System.Threading.Tasks.Task<System.ValueTuple<bool, int>> SendRandomValueAsync(string address, int random, byte[] message) {
+            return base.Channel.SendRandomValueAsync(address, random, message);
         }
         
-        public bool ConnectRtu(string uid) {
-            return base.Channel.ConnectRtu(uid);
+        public bool ConnectRtu(string address) {
+            return base.Channel.ConnectRtu(address);
         }
         
-        public System.Threading.Tasks.Task<bool> ConnectRtuAsync(string uid) {
-            return base.Channel.ConnectRtuAsync(uid);
+        public System.Threading.Tasks.Task<bool> ConnectRtuAsync(string address) {
+            return base.Channel.ConnectRtuAsync(address);
         }
     }
 }

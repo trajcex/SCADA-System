@@ -23,6 +23,7 @@
   </MetadataSources>
   <Metadata>
     <MetadataFile FileName="RealTimeDriver.disco" MetadataType="Disco" ID="19e71b4d-efec-4ee1-a58e-d9ea166551ca" SourceId="1" SourceUrl="http://localhost:60923/Service/RealTimeDriver.svc?disco" />
+    <MetadataFile FileName="RealTimeDriver2.xsd" MetadataType="Schema" ID="3703a14d-f50a-4f39-b039-bde165c1e975" SourceId="1" SourceUrl="http://localhost:60923/Service/RealTimeDriver.svc?xsd=xsd2" />
     <MetadataFile FileName="RealTimeDriver.xsd" MetadataType="Schema" ID="2b73f516-ce2c-4d34-ac39-f39f7cbb09ab" SourceId="1" SourceUrl="http://localhost:60923/Service/RealTimeDriver.svc?xsd=xsd1" />
     <MetadataFile FileName="RealTimeDriver1.xsd" MetadataType="Schema" ID="c07a695f-3249-46b8-9ae2-fba94435644c" SourceId="1" SourceUrl="http://localhost:60923/Service/RealTimeDriver.svc?xsd=xsd0" />
     <MetadataFile FileName="RealTimeDriver.wsdl" MetadataType="Wsdl" ID="57d51fb6-b4a3-4c00-ba29-380e88cbcb75" SourceId="1" SourceUrl="http://localhost:60923/Service/RealTimeDriver.svc?wsdl" />
