@@ -19,7 +19,8 @@ namespace CoreService
         private static List<Tag> analogInputTag;
         private static List<Tag> analogOutputTag;
         private static TagProcessing tagProcessing;
-        
+        private static UserContextDB _contextDb = new UserContextDB();
+
         public TagService()
         {
             Dictionary<string, List<Tag>> map = tagRepository.GetTags();
@@ -83,6 +84,11 @@ namespace CoreService
         {
             try
             {
+                
+                var tagValuesToDelete = _contextDb.TagValues.Where(tv => tv.TagName == tagName).ToList();
+                _contextDb.TagValues.RemoveRange(tagValuesToDelete);
+                _contextDb.SaveChanges();
+
                 digitalInputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
                 digitalOutputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
                 analogInputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
