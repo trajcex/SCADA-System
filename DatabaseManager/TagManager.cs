@@ -22,49 +22,76 @@ namespace DatabaseManager
             Printer.TagTypes();
             int tagType = integerValidator("Unesite tip taga:", 1, 4);
             Tag newTag = createTag(tagType);
-            tagServiceClient.AddTag(newTag);
+            bool addingTagStatus = tagServiceClient.AddTag(newTag);
+            if(addingTagStatus)
+            {
+                Console.WriteLine("\nUspesno ste dodali TAG -> " + newTag.TagName);
+            }
+            else
+            {
+                Console.WriteLine("\nDoslo je do greske prilikom dodavanja. Pokusajte ponovo.");
+            }
 
         }
         public static void deleteTag()
         {
             Console.WriteLine("\nPostojeci tagovi u sistemu:");
-            string tagsPrint = tagServiceClient.GetAllTagNames();
+            string tagsPrint = tagServiceClient.GetAllTagNames() + "\n0. Nazad";
             string[] tagsWithNumbers = tagsPrint.Split(new[] { '\n' }, StringSplitOptions.RemoveEmptyEntries);
 
-            int deleteTagOption = integerValidator(tagsPrint,1,tagsWithNumbers.Length);
-            
+            int deleteTagOption = integerValidatorWithBack(tagsPrint ,1,tagsWithNumbers.Length);
+            if (deleteTagOption == -1) return;
             Dictionary<int, string> tags = tagsWithNumbers
             .Select(line => line.Split(new[] { '.' }, 2))
             .ToDictionary(
                 parts => int.Parse(parts[0].Trim()),
                 parts => parts[1].Trim()
             );
-            tagServiceClient.DeleteTag(GetTagByNumber(tags, deleteTagOption));
+            string tagForDeleteName = GetTagByNumber(tags, deleteTagOption);
+            bool deleteTagStatus =  tagServiceClient.DeleteTag(tagForDeleteName);
+            if (deleteTagStatus)
+            {
+                Console.WriteLine("\nUspesno obrisan TAG -> " + tagForDeleteName);
+            }else
+            {
+                Console.WriteLine("\nDoslo je do greske prilikom brisanja TAG-a -> " + tagForDeleteName);
+            }
         }
         static Tag createTag(int tipTaga)
         {
             string tagName = stringValidator("Unesite TagName:");
             string description = stringValidator("Unesite Description:");
-            string address = stringValidator("Unesite Address:");
 
             switch (tipTaga)
             {
                 case 1:
-                    return createDigitalInput(tagName, description, address);
+                    return createDigitalInput(tagName, description);
                 case 2:
-                    return createDigitalOutput(tagName, description, address);
+                    return createDigitalOutput(tagName, description);
                 case 3:
-                    return createAnalogInput(tagName, description, address);
+                    return createAnalogInput(tagName, description);
                 case 4:
-                    return createAnalogOutput(tagName, description, address);
+                    return createAnalogOutput(tagName, description);
                 default:
                     return null;
             }
         }
-        static Tag createDigitalInput(string tagName, string description, string address)
+        static Tag createDigitalInput(string tagName, string description)
         {
             int scanTime = integerValidator("Unesite ScanTime (integer > 0):");
             string driver = getDriverFromCLI();
+            string address = "S";
+
+            if (driver.Equals("Simulation"))
+            {
+                int addressOption = integerValidator("1. Sinus\n2. Cosinus\n3. Ramp", 1, 3);
+                if (addressOption == 2) address = "C";
+                else if (addressOption == 3) address = "R";
+            }
+            else if (driver.Equals("RTU"))
+            {
+                address = stringValidator("Unesite Address:");
+            }
 
             return new DigitalInputTag
             {
@@ -76,9 +103,10 @@ namespace DatabaseManager
                 Scan = true
             };
         }
-        static Tag createDigitalOutput(string tagName, string description, string address)
+        static Tag createDigitalOutput(string tagName, string description)
         {
             int initialValue = integerValidator("Unesite InitialValue (0 ili 1):", 0, 1);
+            string address = stringValidator("Unesite Address:");
 
             return new DigitalOutputTag
             {
@@ -88,13 +116,25 @@ namespace DatabaseManager
                 InitialValue = initialValue
             };
         }
-        static Tag createAnalogInput(string tagName, string description, string address)
+        static Tag createAnalogInput(string tagName, string description)
         {
             int scanTime = integerValidator("Unesite ScanTime (integer > 0):");
             int lowLimit = integerValidator("Unesite LowLimit (integer > 0):");
-            int highLimit = integerValidator("Unesite HighLimit (integer > 0):");
+            int highLimit = integerValidator("Unesite HighLimit (integer > 0):",lowLimit);
             string units = stringValidator("Unesite Units:");
             string driver = getDriverFromCLI();
+            string address = "S";
+
+            if (driver.Equals("Simulation"))
+            {
+                int addressOption = integerValidator("\nUnesite vrednost za simulation funkciju\n1. Sinus\n2. Cosinus\n3. Ramp",1,3);
+                if (addressOption == 2) address = "C";
+                else if (addressOption == 3) address = "R";
+            }else if (driver.Equals("RTU"))
+            {
+                address = stringValidator("Unesite Address:");
+            }
+            
             List<Alarm> alarms = new List<Alarm>();
             while (true)
             {
@@ -132,10 +172,6 @@ namespace DatabaseManager
                 });
 
             }
-            foreach(Alarm alarm in alarms)
-            {
-                Console.Write("alarm", alarm.Type.ToString());
-            }
 
             return new AnalogInputTag
             {
@@ -151,12 +187,13 @@ namespace DatabaseManager
                 Alarms = alarms
             };
         }
-        static Tag createAnalogOutput(string tagName, string description, string address)
+        static Tag createAnalogOutput(string tagName, string description)
         {
             int initialValue = integerValidator("Unesite InitialValue (integer > 0):");
             int lowLimit = integerValidator("Unesite LowLimit (integer > 0):");
-            int highLimit = integerValidator("Unesite HighLimit (integer > 0):");
+            int highLimit = integerValidator("Unesite HighLimit (integer > 0):", lowLimit);
             string units = stringValidator("Unesite Units:");
+            string address = stringValidator("Unesite Address:"); 
 
             while (true)
             {
@@ -165,8 +202,6 @@ namespace DatabaseManager
                 int alarmType = integerValidator("Set alarm Type\n1. Low\n2. High", 1, 2);
                 
             }
-
-
             return new AnalogOutputTag
             {
                 TagName = tagName,
@@ -188,9 +223,36 @@ namespace DatabaseManager
                 validInput = int.TryParse(Console.ReadLine(), out input) && input >= minValue && (!maxValue.HasValue || input <= maxValue.Value);
                 if (!validInput)
                 {
-                    Console.WriteLine($"Unos mora biti broj između {minValue}{(maxValue.HasValue ? $" i {maxValue}" : "")}. Pokušajte ponovo.");
+                    Console.WriteLine($"Unos mora biti broj veci od {minValue}{(maxValue.HasValue ? $" i manji od {maxValue}" : "")}. Pokušajte ponovo.");
                 }
             } while (!validInput);
+
+            return input;
+        }
+        static int integerValidatorWithBack(string prompt, int minValue = 1, int? maxValue = null)
+        {
+            int input;
+            bool validInput;
+            bool validRange = true;
+            do
+            {
+                Console.WriteLine(prompt);
+                validInput = int.TryParse(Console.ReadLine(), out input);
+
+                if (!validInput)
+                {
+                    Console.WriteLine($"Unos mora biti broj između {minValue}{(maxValue.HasValue ? $" i {maxValue}" : "")}. Pokušajte ponovo.");
+                    continue;
+                }
+                if (input == 0) return -1;
+
+                validRange = input >= minValue && (!maxValue.HasValue || input <= maxValue.Value);
+                if (!(validInput && validRange))
+                {
+                    Console.WriteLine($"Unos mora biti broj između {minValue}{(maxValue.HasValue ? $" i {maxValue}" : "")}. Pokušajte ponovo.");
+                }
+
+            } while (!(validInput && validRange));
 
             return input;
         }
@@ -212,7 +274,7 @@ namespace DatabaseManager
         static string getDriverFromCLI()
         {
             string driverRet;
-            int driverOption = integerValidator("1. Real time unit\n2. Simulation driver\n>>", 1, 2);
+            int driverOption = integerValidator("\nUnesite vrednost za driver\n1. Real time unit\n2. Simulation driver\n>>", 1, 2);
             switch (driverOption)
             {
                 case 1:
@@ -293,6 +355,7 @@ namespace DatabaseManager
             Dictionary<string, bool> tagScanPair = tagServiceClient.GetAllTagsAndScanStatus();
             int i = 0;
             Dictionary<int, string> tagOptionPair = new Dictionary<int, string>();
+            Console.WriteLine("\nUnesite broj ispred TAG NAME-a ciji scan status zelite da promenite");
             foreach(var tag in tagScanPair.Keys)
             {
                 i++;
@@ -302,7 +365,8 @@ namespace DatabaseManager
                 else scanValue = " OFF";
                 Console.WriteLine(i.ToString() +". TAG NAME -> " +  tag +  "; SCAN STATUS -> " + scanValue);
             }
-            int tagOption = integerValidator("Unesite broj ispred tag name-a ciji scan status zelite da promenite",1,i);
+            int tagOption = integerValidatorWithBack("0. Vrati se nazad",1,i);
+            if (tagOption == -1) return;
 
             if (tagScanPair[tagOptionPair[tagOption]]) tagServiceClient.StopTag(tagOptionPair[tagOption]);
             else tagServiceClient.StartTag(tagOptionPair[tagOption]);
