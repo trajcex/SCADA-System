@@ -35,5 +35,8 @@ namespace CoreService
         void StopTag(string tagName);
         [OperationContract]
         Dictionary<string, bool> GetAllTagsAndScanStatus();
+
+        [OperationContract]
+        void Init();
     }
 }

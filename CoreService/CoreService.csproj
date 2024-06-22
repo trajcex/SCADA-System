@@ -140,6 +140,10 @@
     <Compile Include="Migrations\202406211804118_InitialCreate.Designer.cs">
       <DependentUpon>202406211804118_InitialCreate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202406211748559_InitialCreate1.cs" />
+    <Compile Include="Migrations\202406211748559_InitialCreate1.Designer.cs">
+      <DependentUpon>202406211748559_InitialCreate1.cs</DependentUpon>
+    </Compile>
     <Compile Include="Repository\Interface\ITagRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\TagRepository.cs" />
@@ -197,6 +201,9 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202406211804118_InitialCreate.resx">
       <DependentUpon>202406211804118_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406211748559_InitialCreate1.resx">
+      <DependentUpon>202406211748559_InitialCreate1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
