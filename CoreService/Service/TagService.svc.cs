@@ -82,12 +82,22 @@ namespace CoreService
         }
         public bool DeleteTag(String tagName)
         {
-            try
-            {
-                
+            try {
                 var tagValuesToDelete = _contextDb.TagValues.Where(tv => tv.TagName == tagName).ToList();
                 _contextDb.TagValues.RemoveRange(tagValuesToDelete);
                 _contextDb.SaveChanges();
+
+                AnalogInputTag analogTag = (AnalogInputTag)analogInputTag.FirstOrDefault(tag => tag.TagName.Equals(tagName));
+                
+                if (analogTag != null)
+                {
+                    foreach(var alarm in analogTag.Alarms)
+                    {
+                        var alarmValuesToDelete = _contextDb.Alarms.Where(alarmValue => alarmValue.AlarmId == alarm.Id).ToList();
+                        _contextDb.Alarms.RemoveRange(alarmValuesToDelete); 
+                        _contextDb.SaveChanges();
+                    }
+                }
 
                 digitalInputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
                 digitalOutputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
@@ -101,6 +111,7 @@ namespace CoreService
                 return false;
             }
         }
+
         public string GetAllTagNames()
         {
             var allTags = digitalInputTag

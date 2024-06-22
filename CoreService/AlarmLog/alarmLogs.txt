@@ -49,3 +49,15 @@ type:HIGH; tagName:aa; priority: 3; dateTime:6/21/2024 6:53:07 PM; border:30
 type:HIGH; tagName:aa; priority: 3; dateTime:6/21/2024 6:53:39 PM; border:30
 type:HIGH; tagName:aa; priority: 3; dateTime:6/21/2024 6:54:07 PM; border:30
 type:HIGH; tagName:aa; priority: 3; dateTime:6/21/2024 6:54:39 PM; border:30
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:36:04 PM; border:25
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:37:04 PM; border:25
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:37:56 PM; border:25
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:38:56 PM; border:25
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:40:04 PM; border:25
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:41:04 PM; border:25
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:42:04 PM; border:25
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:43:04 PM; border:25
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:44:04 PM; border:25
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:45:04 PM; border:25
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:46:04 PM; border:25
+type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:47:04 PM; border:25
