@@ -10,6 +10,7 @@ using SimulationLibrary;
 using CoreService.Interface;
 using Org.BouncyCastle.Utilities;
 using System.IO;
+using System.Data.Entity;
 
 namespace CoreService
 {
@@ -19,48 +20,33 @@ namespace CoreService
         
         private static List<ICallback> callbacksTrending = new List<ICallback>();
         private static List<ICallback> callbacksAlarm = new List<ICallback>();
-        private static Dictionary<string, (Thread Thread, CancellationTokenSource Cts )> tagMap = new Dictionary<string, (Thread, CancellationTokenSource)>();
-        private static UserContextDB _contextDb = new UserContextDB();
+        private static Dictionary<string, Thread > tagMap = new Dictionary<string, Thread>();
         private readonly object locker = new object();
         private static List<AlarmValue> alarmList = new List<AlarmValue>();
-        private TagProcessing() { }
+        public TagProcessing() { }
 
-        public TagProcessing(List<Tag> digitalInputTags,List<Tag> analogInputTags)
-        {
-            
-            foreach (Tag tag in digitalInputTags)
-            {
-                DigitalInputTag digitalInputTag = (DigitalInputTag)tag;
-                if (digitalInputTag.Scan) StartTag(tag); 
-            }
-            foreach (Tag tag in analogInputTags)
-            {
-                AnalogInputTag analogInputTag = (AnalogInputTag)tag;
-                if (analogInputTag.Scan) StartTag(tag);
-            }
-        }
         public void StopTag(string tagName)
         {
-            tagMap[tagName].Cts.Cancel();
-            tagMap[tagName].Thread.Join();
+            tagMap[tagName].Abort();
+            //tagMap[tagName].Join();
             tagMap.Remove(tagName);
         }
         
         public void StartTag(Tag tag)
         {
-            CancellationTokenSource cts = new CancellationTokenSource();
-            CancellationToken token = cts.Token;
-            Thread thread = new Thread(() => ProcessTag(tag,token));
-            tagMap[tag.TagName] = (thread,cts);
+  
+            Thread thread = new Thread(() => ProcessTag(tag));
+            tagMap[tag.TagName] = thread;
             thread.Start();
         }
 
-        private void ProcessTag(Tag tag, CancellationToken token) {
+        private void ProcessTag(Tag tag) {
             try
             {
+
                 while (true)
                 {
-                    token.ThrowIfCancellationRequested();
+             
                     if (tag.GetType() == typeof(DigitalInputTag))
                     {
                         DigitalInputTag digitalInputTag = (DigitalInputTag) tag;
@@ -93,13 +79,21 @@ namespace CoreService
                         Write(callbacksTrending, message);
                         Thread.Sleep(analogInputTag.ScanTime*1000);
                     }
+                
                 }
             }
-            catch (Exception e)
+            catch (ThreadAbortException ex)
             {
-                Console.WriteLine(e);
+                Console.WriteLine($"");
             }
+            catch (Exception)
+            {
+
+                Console.WriteLine();
+            }
+            
         }
+
         private void writeAlarmsLog(string logMessage)
         {
             string basePath = AppDomain.CurrentDomain.BaseDirectory;
@@ -139,8 +133,7 @@ namespace CoreService
                             alarmList.Add(alarmValue);
                             writeAlarmsLog("type:" + alarm.Type + "; tagName:" + tag.TagName + "; priority: " + alarm.Priority + "; dateTime:" + dateTime.ToString() + "; border:" + alarm.Border);
 
-                            _contextDb.Alarms.Add(alarmValue);
-                            _contextDb.SaveChanges();
+                            SaveAlarmValue(alarmValue);
 
                             string alarmMessage = "==========ALARM==========\nTYPE -> LOW; TAG NAME -> " + tag.TagName + "; UNIT-> " + tag.Units + "; CURRENT VALUE -> " + currentValue + " IS UNDER ->" + alarm.Border;
                             writeAlarmMessageByPriority(alarm.Priority, alarmMessage);
@@ -162,8 +155,7 @@ namespace CoreService
                             };
                             alarmList.Add(alarmValue);
 
-                            _contextDb.Alarms.Add(alarmValue);
-                            _contextDb.SaveChanges();
+                            SaveAlarmValue(alarmValue);
 
                             writeAlarmsLog("type:" + alarm.Type + "; tagName:" + tag.TagName + "; priority: " + alarm.Priority + "; dateTime:" + dateTime.ToString() + "; border:" + alarm.Border);
 
@@ -214,8 +206,23 @@ namespace CoreService
         {
             lock (locker)
             {
-                _contextDb.TagValues.Add(tagValue);
-                _contextDb.SaveChanges();
+                using (var dbContext = new UserContextDB()) 
+                {
+                    dbContext.TagValues.Add(tagValue);
+                    dbContext.SaveChanges();
+                }
+
+            }
+        }
+        private void SaveAlarmValue(AlarmValue alarmValue)
+        {
+            lock (locker)
+            {
+                using (var dbContext = new UserContextDB())
+                {
+                    dbContext.Alarms.Add(alarmValue);
+                    dbContext.SaveChanges();
+                }
 
             }
         }

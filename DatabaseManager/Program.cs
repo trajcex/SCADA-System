@@ -14,6 +14,7 @@ namespace DatabaseManager
         static string loginToken = "";
         static void Main(string[] args)
         {
+
             bool running = true;
 
             while (running)
@@ -119,7 +120,7 @@ namespace DatabaseManager
         public static void HandleMenu(string token)
         {
             bool menuRunning = true;
-
+            TagManager.Init();
             while (menuRunning)
             {
                 Printer.DisplayMenu();

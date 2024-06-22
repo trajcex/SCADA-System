@@ -133,20 +133,29 @@
     <Compile Include="Interface\IAuthentication.cs" />
     <Compile Include="Interface\ICore.cs" />
     <Compile Include="Interface\IRealTimeDriver.cs" />
+    <Compile Include="Interface\IReportManager.cs" />
     <Compile Include="Interface\ITagService.cs" />
     <Compile Include="Interface\ITagProcessing.cs" />
-    <Compile Include="Migrations\202406211416300_InitialCreate.cs" />
-    <Compile Include="Migrations\202406211416300_InitialCreate.designer.cs">
-      <DependentUpon>202406211416300_InitialCreate.cs</DependentUpon>
+    <Compile Include="Migrations\202406211804118_InitialCreate.cs" />
+    <Compile Include="Migrations\202406211804118_InitialCreate.Designer.cs">
+      <DependentUpon>202406211804118_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202406211748559_InitialCreate1.cs" />
+    <Compile Include="Migrations\202406211748559_InitialCreate1.Designer.cs">
+      <DependentUpon>202406211748559_InitialCreate1.cs</DependentUpon>
     </Compile>
     <Compile Include="Repository\Interface\ITagRepository.cs" />
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Repository\TagRepository.cs" />
+    <Compile Include="Repository\UserContextDB.cs" />
     <Compile Include="Service\AuthenticationService.svc.cs">
       <DependentUpon>AuthenticationService.svc</DependentUpon>
     </Compile>
     <Compile Include="Service\RealTimeDriver.svc.cs">
       <DependentUpon>RealTimeDriver.svc</DependentUpon>
+    </Compile>
+    <Compile Include="Service\ReportManager.svc.cs">
+      <DependentUpon>ReportManager.svc</DependentUpon>
     </Compile>
     <Compile Include="Service\TagService.svc.cs">
       <DependentUpon>TagService.svc</DependentUpon>
@@ -165,6 +174,7 @@
     <Content Include="Config\scadaConfig.xml" />
     <Content Include="Service\AuthenticationService.svc" />
     <Content Include="Service\RealTimeDriver.svc" />
+    <Content Include="Service\ReportManager.svc" />
     <Content Include="Service\TagService.svc" />
     <Content Include="Service\TagProcessing.svc" />
     <Content Include="Web.config" />
@@ -189,8 +199,11 @@
     <WCFMetadata Include="Connected Services\" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202406211416300_InitialCreate.resx">
-      <DependentUpon>202406211416300_InitialCreate.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202406211804118_InitialCreate.resx">
+      <DependentUpon>202406211804118_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202406211748559_InitialCreate1.resx">
+      <DependentUpon>202406211748559_InitialCreate1.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

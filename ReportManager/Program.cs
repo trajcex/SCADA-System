@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -40,13 +41,13 @@ namespace ReportManager
             switch (option)
             {
                 case "1":
-                    Console.WriteLine("Izabrali ste opciju: Registracija korisnika");
+                    GetAlarmsByInterval();
                     break;
                 case "2":
-                    Console.WriteLine("Izabrali ste opciju: Dodavanje taga");
+                    GetByPriority();
                     break;
                 case "3":
-                    GetByTag();
+                    GetByInterval();
                     break;
                 case "4":
                     Console.WriteLine(_reportManagerClient.GetLastValueAi());
@@ -55,7 +56,7 @@ namespace ReportManager
                     Console.WriteLine(_reportManagerClient.GetLastValueDi());
                     break;
                 case "6":
-                    Console.WriteLine("Izabrali ste opciju: Prikaz trenutnih vrednosti izlaznih tagova");
+                    GetByTag();
                     break;
                 case "x":
                     return true;
@@ -69,6 +70,11 @@ namespace ReportManager
         private static void GetByTag()
         {
             var tagNames = _reportManagerClient.GetAllTagNames();
+            if (tagNames.Length == 0)
+            {
+                Console.WriteLine("\nNema dostupnih tagova.");
+                return;
+            }
             Console.WriteLine("\nDostpuni tagovi:");
             foreach (var tag in tagNames)
             {
@@ -90,5 +96,112 @@ namespace ReportManager
                 }
             }
         }
+
+        private static void GetByInterval()
+        {
+            DateTime firstDate = GetValidDate("Unesite prvi datum (dd.MM.yyyy): ");
+            DateTime secondDate = GetValidDate("Unesite drugi datum (dd.MM.yyyy): ", firstDate);
+
+            if (firstDate.Date == secondDate.Date)
+            {
+                firstDate = firstDate.Date; 
+            }
+
+            Console.WriteLine("\nUneli ste validne datume:");
+            Console.WriteLine("Prvi datum: " + firstDate.ToString("dd.MM.yyyy"));
+            Console.WriteLine("Drugi datum: " + secondDate.ToString("dd.MM.yyyy"));
+            Console.WriteLine(_reportManagerClient.GetTagValuesInPeriod(firstDate, secondDate));
+        }
+
+        private static void GetAlarmsByInterval()
+        {
+            DateTime firstDate = GetValidDate("Unesite prvi datum (dd.MM.yyyy): ");
+            DateTime secondDate = GetValidDate("Unesite drugi datum (dd.MM.yyyy): ", firstDate);
+
+            if (firstDate.Date == secondDate.Date)
+            {
+                firstDate = firstDate.Date;
+            }
+
+            Console.WriteLine("\nUneli ste validne datume:");
+            Console.WriteLine("Prvi datum: " + firstDate.ToString("dd.MM.yyyy"));
+            Console.WriteLine("Drugi datum: " + secondDate.ToString("dd.MM.yyyy"));
+            Console.WriteLine(_reportManagerClient.GetAlarmsInPeriod(firstDate, secondDate));
+        }
+
+        static DateTime GetValidDate(string prompt, DateTime? earlierDate = null)
+        {
+            DateTime date = DateTime.MinValue;
+            bool isValid = false;
+
+            while (!isValid)
+            {
+                Console.Write(prompt);
+                string input = Console.ReadLine();
+
+                isValid = DateTime.TryParseExact(input, "dd.MM.yyyy.", CultureInfo.InvariantCulture, DateTimeStyles.None, out date);
+
+                if (isValid)
+                {
+                    if (date > DateTime.Now)
+                    {
+                        Console.WriteLine("Datum ne sme biti u budućnosti. Pokušajte ponovo.");
+                        isValid = false;
+                    }
+                    else if (earlierDate.HasValue && date.Date < earlierDate.Value.Date)
+                    {
+                        Console.WriteLine("Drugi datum ne sme biti pre prvog datuma. Pokušajte ponovo.");
+                        isValid = false;
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Neispravan format datuma. Pokušajte ponovo.");
+                }
+            }
+
+            date = date.Date.AddHours(23).AddMinutes(59);
+            return date;
+        }
+
+        public static void GetByPriority()
+        {
+            var priorities = _reportManagerClient.GetAllPriorities();
+
+            if (priorities.Length == 0)
+            {
+                Console.WriteLine("\nNema dostupnih prioriteta.");
+                return;
+            }
+
+            Console.WriteLine("\nDostupni prioriteti:");
+            foreach (var priority in priorities)
+            {
+                Console.WriteLine($"- {priority}");
+            }
+
+            string chosenPriority;
+            bool isValidPriority = false;
+
+            do
+            {
+                Console.Write("\nUnesite prioritet: ");
+                chosenPriority = Console.ReadLine();
+
+                if (priorities.Contains(chosenPriority))
+                {
+                    isValidPriority = true;
+                }
+                else
+                {
+                    Console.WriteLine("Uneli ste nevalidan prioritet. Molimo unesite jedan od dostupnih prioriteta.");
+                }
+
+            } while (!isValidPriority);
+
+            Console.WriteLine($"Izabrali ste prioritet: {chosenPriority}");
+            Console.WriteLine(_reportManagerClient.GetAlarmsByPriority(int.Parse(chosenPriority)));
+        }
+
     }
 }

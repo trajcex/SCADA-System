@@ -12,6 +12,11 @@ namespace DatabaseManager
     public class TagManager
     {
         private static TagServiceClient tagServiceClient = new TagServiceClient();
+
+        public static void Init()
+        {
+            tagServiceClient.Init();
+        }
         public static void addTag()
         {
             Printer.TagTypes();
