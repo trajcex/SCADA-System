@@ -138,4 +138,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="Init">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="InitResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
 </xs:schema>

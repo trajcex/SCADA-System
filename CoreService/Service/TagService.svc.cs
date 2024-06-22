@@ -27,7 +27,7 @@ namespace CoreService
             digitalOutputTag = map.ContainsKey("DigitalOutputTag") ? map["DigitalOutputTag"] : new List<Tag>();
             analogInputTag = map.ContainsKey("AnalogInputTag") ? map["AnalogInputTag"] : new List<Tag>();
             analogOutputTag = map.ContainsKey("AnalogOutputTag") ? map["AnalogOutputTag"] : new List<Tag>();
-            tagProcessing = new TagProcessing(digitalInputTag, analogInputTag);
+            tagProcessing = new TagProcessing();
         }
         public List<Tag> GetTags()
         {
@@ -209,6 +209,20 @@ namespace CoreService
             }
             tagProcessing.StopTag(tagName);
             SaveTags();
+        }
+
+        public void Init()
+        {
+            foreach (Tag tag in digitalInputTag)
+            {
+                DigitalInputTag digitalInput = (DigitalInputTag)tag;
+                if (digitalInput.Scan) tagProcessing.StartTag(tag);
+            }
+            foreach (Tag tag in analogInputTag)
+            {
+                AnalogInputTag analogInput = (AnalogInputTag)tag;
+                if (analogInput.Scan) tagProcessing.StartTag(tag);
+            }
         }
     }
 }
