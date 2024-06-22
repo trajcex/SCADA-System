@@ -61,3 +61,13 @@ type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:44:04 PM; bord
 type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:45:04 PM; border:25
 type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:46:04 PM; border:25
 type:LOW; tagName:analoginput1; priority: 2; dateTime:6/22/2024 6:47:04 PM; border:25
+type:HIGH; tagName:alanog; priority: 2; dateTime:6/22/2024 7:41:09 PM; border:80
+type:LOW; tagName:alanog; priority: 2; dateTime:6/22/2024 7:41:25 PM; border:30
+type:HIGH; tagName:alanog; priority: 2; dateTime:6/22/2024 7:42:09 PM; border:80
+type:LOW; tagName:alanog; priority: 2; dateTime:6/22/2024 7:42:25 PM; border:30
+type:HIGH; tagName:alanog; priority: 2; dateTime:6/22/2024 7:43:09 PM; border:80
+type:LOW; tagName:alanog; priority: 2; dateTime:6/22/2024 7:43:25 PM; border:30
+type:HIGH; tagName:ainput1; priority: 3; dateTime:6/22/2024 8:03:09 PM; border:75
+type:HIGH; tagName:ainput2; priority: 1; dateTime:6/22/2024 8:03:16 PM; border:70
+type:LOW; tagName:ainput1; priority: 2; dateTime:6/22/2024 8:03:27 PM; border:30
+type:HIGH; tagName:ainput2; priority: 1; dateTime:6/22/2024 8:03:43 PM; border:70

@@ -63,7 +63,7 @@ namespace CoreService
                     analogInputTag.Add(tag);
 
                 else if (tag.GetType() == typeof(AnalogOutputTag))
-                    digitalOutputTag.Add(tag);
+                    analogOutputTag.Add(tag);
 
                 SaveTags();
                 return true;

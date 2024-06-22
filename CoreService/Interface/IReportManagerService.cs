@@ -8,7 +8,7 @@ using System.Text;
 namespace CoreService.Interface
 {
     [ServiceContract]
-    public interface IReportManager
+    public interface IReportManagerService
     {
         [OperationContract]
         string GetLastValueAi();
