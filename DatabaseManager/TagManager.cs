@@ -100,7 +100,7 @@ namespace DatabaseManager
                 Address = address,
                 ScanTime = scanTime,
                 Driver = driver,
-                Scan = true
+                Scan = false
             };
         }
         static Tag createDigitalOutput(string tagName, string description)
@@ -181,7 +181,7 @@ namespace DatabaseManager
                 ScanTime = scanTime,
                 LowLimit = lowLimit,
                 HighLimit = highLimit,
-                Scan = true,
+                Scan = false,
                 Units = units,
                 Driver = driver,
                 Alarms = alarms
@@ -195,13 +195,7 @@ namespace DatabaseManager
             string units = stringValidator("Unesite Units:");
             string address = stringValidator("Unesite Address:"); 
 
-            while (true)
-            {
-                int addAlarmOption = integerValidator("\nAdd alarms?\n1. Yes\n2. No", 1, 2);
-                if (addAlarmOption != 1) break;
-                int alarmType = integerValidator("Set alarm Type\n1. Low\n2. High", 1, 2);
-                
-            }
+            
             return new AnalogOutputTag
             {
                 TagName = tagName,

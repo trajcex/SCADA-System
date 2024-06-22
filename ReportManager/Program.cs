@@ -1,10 +1,10 @@
-﻿using System;
+﻿using ReportManager.ReportServiceReference;
+using System;
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ReportManager.ServiceReference1;
 
 namespace ReportManager
 {
@@ -99,24 +99,8 @@ namespace ReportManager
 
         private static void GetByInterval()
         {
-            DateTime firstDate = GetValidDate("Unesite prvi datum (dd.MM.yyyy): ");
-            DateTime secondDate = GetValidDate("Unesite drugi datum (dd.MM.yyyy): ", firstDate);
-
-            if (firstDate.Date == secondDate.Date)
-            {
-                firstDate = firstDate.Date; 
-            }
-
-            Console.WriteLine("\nUneli ste validne datume:");
-            Console.WriteLine("Prvi datum: " + firstDate.ToString("dd.MM.yyyy"));
-            Console.WriteLine("Drugi datum: " + secondDate.ToString("dd.MM.yyyy"));
-            Console.WriteLine(_reportManagerClient.GetTagValuesInPeriod(firstDate, secondDate));
-        }
-
-        private static void GetAlarmsByInterval()
-        {
-            DateTime firstDate = GetValidDate("Unesite prvi datum (dd.MM.yyyy): ");
-            DateTime secondDate = GetValidDate("Unesite drugi datum (dd.MM.yyyy): ", firstDate);
+            DateTime firstDate = GetValidDate("Unesite prvi datum (dd.MM.yyyy.): ");
+            DateTime secondDate = GetValidDate("Unesite drugi datum (dd.MM.yyyy.): ", firstDate);
 
             if (firstDate.Date == secondDate.Date)
             {
@@ -124,8 +108,24 @@ namespace ReportManager
             }
 
             Console.WriteLine("\nUneli ste validne datume:");
-            Console.WriteLine("Prvi datum: " + firstDate.ToString("dd.MM.yyyy"));
-            Console.WriteLine("Drugi datum: " + secondDate.ToString("dd.MM.yyyy"));
+            Console.WriteLine("Prvi datum: " + firstDate.ToString("dd.MM.yyyy."));
+            Console.WriteLine("Drugi datum: " + secondDate.ToString("dd.MM.yyyy."));
+            Console.WriteLine(_reportManagerClient.GetTagValuesInPeriod(firstDate, secondDate));
+        }
+
+        private static void GetAlarmsByInterval()
+        {
+            DateTime firstDate = GetValidDate("Unesite prvi datum (dd.MM.yyyy.): ");
+            DateTime secondDate = GetValidDate("Unesite drugi datum (dd.MM.yyyy.): ", firstDate);
+
+            if (firstDate.Date == secondDate.Date)
+            {
+                firstDate = firstDate.Date;
+            }
+
+            Console.WriteLine("\nUneli ste validne datume:");
+            Console.WriteLine("Prvi datum: " + firstDate.ToString("dd.MM.yyyy."));
+            Console.WriteLine("Drugi datum: " + secondDate.ToString("dd.MM.yyyy."));
             Console.WriteLine(_reportManagerClient.GetAlarmsInPeriod(firstDate, secondDate));
         }
 

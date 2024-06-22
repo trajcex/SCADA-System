@@ -1,0 +1,172 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tns="http://tempuri.org/" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" name="ReportManager" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://tempuri.org/Imports">
+      <xsd:import schemaLocation="http://localhost:60923/Service/ReportManager.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:60923/Service/ReportManager.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:60923/Service/ReportManager.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="IReportManager_GetLastValueAi_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastValueAi" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetLastValueAi_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastValueAiResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetLastValueDi_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastValueDi" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetLastValueDi_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLastValueDiResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetSortedValuesByTagName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSortedValuesByTagName" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetSortedValuesByTagName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSortedValuesByTagNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetAllTagNames_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTagNames" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetAllTagNames_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllTagNamesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetTagValuesInPeriod_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagValuesInPeriod" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetTagValuesInPeriod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetTagValuesInPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetAlarmsInPeriod_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmsInPeriod" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetAlarmsInPeriod_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmsInPeriodResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetAlarmsByPriority_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmsByPriority" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetAlarmsByPriority_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAlarmsByPriorityResponse" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetAllPriorities_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPriorities" />
+  </wsdl:message>
+  <wsdl:message name="IReportManager_GetAllPriorities_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetAllPrioritiesResponse" />
+  </wsdl:message>
+  <wsdl:portType name="IReportManager">
+    <wsdl:operation name="GetLastValueAi">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportManager/GetLastValueAi" message="tns:IReportManager_GetLastValueAi_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportManager/GetLastValueAiResponse" message="tns:IReportManager_GetLastValueAi_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLastValueDi">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportManager/GetLastValueDi" message="tns:IReportManager_GetLastValueDi_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportManager/GetLastValueDiResponse" message="tns:IReportManager_GetLastValueDi_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSortedValuesByTagName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportManager/GetSortedValuesByTagName" message="tns:IReportManager_GetSortedValuesByTagName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportManager/GetSortedValuesByTagNameResponse" message="tns:IReportManager_GetSortedValuesByTagName_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTagNames">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportManager/GetAllTagNames" message="tns:IReportManager_GetAllTagNames_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportManager/GetAllTagNamesResponse" message="tns:IReportManager_GetAllTagNames_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValuesInPeriod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportManager/GetTagValuesInPeriod" message="tns:IReportManager_GetTagValuesInPeriod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportManager/GetTagValuesInPeriodResponse" message="tns:IReportManager_GetTagValuesInPeriod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmsInPeriod">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportManager/GetAlarmsInPeriod" message="tns:IReportManager_GetAlarmsInPeriod_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportManager/GetAlarmsInPeriodResponse" message="tns:IReportManager_GetAlarmsInPeriod_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmsByPriority">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportManager/GetAlarmsByPriority" message="tns:IReportManager_GetAlarmsByPriority_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportManager/GetAlarmsByPriorityResponse" message="tns:IReportManager_GetAlarmsByPriority_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPriorities">
+      <wsdl:input wsaw:Action="http://tempuri.org/IReportManager/GetAllPriorities" message="tns:IReportManager_GetAllPriorities_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IReportManager/GetAllPrioritiesResponse" message="tns:IReportManager_GetAllPriorities_OutputMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IReportManager" type="tns:IReportManager">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="GetLastValueAi">
+      <soap:operation soapAction="http://tempuri.org/IReportManager/GetLastValueAi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetLastValueDi">
+      <soap:operation soapAction="http://tempuri.org/IReportManager/GetLastValueDi" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSortedValuesByTagName">
+      <soap:operation soapAction="http://tempuri.org/IReportManager/GetSortedValuesByTagName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllTagNames">
+      <soap:operation soapAction="http://tempuri.org/IReportManager/GetAllTagNames" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetTagValuesInPeriod">
+      <soap:operation soapAction="http://tempuri.org/IReportManager/GetTagValuesInPeriod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmsInPeriod">
+      <soap:operation soapAction="http://tempuri.org/IReportManager/GetAlarmsInPeriod" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAlarmsByPriority">
+      <soap:operation soapAction="http://tempuri.org/IReportManager/GetAlarmsByPriority" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetAllPriorities">
+      <soap:operation soapAction="http://tempuri.org/IReportManager/GetAllPriorities" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="ReportManager">
+    <wsdl:port name="BasicHttpBinding_IReportManager" binding="tns:BasicHttpBinding_IReportManager">
+      <soap:address location="http://localhost:60923/Service/ReportManager.svc/report" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

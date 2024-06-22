@@ -1,16 +1,14 @@
-﻿using System;
+﻿using CoreService.Interface;
+using System;
 using System.Collections.Generic;
-using System.Data.Entity;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.Text;
-using CoreService.Interface;
-using SharedLibrary.Model;
 
-namespace CoreService
+namespace CoreService.Service
 {
-    public class ReportManager : IReportManager
+    public class ReportManagerService : IReportManagerService
     {
         private static UserContextDB _contextDb = new UserContextDB();
 
@@ -33,7 +31,7 @@ namespace CoreService
                 string formattedDate = dateTime.ToString("dd.MM.yyyy HH:mm:ss");
                 sb.AppendLine($"Tag: {tag.TagName}, Vrednost: {tag.Value}, Vreme: {formattedDate}");
             }
-            
+
             return sb.ToString();
         }
 
@@ -149,7 +147,7 @@ namespace CoreService
                 return $"\nU periodu od {startTime:d} do {endTime:d}, nema dostupnih alarma.";
             }
             var result = new StringBuilder();
-            result.AppendLine($"\nU periodu od {startTime:d} do {endTime:d}, su se desili sledeci alarmi:");
+            result.AppendLine($"\nU periodu od {startTime:d} do {endTime:d}, se nije desio nijedan alarm.");
 
             int counter = 1;
             foreach (var val in alarms)
@@ -200,7 +198,5 @@ namespace CoreService
 
             return items;
         }
-
-
     }
 }
