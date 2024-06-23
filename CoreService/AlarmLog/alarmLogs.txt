@@ -73,3 +73,11 @@ type:LOW; tagName:ainput1; priority: 2; dateTime:6/22/2024 8:03:27 PM; border:30
 type:HIGH; tagName:ainput2; priority: 1; dateTime:6/22/2024 8:03:43 PM; border:70
 type:LOW; tagName:ainput3; priority: 3; dateTime:6/23/2024 7:19:21 PM; border:50
 type:LOW; tagName:ainput3; priority: 3; dateTime:6/23/2024 7:20:21 PM; border:50
+type:HIGH; tagName:ainput1; priority: 3; dateTime:6/23/2024 8:10:09 PM; border:75
+type:LOW; tagName:ainput1; priority: 2; dateTime:6/23/2024 8:10:27 PM; border:30
+type:HIGH; tagName:ainput1; priority: 3; dateTime:6/23/2024 8:11:09 PM; border:75
+type:HIGH; tagName:ainput1; priority: 3; dateTime:6/23/2024 8:13:09 PM; border:75
+type:LOW; tagName:ainput1; priority: 2; dateTime:6/23/2024 8:13:27 PM; border:30
+type:HIGH; tagName:ainput1; priority: 3; dateTime:6/23/2024 8:14:09 PM; border:75
+type:HIGH; tagName:ainput1; priority: 3; dateTime:6/23/2024 8:15:09 PM; border:75
+type:LOW; tagName:ainput1; priority: 2; dateTime:6/23/2024 8:15:27 PM; border:30
