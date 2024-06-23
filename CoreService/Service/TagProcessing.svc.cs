@@ -135,7 +135,7 @@ namespace CoreService
 
                             SaveAlarmValue(alarmValue);
 
-                            string alarmMessage = "==========ALARM==========\nTYPE -> LOW; TAG NAME -> " + tag.TagName + "; UNIT-> " + tag.Units + "; CURRENT VALUE -> " + currentValue + " IS UNDER ->" + alarm.Border;
+                            string alarmMessage = "==========ALARM==========\nTYPE -> LOW; " + "DATE TIME -> " + alarmValue.DateTime.ToString() + "; TAG NAME -> " + tag.TagName + "; UNIT-> " + tag.Units + "; CURRENT VALUE -> " + currentValue + " IS UNDER ->" + alarm.Border + ";";
                             writeAlarmMessageByPriority(alarm.Priority, alarmMessage);
                         }
                     }
@@ -159,7 +159,7 @@ namespace CoreService
 
                             writeAlarmsLog("type:" + alarm.Type + "; tagName:" + tag.TagName + "; priority: " + alarm.Priority + "; dateTime:" + dateTime.ToString() + "; border:" + alarm.Border);
 
-                            string alarmMessage = "==========ALARM==========\nTYPE -> HIGH; TAG NAME -> " + tag.TagName + "; UNIT-> " + tag.Units + "; CURRENT VALUE -> " + currentValue + " IS ABOVE ->" + alarm.Border;
+                            string alarmMessage = "==========ALARM==========\nTYPE -> HIGH; " + "DATE TIME -> " + alarmValue.DateTime.ToString() + "; TAG NAME -> " + tag.TagName + "; UNIT-> " + tag.Units + "; CURRENT VALUE -> " + currentValue + " IS ABOVE ->" + alarm.Border + ";";
                             writeAlarmMessageByPriority(alarm.Priority, alarmMessage);
                         }
                         
