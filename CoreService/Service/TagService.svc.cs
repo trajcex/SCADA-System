@@ -83,21 +83,27 @@ namespace CoreService
         public bool DeleteTag(String tagName)
         {
             try {
-                var tagValuesToDelete = _contextDb.TagValues.Where(tv => tv.TagName == tagName).ToList();
-                _contextDb.TagValues.RemoveRange(tagValuesToDelete);
-                _contextDb.SaveChanges();
-
                 AnalogInputTag analogTag = (AnalogInputTag)analogInputTag.FirstOrDefault(tag => tag.TagName.Equals(tagName));
-                
+                DigitalInputTag digitalTag = (DigitalInputTag)digitalInputTag.FirstOrDefault(tag => tag.TagName.Equals(tagName));
                 if (analogTag != null)
                 {
-                    foreach(var alarm in analogTag.Alarms)
+                    if(analogTag.Scan) StopTag(tagName);
+
+                    foreach (var alarm in analogTag.Alarms)
                     {
                         var alarmValuesToDelete = _contextDb.Alarms.Where(alarmValue => alarmValue.AlarmId == alarm.Id).ToList();
-                        _contextDb.Alarms.RemoveRange(alarmValuesToDelete); 
+                        _contextDb.Alarms.RemoveRange(alarmValuesToDelete);
                         _contextDb.SaveChanges();
                     }
                 }
+                else if(digitalTag != null)
+                {
+                    if(digitalTag.Scan) StopTag(tagName);
+                }
+
+                var tagValuesToDelete = _contextDb.TagValues.Where(tv => tv.TagName == tagName).ToList();
+                _contextDb.TagValues.RemoveRange(tagValuesToDelete);
+                _contextDb.SaveChanges();
 
                 digitalInputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
                 digitalOutputTag.RemoveAll(tag => tag.TagName.Equals(tagName));
